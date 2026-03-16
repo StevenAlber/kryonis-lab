@@ -1,0 +1,843 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KRYONIS Lab — Metabolic State Verification</title>
+<meta name="description" content="The first AI-native lab for Metabolic State Verification. Building the verification layer for technologies with metabolic existence.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=IBM+Plex+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════════════════
+   KRYONIS LAB
+   Aesthetic: Swiss critical infrastructure
+   Tone: Declarative, objective, inevitable
+   ═══════════════════════════════════════════════ */
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: #060606;
+  --bg-elevated: #0C0C0B;
+  --bg-card: #0F0F0E;
+  --border: #1C1B19;
+  --border-light: #141413;
+  --text: #CBC7BB;
+  --text-dim: #7A766C;
+  --text-faint: #4A4740;
+  --gold: #8B7D5E;
+  --gold-light: #A89474;
+  --sage: #5A7A5E;
+  --cream: #F5F2EB;
+
+  --font-display: 'EB Garamond', 'Georgia', serif;
+  --font-mono: 'IBM Plex Mono', 'Courier New', monospace;
+  --font-system: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+  --w-narrow: 680px;
+  --w-default: 920px;
+  --w-wide: 1140px;
+}
+
+html { 
+  scroll-behavior: smooth; 
+  scroll-padding-top: 80px;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  font-family: var(--font-display);
+  background: var(--bg);
+  color: var(--text);
+  font-size: 17px;
+  line-height: 1.7;
+  min-height: 100vh;
+}
+
+::selection { background: rgba(139,125,94,0.25); }
+
+a { color: var(--gold); text-decoration: none; transition: color 0.2s; }
+a:hover { color: var(--gold-light); }
+
+/* ─── NAV ─── */
+.nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  padding: 18px 32px;
+  background: rgba(6,6,6,0.88);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border-light);
+}
+.nav-inner {
+  max-width: var(--w-wide);
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.nav-mark {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.35em;
+  color: var(--text-dim);
+  text-decoration: none;
+  text-transform: uppercase;
+}
+.nav-mark:hover { color: var(--text); }
+.nav-links {
+  display: flex;
+  gap: 36px;
+  list-style: none;
+}
+.nav-links a {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--text-dim); }
+
+@media (max-width: 800px) {
+  .nav { padding: 14px 20px; }
+  .nav-links { display: none; }
+}
+
+/* ─── LAYOUT ─── */
+.container { max-width: var(--w-wide); margin: 0 auto; padding: 0 32px; }
+.container--narrow { max-width: var(--w-default); }
+.container--tight { max-width: var(--w-narrow); }
+
+@media (max-width: 600px) {
+  .container { padding: 0 20px; }
+}
+
+/* ─── HERO ─── */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 160px 0 100px;
+}
+.hero-mono {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+  margin-bottom: 48px;
+}
+.hero-title {
+  font-family: var(--font-display);
+  font-size: clamp(2.4rem, 1rem + 4.5vw, 4.2rem);
+  font-weight: 400;
+  font-style: italic;
+  line-height: 1.08;
+  color: var(--cream);
+  max-width: 16ch;
+  margin-bottom: 40px;
+}
+.hero-line {
+  width: 56px;
+  height: 1px;
+  background: var(--gold);
+  margin-bottom: 32px;
+}
+.hero-text {
+  font-size: 16px;
+  color: var(--text-dim);
+  max-width: 56ch;
+  line-height: 1.75;
+  margin-bottom: 48px;
+}
+.hero-cta {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+/* ─── BUTTONS ─── */
+.btn {
+  display: inline-block;
+  padding: 12px 28px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border-radius: 2px;
+  transition: all 0.2s;
+  cursor: pointer;
+}
+.btn--gold {
+  background: var(--gold);
+  color: var(--cream);
+  border: 1px solid var(--gold);
+}
+.btn--gold:hover { background: var(--gold-light); border-color: var(--gold-light); color: var(--cream); }
+.btn--ghost {
+  background: transparent;
+  color: var(--text-dim);
+  border: 1px solid var(--border);
+}
+.btn--ghost:hover { border-color: var(--text-faint); color: var(--text); }
+
+/* ─── SECTIONS ─── */
+.section {
+  padding: clamp(64px, 10vw, 120px) 0;
+  border-top: 1px solid var(--border-light);
+}
+.section-label {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 16px;
+}
+.section-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 1rem + 2.5vw, 2.8rem);
+  font-weight: 400;
+  font-style: italic;
+  line-height: 1.12;
+  color: var(--cream);
+  margin-bottom: 24px;
+  max-width: 20ch;
+}
+.section-intro {
+  font-size: 16px;
+  color: var(--text-dim);
+  max-width: 58ch;
+  line-height: 1.75;
+  margin-bottom: 56px;
+}
+.section-body {
+  font-size: 16px;
+  color: var(--text-dim);
+  max-width: 62ch;
+  line-height: 1.75;
+  margin-bottom: 20px;
+}
+
+/* ─── FOUNDING THESIS ─── */
+.thesis-block {
+  border-left: 2px solid var(--gold);
+  padding: 24px 0 24px 28px;
+  margin: 40px 0;
+  max-width: 60ch;
+}
+.thesis-block p {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-style: italic;
+  line-height: 1.65;
+  color: var(--text);
+}
+
+/* ─── TRACKS GRID ─── */
+.tracks-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(340px, 100%), 1fr));
+  gap: 1px;
+  background: var(--border-light);
+  border: 1px solid var(--border-light);
+}
+.track {
+  padding: 40px 32px;
+  background: var(--bg);
+}
+.track:hover { background: var(--bg-elevated); }
+.track-num {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--gold);
+  letter-spacing: 0.2em;
+  margin-bottom: 14px;
+}
+.track-name {
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-style: italic;
+  font-weight: 400;
+  color: var(--cream);
+  margin-bottom: 12px;
+  line-height: 1.25;
+}
+.track-desc {
+  font-size: 14px;
+  color: var(--text-dim);
+  line-height: 1.7;
+}
+
+/* ─── PROGRAMS ─── */
+.programs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(280px, 100%), 1fr));
+  gap: 1px;
+  background: var(--border-light);
+  border: 1px solid var(--border-light);
+}
+.program {
+  padding: 36px 28px;
+  background: var(--bg);
+}
+.program-name {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-style: italic;
+  color: var(--cream);
+  margin-bottom: 6px;
+}
+.program-status {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  color: var(--gold);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+.program-desc {
+  font-size: 14px;
+  color: var(--text-dim);
+  line-height: 1.65;
+}
+
+/* ─── PUBLICATIONS ─── */
+.pubs-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+}
+@media (max-width: 700px) { .pubs-grid { grid-template-columns: 1fr; } }
+
+.pubs-col-label {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--border-light);
+  margin-bottom: 24px;
+}
+.pub-item {
+  padding: 20px 0;
+  border-bottom: 1px solid var(--border-light);
+}
+.pub-item:last-child { border-bottom: none; }
+.pub-title {
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-style: italic;
+  color: var(--cream);
+  margin-bottom: 4px;
+}
+.pub-meta {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  color: var(--text-faint);
+  letter-spacing: 0.1em;
+  margin-bottom: 10px;
+}
+.pub-desc {
+  font-size: 14px;
+  color: var(--text-dim);
+  line-height: 1.6;
+}
+.pub-price {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--gold);
+  letter-spacing: 0.05em;
+  margin-top: 10px;
+}
+
+/* ─── METHODOLOGY ─── */
+.method-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+}
+@media (max-width: 700px) { .method-grid { grid-template-columns: 1fr; } }
+.method-title {
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-style: italic;
+  color: var(--cream);
+  margin-bottom: 14px;
+}
+.method-text {
+  font-size: 14.5px;
+  color: var(--text-dim);
+  line-height: 1.7;
+  margin-bottom: 14px;
+}
+
+/* ─── ADVISORY ─── */
+.advisory-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1px;
+  background: var(--border-light);
+  border: 1px solid var(--border-light);
+}
+@media (max-width: 900px) { .advisory-grid { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 550px) { .advisory-grid { grid-template-columns: 1fr 1fr; } }
+.advisory-card {
+  padding: 28px 20px;
+  background: var(--bg);
+  text-align: center;
+}
+.advisory-role {
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-style: italic;
+  color: var(--cream);
+  margin-bottom: 8px;
+}
+.advisory-desc {
+  font-size: 12px;
+  color: var(--text-faint);
+  line-height: 1.5;
+  margin-bottom: 12px;
+}
+.advisory-status {
+  font-family: var(--font-mono);
+  font-size: 8px;
+  color: var(--gold);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+/* ─── ENTER / PATHWAYS ─── */
+.enter-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(300px, 100%), 1fr));
+  gap: 1px;
+  background: var(--border-light);
+  border: 1px solid var(--border-light);
+}
+.pathway {
+  display: block;
+  padding: 40px 28px;
+  background: var(--bg);
+  text-decoration: none;
+  color: var(--text);
+  transition: background 0.2s;
+}
+.pathway:hover { background: var(--bg-elevated); color: var(--text); }
+.pathway-declare {
+  font-family: var(--font-display);
+  font-size: 17px;
+  font-style: italic;
+  color: var(--cream);
+  line-height: 1.35;
+  margin-bottom: 12px;
+}
+.pathway-desc {
+  font-size: 13px;
+  color: var(--text-dim);
+  line-height: 1.6;
+  margin-bottom: 14px;
+}
+.pathway-arrow {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  color: var(--gold);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+/* ─── FOOTER ─── */
+.footer {
+  padding: 64px 0 32px;
+  border-top: 1px solid var(--border-light);
+}
+.footer-inner {
+  max-width: var(--w-wide);
+  margin: 0 auto;
+  padding: 0 32px;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 32px;
+}
+@media (max-width: 700px) { .footer-inner { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 450px) { .footer-inner { grid-template-columns: 1fr; } }
+
+.footer-brand {
+  font-size: 12px;
+  color: var(--text-faint);
+  line-height: 1.7;
+}
+.footer-brand-name {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  margin-bottom: 10px;
+}
+.footer-col-title {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+  margin-bottom: 14px;
+}
+.footer-col ul { list-style: none; }
+.footer-col li { margin-bottom: 8px; }
+.footer-col a {
+  font-size: 12px;
+  color: var(--text-dim);
+  text-decoration: none;
+}
+.footer-col a:hover { color: var(--text); }
+
+.footer-bottom {
+  max-width: var(--w-wide);
+  margin: 0 auto;
+  padding: 24px 32px 0;
+  margin-top: 32px;
+  border-top: 1px solid var(--border-light);
+  font-family: var(--font-mono);
+  font-size: 9px;
+  color: var(--text-faint);
+  letter-spacing: 0.05em;
+}
+
+/* ─── ANIMATIONS ─── */
+.fade-up {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s cubic-bezier(0.16,1,0.3,1), transform 0.8s cubic-bezier(0.16,1,0.3,1);
+}
+.fade-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+</style>
+</head>
+<body>
+
+<!-- ═══ NAV ═══ -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="#" class="nav-mark">KRYONIS LAB</a>
+    <ul class="nav-links">
+      <li><a href="#research">Research</a></li>
+      <li><a href="#programs">Programs</a></li>
+      <li><a href="#publications">Publications</a></li>
+      <li><a href="#methodology">Method</a></li>
+      <li><a href="#council">Council</a></li>
+      <li><a href="#enter">Enter</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ═══ HERO ═══ -->
+<section class="hero">
+  <div class="container">
+    <p class="hero-mono fade-up">Metabolic State Verification</p>
+    <h1 class="hero-title fade-up">The verification layer for technologies that are alive.</h1>
+    <div class="hero-line fade-up"></div>
+    <p class="hero-text fade-up">
+      Civilization has spent the last century mastering the governance of machines that can be switched off. KRYONIS Lab is architecting the trust layer for critical infrastructure that can die.
+    </p>
+    <div class="hero-cta fade-up">
+      <a href="#enter" class="btn btn--gold">Enter the Lab</a>
+      <a href="#research" class="btn btn--ghost">Research Tracks</a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FOUNDING THESIS ═══ -->
+<section class="section" id="thesis">
+  <div class="container container--narrow fade-up">
+    <p class="section-label">Founding Thesis</p>
+    <h2 class="section-title">Why this institution exists</h2>
+    <div class="section-body">
+      The 21st century is producing the first technologies that are not merely fabricated but metabolically alive. Biological computing substrates, biohybrid industrial systems, synthetic organisms deployed as infrastructure, and living materials used in construction consume resources, age, degrade, mutate, and die. They are thermodynamically open, temporally bounded, and subject to continuous state change. No existing standards body, regulatory framework, or verification architecture was designed for technologies that are alive.
+    </div>
+    <div class="thesis-block">
+      <p>
+        KRYONIS Lab exists to define the field of Metabolic State Verification and to build the protocols, governance architecture, and strategic intelligence that enable governments, insurers, investors, and operators to measure, trust, and transact with technologies that metabolize.
+      </p>
+    </div>
+    <div class="section-body">
+      KRYONIS Lab is positioned to do for living technologies what ISO, NIST, and IEEE did for industrial and digital systems — but built from inception as AI-native, globally distributed, and designed for civilizational timescales.
+    </div>
+  </div>
+</section>
+
+<!-- ═══ RESEARCH ═══ -->
+<section class="section" id="research">
+  <div class="container fade-up">
+    <p class="section-label">Research</p>
+    <h2 class="section-title">Five tracks of investigation</h2>
+    <p class="section-intro">
+      Each track addresses a distinct verification, governance, or economic challenge created by the emergence of metabolically active technologies. Together they constitute the operating surface of a new discipline.
+    </p>
+    <div class="tracks-grid">
+      <div class="track">
+        <p class="track-num">TRACK I</p>
+        <h3 class="track-name">Living Systems Verification</h3>
+        <p class="track-desc">Protocols for verifying the functional state, structural integrity, and performance parameters of technologies that metabolize. How do you confirm that a biological computing substrate is performing within specification when the system itself is changing continuously?</p>
+      </div>
+      <div class="track">
+        <p class="track-num">TRACK II</p>
+        <h3 class="track-name">Thermodynamic Asset Architecture</h3>
+        <p class="track-desc">Accounting, valuation, and asset classification frameworks for technologies with entropy profiles. Living technologies exhibit non-linear degradation, self-repair, and thermodynamic coupling with their environment. This track builds the actuarial and financial infrastructure for metabolic assets.</p>
+      </div>
+      <div class="track">
+        <p class="track-num">TRACK III</p>
+        <h3 class="track-name">Biocapital Governance</h3>
+        <p class="track-desc">Frameworks for sovereign and institutional governance of biological capital — from national biosphere assets to synthetic biology portfolios. Jurisdictional control, settlement architecture, and the integration of biocapital into sovereign balance sheets as a verifiable, auditable asset class.</p>
+      </div>
+      <div class="track">
+        <p class="track-num">TRACK IV</p>
+        <h3 class="track-name">Biohybrid Computation Infrastructure</h3>
+        <p class="track-desc">Technical standards and verification methods for computation performed by biological substrates. Error characterization, probabilistic output verification, and the engineering required to safely integrate synthetic neural tissues with legacy digital networks at industrial scale.</p>
+      </div>
+      <div class="track">
+        <p class="track-num">TRACK V</p>
+        <h3 class="track-name">Ontological Boundaries &amp; Ethics</h3>
+        <p class="track-desc">As computational substrates transition to living biological tissues, the legal line between mechanism and organism dissolves. This track establishes the ethical scaffolding required to categorize, utilize, restrict, and govern complex biological machines operating near the boundary of substrate and intelligence.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ PROGRAMS ═══ -->
+<section class="section" id="programs">
+  <div class="container fade-up">
+    <p class="section-label">Programs</p>
+    <h2 class="section-title">Engagement pathways</h2>
+    <p class="section-intro">
+      The Lab operates through structured engagement for researchers, governments, industry, and the emerging field at large.
+    </p>
+    <div class="programs-grid">
+      <div class="program">
+        <h3 class="program-name">Research Fellowship</h3>
+        <p class="program-status">Applications open September 2026</p>
+        <p class="program-desc">Residential and distributed fellowships for researchers working within or adjacent to Metabolic State Verification. Fellows receive access to the KRYONIS synthesis infrastructure, publication support, and integration into the Lab's AI-native research methodology. 6–12 month appointments.</p>
+      </div>
+      <div class="program">
+        <h3 class="program-name">Sovereign Advisory</h3>
+        <p class="program-status">Accepting mandates</p>
+        <p class="program-desc">Structured advisory for national governments, central banks, sovereign wealth funds, and multilateral bodies. Deliverables include threat assessments, regulatory architecture proposals, national bioeconomy strategy frameworks, and verification standard adoption roadmaps.</p>
+      </div>
+      <div class="program">
+        <h3 class="program-name">Industry Verification Partnership</h3>
+        <p class="program-status">Launching Q3 2026</p>
+        <p class="program-desc">Partnership framework for biotech companies, synthetic biology firms, and biological computing developers requiring third-party verification of metabolic state compliance. Partners contribute to MSV Protocol development and receive early access to verification standards.</p>
+      </div>
+      <div class="program">
+        <h3 class="program-name">MSV Certification</h3>
+        <p class="program-status">Curriculum in development — Q4 2026</p>
+        <p class="program-desc">Professional certification in Metabolic State Verification for engineers, auditors, regulators, and compliance officers. Three tiers: MSV Foundation, MSV Practitioner, MSV Architect. Distributed cohorts using AI-augmented pedagogy.</p>
+      </div>
+      <div class="program">
+        <h3 class="program-name">Open Research</h3>
+        <p class="program-status">Active</p>
+        <p class="program-desc">Free, open-access working papers, datasets, and methodological frameworks published under Creative Commons. The Lab builds the field openly — ensuring foundational concepts are available for independent validation, criticism, and extension.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ PUBLICATIONS ═══ -->
+<section class="section" id="publications">
+  <div class="container fade-up">
+    <p class="section-label">Publications &amp; Intelligence</p>
+    <h2 class="section-title">Building the field in public</h2>
+    <p class="section-intro">
+      Open-access publications build the intellectual foundation. Strategic intelligence products translate research into actionable decision frameworks.
+    </p>
+    <div class="pubs-grid">
+      <div>
+        <p class="pubs-col-label">Open Access</p>
+        <div class="pub-item">
+          <h3 class="pub-title">Working Papers Series</h3>
+          <p class="pub-meta">Ongoing — CC BY 4.0</p>
+          <p class="pub-desc">Foundational research, taxonomies, and methodological proposals. Current pipeline: ontological classification of metabolic technologies, verification primitive definitions, comparative standards gap analysis.</p>
+        </div>
+        <div class="pub-item">
+          <h3 class="pub-title">The KRYONIS MSV Protocol</h3>
+          <p class="pub-meta">v0.1 — Q3 2026</p>
+          <p class="pub-desc">The Lab's core methodological contribution. A formal protocol for verifying the metabolic state of living technological systems. Open for public review.</p>
+        </div>
+        <div class="pub-item">
+          <h3 class="pub-title">Annual State of the Field</h3>
+          <p class="pub-meta">First edition — Q4 2026</p>
+          <p class="pub-desc">Comprehensive survey of biological computing, biohybrid systems, and synthetic organism deployment — assessed through verification readiness and governance maturity.</p>
+        </div>
+      </div>
+      <div>
+        <p class="pubs-col-label">Strategic Intelligence</p>
+        <div class="pub-item">
+          <h3 class="pub-title">The Biological Computing Verification Gap</h3>
+          <p class="pub-meta">Q2 2026 — Flagship Intelligence Brief</p>
+          <p class="pub-desc">Comprehensive analysis of the structural verification deficit in biological computing. Independently validated by Sirbu &amp; Floridi (2026, Science and Engineering Ethics, Springer Nature).</p>
+          <p class="pub-price">$2,500 — <a href="/cdn-cgi/l/email-protection#721b1c01061b060706173219000b1d1c1b015c151e1d10131e4d010710181711064f220700111a1301175740423b1c03071b000b57404290f2e65740422417001b141b1113061b1d1c57404235130257404230001b1714">Request access</a></p>
+        </div>
+        <div class="pub-item">
+          <h3 class="pub-title">Quarterly Verification Intelligence</h3>
+          <p class="pub-meta">Launching Q3 2026</p>
+          <p class="pub-desc">Quarterly briefings tracking verification developments, regulatory movements, and strategic shifts across the metabolic technology landscape.</p>
+          <p class="pub-price">Annual subscription — pricing on request</p>
+        </div>
+        <div class="pub-item">
+          <h3 class="pub-title">Custom Strategic Assessments</h3>
+          <p class="pub-meta">Accepting commissions</p>
+          <p class="pub-desc">Bespoke intelligence for governments, sovereign wealth funds, insurers, and institutional investors. National bioeconomy readiness, sector verification gaps, regulatory architecture.</p>
+          <p class="pub-price">Engagement from $15,000</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ METHODOLOGY ═══ -->
+<section class="section" id="methodology">
+  <div class="container fade-up">
+    <p class="section-label">Methodology</p>
+    <h2 class="section-title">How the Lab works</h2>
+    <p class="section-intro">
+      KRYONIS Lab does not operate as a conventional research centre. Its methodology is designed for a field that does not yet have established departments, journals, or disciplinary boundaries.
+    </p>
+    <div class="method-grid">
+      <div>
+        <h3 class="method-title">The KRYONIS Round Table</h3>
+        <p class="method-text">A structured, multi-perspective analytical framework — rotational synthesis — in which every research question is examined from every relevant disciplinary vantage point before conclusions are drawn. Each rotation brings a distinct lens: biophysical, economic, governance, ethical, actuarial, geopolitical, and technical.</p>
+        <p class="method-text">The method prevents the disciplinary capture that distorts emerging fields — where new phenomena are absorbed into the nearest existing framework rather than understood on their own terms.</p>
+      </div>
+      <div>
+        <h3 class="method-title">AI-Native Distributed Synthesis</h3>
+        <p class="method-text">The Lab treats artificial intelligence not as a research tool but as a formal component of its analytical infrastructure. AI systems perform exhaustive literature mapping, cross-domain pattern detection, and framework stress-testing. Human researchers provide ontological judgement, strategic context, and verification of conceptual integrity.</p>
+        <p class="method-text">This is a methodological commitment: the field of MSV spans too many disciplines for any individual researcher or traditional team to hold in view simultaneously.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ ADVISORY COUNCIL ═══ -->
+<section class="section" id="council">
+  <div class="container fade-up">
+    <p class="section-label">Governance</p>
+    <h2 class="section-title">Founding Advisory Council</h2>
+    <p class="section-intro">
+      Five internationally recognised figures spanning the disciplines essential to Metabolic State Verification. Three-year terms. Strategic direction, institutional credibility, disciplinary oversight.
+    </p>
+    <div class="advisory-grid">
+      <div class="advisory-card">
+        <h3 class="advisory-role">Biosecurity</h3>
+        <p class="advisory-desc">Biodefence policy, dual-use governance, containment architecture</p>
+        <p class="advisory-status">Appointment pending</p>
+      </div>
+      <div class="advisory-card">
+        <h3 class="advisory-role">Compute Engineering</h3>
+        <p class="advisory-desc">Biological logic design, error characterisation, bio-digital interface</p>
+        <p class="advisory-status">Appointment pending</p>
+      </div>
+      <div class="advisory-card">
+        <h3 class="advisory-role">Sovereign Capital</h3>
+        <p class="advisory-desc">Sovereign fund allocation, biocapital integration, state balance sheets</p>
+        <p class="advisory-status">Appointment pending</p>
+      </div>
+      <div class="advisory-card">
+        <h3 class="advisory-role">Bioethics</h3>
+        <p class="advisory-desc">Consciousness boundaries, moral status of biological substrates</p>
+        <p class="advisory-status">Appointment pending</p>
+      </div>
+      <div class="advisory-card">
+        <h3 class="advisory-role">Regulatory Architecture</h3>
+        <p class="advisory-desc">Standards body design, international regulatory harmonisation</p>
+        <p class="advisory-status">Appointment pending</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ ENTER THE INSTITUTE ═══ -->
+<section class="section" id="enter">
+  <div class="container fade-up">
+    <p class="section-label">Engage</p>
+    <h2 class="section-title">Enter the Lab</h2>
+    <p class="section-intro">
+      Declare your institutional alignment to proceed.
+    </p>
+    <div class="enter-grid">
+      <a href="/cdn-cgi/l/email-protection#254c4b56514c51505140654e575c4a4b4c560b42494a4744491a5650474f404651186c4b514049494c42404b4640001715755057464d4456400017156c4b54504c575c" class="pathway">
+        <p class="pathway-declare">"I am allocating capital or architecting policy and require strategic intelligence."</p>
+        <p class="pathway-desc">Access the Lab's intelligence products — from the flagship Verification Gap Brief to custom strategic assessments and quarterly subscriptions.</p>
+        <p class="pathway-arrow">Procure intelligence →</p>
+      </a>
+      <a href="/cdn-cgi/l/email-protection#4d24233e3924393839280d263f342223243e632a21222f2c21723e382f27282e39701e223b283f28242a23687f7d0c293b243e223f34687f7d04233c38243f34" class="pathway">
+        <p class="pathway-declare">"I represent a nation-state, defence institution, or sovereign wealth fund."</p>
+        <p class="pathway-desc">Structured advisory for sovereign actors navigating the biological technology transition. Threat assessments, regulatory architecture, national bioeconomy strategy.</p>
+        <p class="pathway-arrow">Initiate advisory engagement →</p>
+      </a>
+      <a href="/cdn-cgi/l/email-protection#721b1c01061b060706173219000b1d1c1b015c151e1d10131e4d010710181711064f201701171300111a57404234171e1e1d05011a1b025740423b1c061700170106" class="pathway">
+        <p class="pathway-declare">"I am a researcher seeking to work within the KRYONIS framework."</p>
+        <p class="pathway-desc">Apply for a Fellowship across biosecurity, biophysics, computational biology, bioethics, actuarial science, or regulatory architecture. Applications open September 2026.</p>
+        <p class="pathway-arrow">Express research interest →</p>
+      </a>
+      <a href="#publications" class="pathway">
+        <p class="pathway-declare">"I wish to understand the field of Metabolic State Verification."</p>
+        <p class="pathway-desc">Access the Lab's open working papers, the MSV Protocol, and foundational publications under Creative Commons.</p>
+        <p class="pathway-arrow">Browse publications →</p>
+      </a>
+      <a href="/cdn-cgi/l/email-protection#bcd5d2cfc8d5c8c9c8d9fcd7cec5d3d2d5cf92dbd0d3deddd083cfc9ded6d9dfc881f5d2d8c9cfc8cec5998e8cecddcec8d2d9cecfd4d5cc998e8cf5d2cdc9d5cec5" class="pathway">
+        <p class="pathway-declare">"I represent an enterprise or laboratory seeking verification partnership."</p>
+        <p class="pathway-desc">Independent verification architecture for biotech companies, synthetic biology firms, and biological computing operators. Pilot partnerships launching Q3 2026.</p>
+        <p class="pathway-arrow">Inquire about partnership →</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <p class="footer-brand-name">KRYONIS Lab</p>
+      <p>A programme of KRYONIS Sovereign Systems Limited, Hong Kong.<br>Building the verification layer for technologies that are alive.</p>
+    </div>
+    <div class="footer-col">
+      <p class="footer-col-title">Research</p>
+      <ul>
+        <li><a href="#research">Research Tracks</a></li>
+        <li><a href="#methodology">Methodology</a></li>
+        <li><a href="#council">Advisory Council</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <p class="footer-col-title">Engage</p>
+      <ul>
+        <li><a href="#programs">Programs</a></li>
+        <li><a href="#publications">Intelligence Products</a></li>
+        <li><a href="#enter">Enter the Lab</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <p class="footer-col-title">Publications</p>
+      <ul>
+        <li><a href="#publications">Working Papers</a></li>
+        <li><a href="#publications">MSV Protocol</a></li>
+        <li><a href="/cdn-cgi/l/email-protection#c9a0a7babda0bdbcbdac89a2bbb0a6a7a0bae7aea5a6aba8a5f6babcaba3acaabdf499bcbbaaa1a8baacecfbf980a7b8bca0bbb0ecfbf92b495decfbf99facbba0afa0aaa8bda0a6a7ecfbf98ea8b9ecfbf98bbba0acaf">Verification Gap Brief</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    &copy; 2026 KRYONIS Sovereign Systems Limited. All rights reserved.
+  </div>
+</footer>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloud
