@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KRYONIS Lab — The Biological Computing Verification Gap</title>
+<meta name="description" content="A 24-page institutional whitepaper defining the verification gap in biological computing infrastructure. By KRYONIS Lab.">
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg-primary: #0a0b0d;
+    --bg-secondary: #111318;
+    --bg-tertiary: #181b21;
+    --bg-card: #13151a;
+    --border: #1e2028;
+    --border-accent: #2a2d38;
+    --text-primary: #e8e6e1;
+    --text-secondary: #9a978f;
+    --text-muted: #5c5a54;
+    --accent: #c4a55a;
+    --accent-dim: #8b7a3e;
+    --accent-glow: rgba(196, 165, 90, 0.08);
+    --garamond: 'EB Garamond', Georgia, 'Times New Roman', serif;
+    --mono: 'IBM Plex Mono', 'Courier New', monospace;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--garamond);
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    padding: 1.25rem 2.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(10, 11, 13, 0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  nav .logo {
+    font-family: var(--mono);
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    color: var(--text-secondary);
+    text-decoration: none;
+    text-transform: uppercase;
+  }
+
+  nav .logo:hover { color: var(--text-primary); }
+
+  nav .nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+  }
+
+  nav .nav-links a {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+
+  nav .nav-links a:hover { color: var(--accent); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 8rem 2.5rem 4rem;
+    max-width: 900px;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 1px;
+    height: 120px;
+    background: linear-gradient(to bottom, transparent, var(--border-accent), transparent);
+    margin-top: 5rem;
+  }
+
+  .meta-label {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent-dim);
+    margin-bottom: 2.5rem;
+    padding-top: 4rem;
+  }
+
+  .hero h1 {
+    font-family: var(--garamond);
+    font-size: clamp(2.2rem, 4.5vw, 3.4rem);
+    font-weight: 400;
+    line-height: 1.2;
+    color: var(--text-primary);
+    margin-bottom: 1.5rem;
+    letter-spacing: -0.01em;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    color: var(--accent);
+  }
+
+  .hero .subtitle {
+    font-size: 1.15rem;
+    color: var(--text-secondary);
+    max-width: 620px;
+    margin-bottom: 3rem;
+    line-height: 1.8;
+  }
+
+  .hero .paper-specs {
+    display: flex;
+    gap: 2.5rem;
+    flex-wrap: wrap;
+    margin-bottom: 3rem;
+  }
+
+  .spec-item {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .spec-item .spec-value {
+    font-family: var(--mono);
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--text-primary);
+  }
+
+  .spec-item .spec-label {
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-top: 0.25rem;
+  }
+
+  /* CTA */
+  .cta-group {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--bg-primary);
+    background: var(--accent);
+    border: none;
+    padding: 1rem 2.25rem;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.3s;
+  }
+
+  .btn-primary:hover {
+    background: var(--text-primary);
+    color: var(--bg-primary);
+  }
+
+  .btn-secondary {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    text-decoration: none;
+    border-bottom: 1px solid var(--border-accent);
+    padding-bottom: 0.2rem;
+    transition: all 0.3s;
+  }
+
+  .btn-secondary:hover {
+    color: var(--accent);
+    border-color: var(--accent-dim);
+  }
+
+  /* DIVIDER */
+  .section-divider {
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    height: 1px;
+    background: var(--border);
+  }
+
+  /* ABSTRACT */
+  .abstract {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 5rem 2.5rem;
+  }
+
+  .section-label {
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent-dim);
+    margin-bottom: 2rem;
+  }
+
+  .abstract-text {
+    font-size: 1.15rem;
+    line-height: 1.9;
+    color: var(--text-secondary);
+    max-width: 700px;
+  }
+
+  .abstract-text strong {
+    color: var(--text-primary);
+    font-weight: 500;
+  }
+
+  /* CONTENTS GRID */
+  .contents {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 5rem 2.5rem;
+  }
+
+  .contents-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--border);
+    margin-top: 2.5rem;
+  }
+
+  .content-cell {
+    background: var(--bg-primary);
+    padding: 1.75rem 2rem;
+  }
+
+  .content-cell .cell-number {
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    color: var(--accent-dim);
+    letter-spacing: 0.1em;
+    margin-bottom: 0.5rem;
+  }
+
+  .content-cell h3 {
+    font-family: var(--garamond);
+    font-size: 1.05rem;
+    font-weight: 500;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+  }
+
+  .content-cell p {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+
+  /* VALIDATION */
+  .validation {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 5rem 2.5rem;
+  }
+
+  .validation-block {
+    border-left: 2px solid var(--accent-dim);
+    padding: 2rem 2.5rem;
+    margin-top: 2rem;
+    background: var(--accent-glow);
+  }
+
+  .validation-block .cite {
+    font-family: var(--garamond);
+    font-size: 1.1rem;
+    font-style: italic;
+    color: var(--text-primary);
+    line-height: 1.7;
+    margin-bottom: 1rem;
+  }
+
+  .validation-block .cite-source {
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent-dim);
+  }
+
+  /* AUDIENCE */
+  .audience {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 5rem 2.5rem;
+  }
+
+  .audience-list {
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    background: var(--border);
+  }
+
+  .audience-item {
+    display: flex;
+    align-items: baseline;
+    gap: 1.5rem;
+    padding: 1.25rem 0;
+    background: var(--bg-primary);
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .audience-item .role {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    min-width: 180px;
+    flex-shrink: 0;
+  }
+
+  .audience-item .reason {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+  }
+
+  /* PURCHASE */
+  .purchase {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 5rem 2.5rem 6rem;
+  }
+
+  .purchase-card {
+    border: 1px solid var(--border-accent);
+    padding: 3.5rem;
+    background: var(--bg-card);
+    position: relative;
+  }
+
+  .purchase-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(to right, var(--accent-dim), var(--accent), var(--accent-dim));
+  }
+
+  .purchase-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 2.5rem;
+    flex-wrap: wrap;
+    gap: 2rem;
+  }
+
+  .purchase-title {
+    font-family: var(--garamond);
+    font-size: 1.4rem;
+    font-weight: 500;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+  }
+
+  .purchase-desc {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    max-width: 400px;
+  }
+
+  .purchase-price {
+    text-align: right;
+  }
+
+  .price-amount {
+    font-family: var(--mono);
+    font-size: 2.2rem;
+    font-weight: 300;
+    color: var(--accent);
+    letter-spacing: -0.02em;
+  }
+
+  .price-note {
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-top: 0.25rem;
+  }
+
+  .purchase-details {
+    display: flex;
+    gap: 2.5rem;
+    margin-bottom: 2.5rem;
+    flex-wrap: wrap;
+  }
+
+  .purchase-detail {
+    font-family: var(--mono);
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    letter-spacing: 0.05em;
+  }
+
+  .purchase-detail span {
+    color: var(--text-secondary);
+  }
+
+  .purchase-actions {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .purchase-note {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    font-style: italic;
+  }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 2.5rem;
+    text-align: center;
+  }
+
+  footer p {
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+
+  footer a {
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+
+  footer a:hover { color: var(--accent); }
+
+  /* RESPONSIVE */
+  @media (max-width: 680px) {
+    nav { padding: 1rem 1.5rem; }
+    nav .nav-links { gap: 1rem; }
+    .hero { padding: 7rem 1.5rem 3rem; }
+    .hero .paper-specs { gap: 1.5rem; }
+    .abstract, .contents, .validation, .audience, .purchase { padding: 3.5rem 1.5rem; }
+    .contents-grid { grid-template-columns: 1fr; }
+    .audience-item { flex-direction: column; gap: 0.25rem; }
+    .audience-item .role { min-width: auto; }
+    .purchase-card { padding: 2rem; }
+    .purchase-top { flex-direction: column; }
+    .purchase-price { text-align: left; }
+  }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero h1, .hero .subtitle, .hero .paper-specs, .hero .cta-group {
+    animation: fadeUp 0.8s ease-out both;
+  }
+  .hero .subtitle { animation-delay: 0.1s; }
+  .hero .paper-specs { animation-delay: 0.2s; }
+  .hero .cta-group { animation-delay: 0.3s; }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="logo">KRYONIS Lab</a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="#abstract">Abstract</a></li>
+    <li><a href="#contents">Contents</a></li>
+    <li><a href="#acquire">Acquire</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <div class="meta-label">Institutional Whitepaper — March 2026</div>
+  <h1>The Biological Computing <em>Verification Gap</em></h1>
+  <p class="subtitle">
+    Civilization governs machines that can be switched off. 
+    Biological computing infrastructure can die. This paper defines the verification 
+    gap that existing frameworks cannot close — and the institutional architecture required to close it.
+  </p>
+  <div class="paper-specs">
+    <div class="spec-item">
+      <span class="spec-value">24 pages</span>
+      <span class="spec-label">Length</span>
+    </div>
+    <div class="spec-item">
+      <span class="spec-value">Sirbu & Floridi (2026)</span>
+      <span class="spec-label">Validation framework</span>
+    </div>
+    <div class="spec-item">
+      <span class="spec-value">PDF</span>
+      <span class="spec-label">Format</span>
+    </div>
+    <div class="spec-item">
+      <span class="spec-value">$2,500</span>
+      <span class="spec-label">License</span>
+    </div>
+  </div>
+  <div class="cta-group">
+    <a href="#acquire" class="btn-primary">Acquire whitepaper →</a>
+    <a href="#abstract" class="btn-secondary">Read abstract</a>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<section class="abstract" id="abstract">
+  <div class="section-label">Abstract</div>
+  <p class="abstract-text">
+    The convergence of synthetic biology, biocomputing, and living infrastructure creates a category of 
+    critical systems that <strong>existing digital governance cannot verify</strong>. Unlike silicon-based 
+    systems — which can be halted, cloned, and audited at rest — biological computing substrates are 
+    thermodynamically active, temporally irreversible, and environmentally coupled. They cannot be 
+    "switched off" without destruction of state. This paper identifies and formally defines the 
+    <strong>Biological Computing Verification Gap</strong>: the structural inability of current audit, 
+    compliance, and trust frameworks to assess systems whose operational state is inseparable from 
+    their biological viability. We propose KRYONIS Lab as the institutional layer required to 
+    close this gap — not through regulation, but through a new category of <strong>biological 
+    clearing infrastructure</strong>.
+  </p>
+</section>
+
+<div class="section-divider"></div>
+
+<section class="contents" id="contents">
+  <div class="section-label">Paper contents</div>
+  <div class="contents-grid">
+    <div class="content-cell">
+      <div class="cell-number">01</div>
+      <h3>The Verification Gap Defined</h3>
+      <p>Why biological substrates break every existing governance model built for silicon infrastructure.</p>
+    </div>
+    <div class="content-cell">
+      <div class="cell-number">02</div>
+      <h3>Thermodynamic State as Value</h3>
+      <p>A formal framework for systems where operational state cannot be separated from biological viability.</p>
+    </div>
+    <div class="content-cell">
+      <div class="cell-number">03</div>
+      <h3>Temporal Irreversibility</h3>
+      <p>The audit problem: why you cannot snapshot, pause, or replay a living computing substrate.</p>
+    </div>
+    <div class="content-cell">
+      <div class="cell-number">04</div>
+      <h3>The Clearing Architecture</h3>
+      <p>BCCS protocol and BAIN ID as the operational layer for biological infrastructure trust.</p>
+    </div>
+    <div class="content-cell">
+      <div class="cell-number">05</div>
+      <h3>Existing Frameworks Audit</h3>
+      <p>ISO, NIST, FDA, EMA — where each fails when the substrate is alive.</p>
+    </div>
+    <div class="content-cell">
+      <div class="cell-number">06</div>
+      <h3>Institutional Positioning</h3>
+      <p>KRYONIS Lab as category-defining institution — the Moody's of biological infrastructure.</p>
+    </div>
+    <div class="content-cell">
+      <div class="cell-number">07</div>
+      <h3>Academic Validation</h3>
+      <p>Alignment with Sirbu & Floridi (2026) on governance gaps in emerging bio-digital convergence.</p>
+    </div>
+    <div class="content-cell">
+      <div class="cell-number">08</div>
+      <h3>Market Sizing & Timeline</h3>
+      <p>The verification gap as a multi-trillion dollar market by 2035. First-mover positioning.</p>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<section class="validation">
+  <div class="section-label">Founding position</div>
+  <div class="validation-block">
+    <p class="cite">
+      "Civilization has spent the last century mastering the governance of machines 
+      that can be switched off. KRYONIS Lab is architecting the trust layer for 
+      critical infrastructure that can die."
+    </p>
+    <p class="cite-source">KRYONIS Lab — Founding Statement, 2026</p>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<section class="audience">
+  <div class="section-label">Who this paper is for</div>
+  <div class="audience-list">
+    <div class="audience-item">
+      <span class="role">VC Analysts</span>
+      <span class="reason">Category-defining framework for due diligence in bio-digital convergence infrastructure.</span>
+    </div>
+    <div class="audience-item">
+      <span class="role">Biosecurity Teams</span>
+      <span class="reason">Verification gap analysis applicable to national biological infrastructure assessment.</span>
+    </div>
+    <div class="audience-item">
+      <span class="role">Policy Architects</span>
+      <span class="reason">Post-regulatory model for biological computing governance beyond existing compliance.</span>
+    </div>
+    <div class="audience-item">
+      <span class="role">Institutional Investors</span>
+      <span class="reason">Market sizing and first-mover thesis for biological clearing infrastructure.</span>
+    </div>
+    <div class="audience-item">
+      <span class="role">Research Directors</span>
+      <span class="reason">Academic framework bridging synthetic biology governance with digital trust architecture.</span>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<section class="purchase" id="acquire">
+  <div class="section-label">Acquire</div>
+  <div class="purchase-card">
+    <div class="purchase-top">
+      <div>
+        <div class="purchase-title">Institutional Whitepaper License</div>
+        <p class="purchase-desc">
+          Full 24-page PDF. Single-organization license with internal distribution rights.
+        </p>
+      </div>
+      <div class="purchase-price">
+        <div class="price-amount">$2,500</div>
+        <div class="price-note">One-time license</div>
+      </div>
+    </div>
+    <div class="purchase-details">
+      <div class="purchase-detail">Format: <span>PDF</span></div>
+      <div class="purchase-detail">Pages: <span>24</span></div>
+      <div class="purchase-detail">License: <span>Single organization</span></div>
+      <div class="purchase-detail">Delivery: <span>48h</span></div>
+    </div>
+    <div class="purchase-actions">
+      <a href="mailto:lab@kryonis.global?subject=Whitepaper%20Acquisition%20—%20Biological%20Computing%20Verification%20Gap&body=Organization%3A%20%0ARole%3A%20%0AIntent%3A%20" class="btn-primary">Request access →</a>
+      <span class="purchase-note">Invoiced via KRYONIS Sovereign Systems Limited (HK)</span>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>
+    <a href="index.html">KRYONIS Lab</a> &nbsp;·&nbsp; 
+    A division of <a href="https://kryonis.global">KRYONIS Sovereign Systems Limited</a> &nbsp;·&nbsp; 
+    Hong Kong &nbsp;·&nbsp; 2026
+  </p>
+</footer>
+
+</body>
+</html>
