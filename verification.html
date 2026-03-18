@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Verification Gap — KRYONIS Lab</title>
+<meta name="description" content="No formal verification framework for biological computation as computing exists anywhere in the world. KRYONIS Lab's foundational research into the structural verification deficit.">
+<meta property="og:title" content="The Verification Gap — KRYONIS Lab">
+<meta property="og:description" content="No formal verification framework for biological computation as computing exists anywhere in the world. A foundational thesis from KRYONIS Lab.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://kryonislab.org/verification">
+<meta property="og:site_name" content="KRYONIS Lab">
+<meta property="og:image" content="https://kryonislab.org/og-image.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="The Verification Gap — KRYONIS Lab">
+<meta name="twitter:description" content="No formal verification framework for biological computation as computing exists anywhere in the world.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=IBM+Plex+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#060606;--bg2:#0B0B0A;--bg3:#0F0E0D;--border:#1A1917;--border-lt:#131210;--txt:#CBC7BB;--dim:#7A766C;--faint:#4A4740;--gold:#8B7D5E;--gold-lt:#B0A48A;--cream:#F5F2EB;--link:#B0A48A;--link-hover:#D4C9A8;--fd:'EB Garamond','Georgia',serif;--fm:'IBM Plex Mono','Courier New',monospace;--w:1140px;--wn:920px}
+html{scroll-behavior:smooth;scroll-padding-top:80px;-webkit-font-smoothing:antialiased}
+body{font-family:var(--fd);background:var(--bg);color:var(--txt);font-size:17px;line-height:1.7}
+::selection{background:rgba(139,125,94,.3)}
+a{color:var(--link);text-decoration:none;transition:color .2s}a:hover{color:var(--link-hover)}
+
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:20px 32px;background:rgba(6,6,6,.92);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid var(--border-lt)}
+.nav-i{max-width:var(--w);margin:0 auto;display:flex;align-items:center;justify-content:space-between}
+.nav-m{font-family:var(--fm);font-size:11px;letter-spacing:.35em;color:var(--dim);text-decoration:none;text-transform:uppercase}.nav-m:hover{color:var(--cream)}
+.nav-l{display:flex;gap:32px;list-style:none}
+.nav-l a{font-family:var(--fm);font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--dim);text-decoration:none;transition:color .2s;padding-bottom:2px;border-bottom:1px solid transparent}.nav-l a:hover{color:var(--link-hover);border-bottom-color:var(--gold)}
+.nav-l a.active{color:var(--gold-lt);border-bottom-color:var(--gold)}
+.nav-h{display:none;background:none;border:none;color:var(--dim);cursor:pointer;padding:8px}
+.nav-h svg{display:block}
+.mob-menu{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(6,6,6,.97);z-index:200;flex-direction:column;align-items:center;justify-content:center;gap:28px}
+.mob-menu.open{display:flex}
+.mob-menu a{font-family:var(--fm);font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--link);text-decoration:none}.mob-menu a:hover{color:var(--cream)}
+.mob-x{position:absolute;top:20px;right:24px;background:none;border:none;color:var(--dim);cursor:pointer;font-size:24px;font-family:var(--fm)}
+@media(max-width:860px){.nav{padding:14px 20px}.nav-l{display:none}.nav-h{display:block}}
+
+.c{max-width:var(--w);margin:0 auto;padding:0 36px}.cn{max-width:var(--wn);margin:0 auto;padding:0 36px}
+@media(max-width:600px){.c,.cn{padding:0 20px}}
+
+/* HERO */
+.hero{min-height:90vh;display:flex;flex-direction:column;justify-content:center;padding:180px 0 120px;position:relative;overflow:hidden}
+.hero::before{content:"";position:absolute;top:10%;left:-15%;width:90%;height:80%;background:radial-gradient(ellipse at 20% 50%,rgba(139,125,94,.03),transparent 60%);pointer-events:none;z-index:0}
+.hero::after{content:"";position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);opacity:.18}
+.hero>.cn{position:relative;z-index:1}
+.hero-m{font-family:var(--fm);font-size:10px;letter-spacing:.45em;text-transform:uppercase;color:var(--faint);margin-bottom:56px;opacity:0;animation:fi .9s .3s forwards}
+.hero-t{font-family:var(--fd);font-size:clamp(2rem,1rem + 4vw,3.8rem);font-weight:500;font-style:italic;line-height:1.08;letter-spacing:-.01em;color:var(--cream);max-width:18ch;margin-bottom:48px;opacity:0;animation:fi .9s .5s forwards;background:linear-gradient(135deg,var(--cream) 40%,var(--gold-lt));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;text-shadow:none}
+.hero-ln{width:48px;height:1.5px;background:var(--gold);margin-bottom:36px;opacity:0;animation:fi .9s .7s forwards}
+.hero-p{font-size:17px;color:var(--dim);max-width:54ch;line-height:1.8;margin-bottom:32px;opacity:0;animation:fi .9s .8s forwards}
+.hero-basis{font-family:var(--fm);font-size:10px;color:var(--faint);letter-spacing:.05em;line-height:1.9;max-width:60ch;opacity:0;animation:fi .9s 1s forwards}
+.hero-basis em{color:var(--dim);font-style:italic}
+@keyframes fi{to{opacity:1}}
+
+/* SECTIONS */
+.s{padding:clamp(80px,12vw,140px) 0;border-top:1px solid var(--border-lt)}
+.s--alt{background:var(--bg2)}
+.sl{font-family:var(--fm);font-size:9px;letter-spacing:.4em;text-transform:uppercase;color:var(--gold-lt);margin-bottom:20px}
+.st{font-family:var(--fd);font-size:clamp(1.8rem,1rem + 2.5vw,2.8rem);font-weight:500;font-style:italic;line-height:1.12;letter-spacing:-.01em;color:var(--cream);margin-bottom:28px;max-width:22ch;text-shadow:0 1px 2px rgba(0,0,0,0.4)}
+.si{font-size:16.5px;color:var(--dim);max-width:56ch;line-height:1.8;margin-bottom:64px}
+.sb{font-size:16.5px;color:var(--dim);max-width:60ch;line-height:1.8;margin-bottom:24px}
+
+.thesis{border-left:2px solid var(--gold);padding:28px 0 28px 32px;margin:48px 0;max-width:58ch}
+.thesis p{font-family:var(--fd);font-size:18.5px;font-style:italic;line-height:1.7;color:var(--cream)}
+
+.anchor{font-family:var(--fm);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-top:48px;text-shadow:0 0 20px rgba(139,125,94,0.25)}
+
+/* VERIFICATION STACK */
+.vstack{max-width:720px;margin:0 auto}
+.vlayer{display:grid;grid-template-columns:48px 1fr;gap:0;position:relative;padding:0;margin:0}
+.vlayer + .vlayer{margin-top:0}
+.vnum-col{display:flex;flex-direction:column;align-items:center;position:relative}
+.vnum{width:36px;height:36px;border-radius:50%;border:1px solid var(--gold);display:flex;align-items:center;justify-content:center;font-family:var(--fm);font-size:10px;color:var(--gold-lt);letter-spacing:0;flex-shrink:0;background:var(--bg);position:relative;z-index:2}
+.vline{width:1px;flex:1;background:linear-gradient(180deg,var(--gold),var(--border-lt));min-height:100%}
+.vlayer:last-child .vline{background:linear-gradient(180deg,var(--gold),transparent)}
+.vcontent{padding:6px 0 40px 24px}
+.vname{font-family:var(--fd);font-size:18px;font-style:italic;font-weight:500;color:var(--cream);margin-bottom:6px;line-height:1.25;text-shadow:0 1px 2px rgba(0,0,0,0.4)}
+.vdesc{font-size:14.5px;color:var(--dim);line-height:1.7;max-width:48ch}
+.vstatus{font-family:var(--fm);font-size:9px;letter-spacing:.1em;text-transform:uppercase;margin-top:8px}
+.vstatus--none{color:#8B5E5E}
+.vstatus--partial{color:var(--gold)}
+.vstatus--adjacent{color:var(--gold-lt)}
+.vlayer:last-child .vcontent{padding-bottom:0}
+
+/* GAP INDICATOR */
+.gap-bar{display:inline-block;width:6px;height:6px;border-radius:50%;margin-right:6px;vertical-align:middle}
+.gap-bar--none{background:#8B5E5E}
+.gap-bar--partial{background:var(--gold)}
+.gap-bar--adjacent{background:var(--gold-lt)}
+
+/* LANDSCAPE GRID */
+.lg{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(320px,100%),1fr));gap:1px;background:var(--border-lt);border:1px solid var(--border-lt)}
+.lc{padding:36px 32px;background:var(--bg)}
+.lc-n{font-family:var(--fm);font-size:10px;color:var(--gold-lt);letter-spacing:.2em;text-transform:uppercase;margin-bottom:12px}
+.lc-t{font-family:var(--fd);font-size:18px;font-style:italic;font-weight:500;color:var(--cream);margin-bottom:10px;line-height:1.25;text-shadow:0 1px 2px rgba(0,0,0,0.4)}
+.lc-d{font-size:14px;color:var(--dim);line-height:1.7;margin-bottom:12px}
+.lc-gap{font-family:var(--fm);font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:#8B5E5E}
+
+/* ARGUMENT */
+.arg{counter-reset:arg}
+.arg-item{counter-increment:arg;padding:32px 0;border-bottom:1px solid var(--border-lt);max-width:60ch}
+.arg-item:last-child{border-bottom:none}
+.arg-item::before{content:counter(arg);font-family:var(--fm);font-size:10px;color:var(--gold-lt);letter-spacing:.1em;display:block;margin-bottom:12px}
+.arg-t{font-family:var(--fd);font-size:19px;font-style:italic;font-weight:500;color:var(--cream);margin-bottom:10px;line-height:1.25;text-shadow:0 1px 2px rgba(0,0,0,0.4)}
+.arg-d{font-size:15px;color:var(--dim);line-height:1.75}
+
+/* RESPONSE */
+.resp{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border-lt);border:1px solid var(--border-lt);margin-top:56px}
+@media(max-width:700px){.resp{grid-template-columns:1fr}}
+.resp-c{padding:44px 36px;background:var(--bg)}
+.resp-l{font-family:var(--fm);font-size:9px;letter-spacing:.3em;text-transform:uppercase;color:var(--faint);margin-bottom:16px}
+.resp-t{font-family:var(--fd);font-size:20px;font-style:italic;font-weight:500;color:var(--cream);margin-bottom:14px;line-height:1.25;text-shadow:0 1px 2px rgba(0,0,0,0.4)}
+.resp-d{font-size:14.5px;color:var(--dim);line-height:1.7;margin-bottom:20px}
+.resp-a{font-family:var(--fm);font-size:10px;color:var(--link-hover);letter-spacing:.12em;text-transform:uppercase;text-decoration:underline;text-decoration-color:var(--gold);text-underline-offset:3px;transition:all .2s}.resp-a:hover{color:var(--cream);text-decoration-color:var(--link-hover)}
+
+/* LEGEND */
+.legend{display:flex;gap:24px;flex-wrap:wrap;margin-bottom:48px}
+.legend-item{display:flex;align-items:center;gap:8px;font-family:var(--fm);font-size:9px;letter-spacing:.08em;text-transform:uppercase;color:var(--faint)}
+
+/* BUTTONS */
+.btn{display:inline-block;padding:13px 30px;font-family:var(--fm);font-size:10px;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;border-radius:2px;transition:all .25s;cursor:pointer}
+.btn-g{background:var(--gold);color:var(--cream);border:1px solid var(--gold)}.btn-g:hover{background:var(--gold-lt);border-color:var(--gold-lt);color:var(--cream)}
+.btn-o{background:transparent;color:var(--link);border:1px solid var(--gold)}.btn-o:hover{border-color:var(--gold-lt);color:var(--link-hover);background:rgba(139,125,94,.08)}
+
+/* BACK LINK */
+.back{font-family:var(--fm);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--faint);text-decoration:none;display:inline-flex;align-items:center;gap:8px;margin-bottom:48px;transition:color .2s}.back:hover{color:var(--link-hover)}
+
+/* FOOTER */
+.ft{padding:72px 0 36px;border-top:1px solid var(--border-lt)}
+.ft-i{max-width:var(--w);margin:0 auto;padding:0 36px;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:36px}
+@media(max-width:700px){.ft-i{grid-template-columns:1fr 1fr;padding:0 20px}}@media(max-width:450px){.ft-i{grid-template-columns:1fr}}
+.ft-b{font-size:12.5px;color:var(--faint);line-height:1.75}
+.ft-bn{font-family:var(--fm);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--dim);margin-bottom:12px}
+.ft-ct{font-family:var(--fm);font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--faint);margin-bottom:16px}
+.ft-c ul{list-style:none}.ft-c li{margin-bottom:10px}.ft-c a{font-size:12.5px;color:var(--link);text-decoration:none;transition:color .2s}.ft-c a:hover{color:var(--link-hover)}
+.ft-btm{max-width:var(--w);margin:36px auto 0;padding:24px 36px 0;border-top:1px solid var(--border-lt);font-family:var(--fm);font-size:9px;color:var(--faint);letter-spacing:.05em}
+
+/* CITE */
+.cite{font-family:var(--fm);font-size:9px;color:var(--faint);letter-spacing:.03em;line-height:1.8;margin-top:56px;padding-top:28px;border-top:1px solid var(--border-lt);max-width:60ch}
+.cite a{color:var(--dim);text-decoration:underline;text-decoration-color:var(--border);text-underline-offset:2px}.cite a:hover{color:var(--link-hover)}
+
+/* DATE STAMP */
+.datestamp{font-family:var(--fm);font-size:9px;color:var(--faint);letter-spacing:.15em;text-transform:uppercase;margin-bottom:8px}
+</style>
+</head>
+<body>
+
+<nav class="nav"><div class="nav-i"><a href="index.html" class="nav-m">KRYONIS LAB</a><ul class="nav-l"><li><a href="index.html#research">Research</a></li><li><a href="index.html#programs">Programs</a></li><li><a href="index.html#publications">Publications</a></li><li><a href="verification.html" class="active">Thesis</a></li><li><a href="product.html">Whitepaper</a></li><li><a href="index.html#enter">Enter</a></li></ul><button class="nav-h" onclick="document.getElementById('mm').classList.add('open')" aria-label="Menu"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="3" y1="7" x2="21" y2="7"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="17" x2="21" y2="17"/></svg></button></div></nav>
+<div class="mob-menu" id="mm"><button class="mob-x" onclick="this.parentElement.classList.remove('open')">&times;</button><a href="index.html#research" onclick="this.parentElement.classList.remove('open')">Research</a><a href="index.html#programs" onclick="this.parentElement.classList.remove('open')">Programs</a><a href="index.html#publications" onclick="this.parentElement.classList.remove('open')">Publications</a><a href="verification.html" onclick="this.parentElement.classList.remove('open')">Thesis</a><a href="product.html" onclick="this.parentElement.classList.remove('open')">Whitepaper</a><a href="index.html#enter" onclick="this.parentElement.classList.remove('open')">Enter</a></div>
+
+<!-- HERO -->
+<section class="hero"><div class="cn">
+<p class="hero-m">Foundational Thesis &mdash; Open Access</p>
+<h1 class="hero-t">The Verification Gap</h1>
+<div class="hero-ln"></div>
+<p class="hero-p">No formal verification framework for biological computation as computing exists anywhere in the world. The field that will determine whether living technologies become infrastructure &mdash; or remain laboratory curiosities &mdash; has not been built.</p>
+<p class="hero-basis"><em>Research basis:</em> Three independent open-source intelligence analyses conducted March 2026, covering capability assessment, institutional audit, and global verification landscape across English, Russian, and Chinese source material.</p>
+</div></section>
+
+<!-- CENTRAL FINDING -->
+<section class="s" id="finding"><div class="cn">
+<p class="sl">Central Finding</p>
+<h2 class="st">The gap is total</h2>
+
+<div class="sb">Biological computing systems &mdash; organoid intelligence platforms, wetware processors, biohybrid neural arrays &mdash; are built from living human neurons that self-modify, drift, degrade, and die. Unlike silicon, where the same input reliably produces the same output, a biological substrate is non-deterministic: its synaptic weights change continuously through plasticity, its outputs vary with nutrient availability and temperature, and its internal state cannot be fully read without destroying the tissue.</div>
+
+<div class="sb">Multiple laboratories have demonstrated that biological substrates can compute. Cortical Labs shipped the first commercial biological computer in 2025. Indiana University demonstrated reservoir computing with brain organoids. UC Santa Cruz applied formal reinforcement learning benchmarks to cortical tissue. DARPA launched a 42-month program to build biological processing units for drone navigation.</div>
+
+<div class="thesis"><p>Every one of these achievements rests on the same unresolved problem: how do you prove that a living computational substrate is performing as claimed, performing reproducibly, and performing safely? No existing standards body, regulatory framework, or verification architecture provides an answer.</p></div>
+
+<div class="sb">The standards infrastructure that does exist &mdash; ISO/TC 276 for organ-on-chip, the FDA ISTAND qualification pathway, CEN/CENELEC&rsquo;s roadmap, the NeuroBench neuromorphic benchmark &mdash; was designed for drug testing or silicon hardware. The computational verification problem specific to living substrates remains entirely unaddressed. The gap between what biological computing can do and what it can prove is the defining constraint of the field.</div>
+
+<p class="anchor">Verification is the chokepoint. Not biology.</p>
+</div></section>
+
+<!-- THE 12-LAYER VERIFICATION STACK -->
+<section class="s s--alt" id="stack"><div class="c">
+<p class="sl">The Problem</p>
+<h2 class="st">Twelve layers of verification that do not exist</h2>
+<p class="si">Each layer introduces specific challenges. Failure at any layer invalidates all layers above it. No layer has a dedicated standard for biological computation.</p>
+
+<div class="legend">
+<div class="legend-item"><span class="gap-bar gap-bar--none"></span> No standard exists</div>
+<div class="legend-item"><span class="gap-bar gap-bar--partial"></span> Adjacent standard exists (drug testing / medical device)</div>
+<div class="legend-item"><span class="gap-bar gap-bar--adjacent"></span> Partial approach exists (academic / proprietary)</div>
+</div>
+
+<div class="vstack">
+
+<div class="vlayer"><div class="vnum-col"><div class="vnum">1</div><div class="vline"></div></div><div class="vcontent">
+<div class="vname">Cell Provenance</div>
+<div class="vdesc">Confirming that iPSC starting material is genetically stable, mutation-free, and traceable to a documented donor. Current rejection rates exceed 60% of primary cell lots from commercial suppliers.</div>
+<div class="vstatus vstatus--partial"><span class="gap-bar gap-bar--partial"></span>ISO/DIS 23494-2 in development &mdash; drug testing context only</div>
+</div></div>
+
+<div class="vlayer"><div class="vnum-col"><div class="vnum">2</div><div class="vline"></div></div><div class="vcontent">
+<div class="vname">Differentiation Protocol Quality</div>
+<div class="vdesc">Confirming that neural differentiation produces the intended cell types in correct proportions. Cell-type composition varies even within the same protocol &mdash; inhibitory neurons appear sporadically.</div>
+<div class="vstatus vstatus--none"><span class="gap-bar gap-bar--none"></span>No minimum composition standard for computing applications</div>
+</div></div>
+
+<div class="vlayer"><div class="vnum-col"><div class="vnum">3</div><div class="vline"></div></div><div class="vcontent">
+<div class="vname">Network Morphology</div>
+<div class="vdesc">Confirming sufficient structural complexity &mdash; cortical layering, synaptic density, axonal connectivity &mdash; to support computation. Proposed thresholds: TBR1+/SATB2+ &gt;80%, Synchrony Index &gt;0.7.</div>
+<div class="vstatus vstatus--adjacent"><span class="gap-bar gap-bar--adjacent"></span>Academic thresholds proposed (Biomolecules 2025) &mdash; not adopted</div>
+</div></div>
+
+<div class="vlayer"><div class="vnum-col"><div class="vnum">4</div><div class="vline"></div></div><div class="vcontent">
+<div class="vname">Signal Read/Write Fidelity</div>
+<div class="vdesc">Confirming that the MEA interface accurately records and stimulates without distortion or cross-talk. Different platforms use different electrode counts, sampling rates, and spike detection algorithms.</div>
+<div class="vstatus vstatus--none"><span class="gap-bar gap-bar--none"></span>No standardised MEA qualification protocol for computing</div>
+</div></div>
+
+<div class="vlayer"><div class="vnum-col"><div class="vnum">5</div><div class="vline"></div></div><div class="vcontent">
+<div class="vname">Training Response Consistency</div>
+<div class="vdesc">Confirming that learning curves are reproducible and trained behaviour is stable. Each laboratory uses different stimulation parameters, training durations, and success criteria.</div>
+<div class="vstatus vstatus--none"><span class="gap-bar gap-bar--none"></span>No training reproducibility index exists</div>
+</div></div>
+
+<div class="vlayer"><div class="vnum-col"><div class="vnum">6</div><div class="vline"></div></div><div class="vcontent">
+<div class="vname">Temporal Stability</div>
+<div class="vdesc">Biological substrates change continuously and die. Commercial neurons survive approximately six months. Documented forgetting after 45-minute rest periods. No degradation model or mean-time-between-failures specification exists.</div>
+<div class="vstatus vstatus--none"><span class="gap-bar gap-bar--none"></span>No concept of verification-with-expiry in computing</div>
+</div></div>
+
+<div class="vlayer"><div class="vnum-col"><div class="vnum">7</div><div class="vline"></div></div><div class="vcontent">
+<div class="vname">Environmental Sensitivity</div>
+<div class="vdesc">Temperature, CO&#8322;, pH, humidity, medium composition, and microbial contamination can alter computational behaviour without any change to the &ldquo;code.&rdquo;</div>
+<div class="vstatus vstatus--adjacent"><span class="gap-bar gap-bar--adjacent"></span>FinalSpark monitors 6+ variables &mdash; no formal specification standard</div>
+</div></div>
+
+<div class="vlayer"><div class="vnum-col"><div class="vnum">8</div><div class="vline"></div></div><div class="vcontent">
+<div class="vname">Cross-Lab Reproducibility</div>
+<div class="vdesc">Can two different laboratories produce equivalent computing results from the same protocol? No inter-laboratory reproducibility study for organoid computation has ever been published.</div>
+<div class="vstatus vstatus--none"><span class="gap-bar gap-bar--none"></span>The most critical gap in the stack</div>
+</div></div>
+
+<div class="vlayer"><div class="vnum-col"><div class="vnum">9</div><div class="vline"></div></div><div class="vcontent">
+<div class="vname">Benchmark Comparability</div>
+<div class="vdesc">Can results from different platforms be compared on a common scale? Ad hoc benchmarks exist &mdash; Pong, cart-pole, Braille recognition, speech classification &mdash; but no standardised suite has been adopted.</div>
+<div class="vstatus vstatus--adjacent"><span class="gap-bar gap-bar--adjacent"></span>NeuroBench exists for silicon &mdash; excludes biological substrates</div>
+</div></div>
+
+<div class="vlayer"><div class="vnum-col"><div class="vnum">10</div><div class="vline"></div></div><div class="vcontent">
+<div class="vname">Explainability</div>
+<div class="vdesc">Synaptic weights cannot be read without destroying the tissue. Computations cannot be replayed. The same inputs may produce different outputs on different days. Biological computing systems are black boxes deeper than any silicon AI.</div>
+<div class="vstatus vstatus--none"><span class="gap-bar gap-bar--none"></span>Nothing exists</div>
+</div></div>
+
+<div class="vlayer"><div class="vnum-col"><div class="vnum">11</div><div class="vline"></div></div><div class="vcontent">
+<div class="vname">Ethical Status Thresholds</div>
+<div class="vdesc">Determining whether a substrate has morally relevant properties. China issued the world&rsquo;s first binding organoid ethics guidelines in April 2025 with EEG complexity caps. No other nation has adopted technical sentience thresholds.</div>
+<div class="vstatus vstatus--partial"><span class="gap-bar gap-bar--partial"></span>China MOST guidelines &mdash; ethics context, not computing verification</div>
+</div></div>
+
+<div class="vlayer"><div class="vnum-col"><div class="vnum">12</div><div class="vline"></div></div><div class="vcontent">
+<div class="vname">Operator Control &amp; Fail-Safe</div>
+<div class="vdesc">A biological system adversarially trained may be permanently compromised in ways undetectable without destructive analysis. The &ldquo;tracing condition&rdquo; for meaningful human control collapses when neurons self-organise.</div>
+<div class="vstatus vstatus--none"><span class="gap-bar gap-bar--none"></span>No fail-safe standard exists</div>
+</div></div>
+
+</div><!-- /vstack -->
+</div></section>
+
+<!-- WHO IS WORKING ON THIS -->
+<section class="s" id="landscape"><div class="c">
+<p class="sl">Current Landscape</p>
+<h2 class="st">Who is closest &mdash; and what they do not cover</h2>
+<p class="si">Six actors have produced work adjacent to verification of biological computation. None addresses the computational verification problem directly.</p>
+
+<div class="lg">
+
+<div class="lc">
+<p class="lc-n">DARPA</p>
+<h3 class="lc-t">O-CIRCUIT Program</h3>
+<p class="lc-d">42-month program requiring biological processing units to achieve near-human Ms. Pac-Man proficiency and drone chemotaxis navigation. Creates de facto performance benchmarks through operational specification.</p>
+<p class="lc-gap"><span class="gap-bar gap-bar--partial"></span>Verification by specification &mdash; not a transferable framework</p>
+</div>
+
+<div class="lc">
+<p class="lc-n">FDA</p>
+<h3 class="lc-t">ISTAND Qualification</h3>
+<p class="lc-d">Three-stage pathway qualifying organ-on-chip as Drug Development Tools. Emulate&rsquo;s Liver-Chip achieved 87% sensitivity, 100% specificity. The closest regulatory model &mdash; designed for drug testing, not computation.</p>
+<p class="lc-gap"><span class="gap-bar gap-bar--partial"></span>Drug testing context only &mdash; no computational performance criteria</p>
+</div>
+
+<div class="lc">
+<p class="lc-n">NeuroBench</p>
+<h3 class="lc-t">Neuromorphic Benchmark</h3>
+<p class="lc-d">Community-driven benchmark suite for neuromorphic hardware. Dual-track architecture (algorithm + system) modelled on MLPerf. Published Nature Communications 2025. Explicitly excludes biological substrates.</p>
+<p class="lc-gap"><span class="gap-bar gap-bar--none"></span>Silicon only &mdash; biological extension acknowledged as future need</p>
+</div>
+
+<div class="lc">
+<p class="lc-n">Cortical Labs</p>
+<h3 class="lc-t">CL1 &amp; DishBrain Assay</h3>
+<p class="lc-d">First commercial biological computer ($35K, ~800K neurons). Open-source CL API for closed-loop interaction. DishBrain validated free energy principle in biological substrate. Founder acknowledges: &ldquo;Reproducibility is hard enough in science.&rdquo;</p>
+<p class="lc-gap"><span class="gap-bar gap-bar--adjacent"></span>Proprietary QC &mdash; not an independent verification framework</p>
+</div>
+
+<div class="lc">
+<p class="lc-n">FinalSpark</p>
+<h3 class="lc-t">Neuroplatform</h3>
+<p class="lc-d">World&rsquo;s first remotely accessible biocomputing platform. 1,000+ organoids, 94% stimulation reliability, MAP2 verification, continuous environmental monitoring, 30+ TB recorded data.</p>
+<p class="lc-gap"><span class="gap-bar gap-bar--adjacent"></span>Most mature QC framework &mdash; platform-specific, not transferable</p>
+</div>
+
+<div class="lc">
+<p class="lc-n">ISO / TC 276 / SC 2</p>
+<h3 class="lc-t">MPS Standardisation</h3>
+<p class="lc-d">International standards committee for organ-on-chip vocabulary, processes, and qualification. NEN (Netherlands) secretariat. The closest institutional home for future computing standards.</p>
+<p class="lc-gap"><span class="gap-bar gap-bar--partial"></span>Drug testing context &mdash; no computing verification workstream</p>
+</div>
+
+</div>
+</div></section>
+
+<!-- THE ARGUMENT -->
+<section class="s s--alt" id="argument"><div class="cn">
+<p class="sl">Strategic Implication</p>
+<h2 class="st">The verification layer will become more important than the hardware</h2>
+<p class="si">Six structural reasons why whoever controls verification controls the field.</p>
+
+<div class="arg">
+
+<div class="arg-item">
+<h3 class="arg-t">Formal verification is impossible</h3>
+<p class="arg-d">Classical verification proves a system meets its specification by exhaustive state analysis. Biological substrates have effectively infinite state spaces that change continuously. Standard methods &mdash; model checking, theorem proving, temporal logic &mdash; require deterministic systems. Living substrates are not deterministic. Verification must be invented from first principles.</p>
+</div>
+
+<div class="arg-item">
+<h3 class="arg-t">Attribution collapses</h3>
+<p class="arg-d">In silicon, a decision can be traced through weights and activations to training data. In biological computing, neurons self-organise, synaptic weights change non-destructively unreadable, and the silicon decoder adapts to the biology rather than the reverse. Without attribution, there is no accountability, no liability, and no compliance.</p>
+</div>
+
+<div class="arg-item">
+<h3 class="arg-t">The substrate dies</h3>
+<p class="arg-d">Commercial neurons survive approximately six months. Every biological computing system requires periodic substrate replacement, and each replacement produces a new system that must be re-verified. Verification operates on a shorter cycle than the product lifecycle. It is the continuously consumed service; the hardware is the periodically replaced commodity.</p>
+</div>
+
+<div class="arg-item">
+<h3 class="arg-t">The hardware bottleneck relaxes; the verification bottleneck does not</h3>
+<p class="arg-d">CMOS MEA hardware advances along predictable semiconductor scaling trajectories. The verification bottleneck &mdash; how to interpret, validate, and certify signals from living tissue &mdash; requires conceptual invention, not engineering optimisation. Structural bottlenecks are more valuable than engineering bottlenecks.</p>
+</div>
+
+<div class="arg-item">
+<h3 class="arg-t">Market access requires verification, not hardware</h3>
+<p class="arg-d">The global pharmaceutical market exceeds $1.5 trillion annually. FDA acceptance requires qualification evidence. Whatever FDA requires becomes the global de facto standard. The verification evidence that enables market access is worth more than the hardware that generates it.</p>
+</div>
+
+<div class="arg-item">
+<h3 class="arg-t">The cloud and semiconductor analogies confirm the pattern</h3>
+<p class="arg-d">In cloud computing, value migrated from hardware to trust infrastructure: SOC 2 audits, compliance, SLA enforcement. In semiconductors, the most profitable segments are EDA tools and verification IP &mdash; not fabrication. Biological computing follows both trajectories, compressed by the additional factor that the hardware is alive.</p>
+</div>
+
+</div>
+
+<div class="thesis"><p>Whoever builds the dominant verification infrastructure &mdash; the benchmarks, assays, certification protocols, auditing tools, and compliance frameworks for biological computing &mdash; will control the terms on which this technology enters the global economy.</p></div>
+
+<p class="anchor">The opportunity is currently unclaimed.</p>
+</div></section>
+
+<!-- KRYONIS LAB'S RESPONSE -->
+<section class="s" id="response"><div class="c">
+<p class="sl">KRYONIS Lab Response</p>
+<h2 class="st">Building the trust architecture</h2>
+<p class="si">KRYONIS Lab exists to close this gap. The Lab&rsquo;s research programme and protocol infrastructure address the verification problem at every layer of the stack.</p>
+
+<div class="resp">
+<div class="resp-c">
+<p class="resp-l">Research</p>
+<h3 class="resp-t">The Lab</h3>
+<p class="resp-d">Five research tracks spanning living systems verification, thermodynamic asset architecture, biocapital governance, biohybrid computation infrastructure, and ontological boundaries. AI-native methodology. Open-access working papers.</p>
+<a href="index.html#research" class="resp-a">Research tracks &#8594;</a>
+</div>
+<div class="resp-c">
+<p class="resp-l">Protocol</p>
+<h3 class="resp-t">BCCS</h3>
+<p class="resp-d">The Biological Computing Clearing System. BAIN ID for substrate identity. Proof-of-Physical-State for metabolic verification. Eight-state lifecycle model. Base L2 settlement. The infrastructure layer that makes biological computing auditable.</p>
+<a href="https://bccs.bio" class="resp-a">bccs.bio &#8594;</a>
+</div>
+<div class="resp-c">
+<p class="resp-l">Intelligence</p>
+<h3 class="resp-t">The Verification Gap Brief</h3>
+<p class="resp-d">24-page flagship intelligence product. The structural verification deficit in biological computing, independently validated. Sirbu &amp; Floridi (2026, Science and Engineering Ethics).</p>
+<a href="product.html" class="resp-a">$2,500 &mdash; Request access &#8594;</a>
+</div>
+<div class="resp-c">
+<p class="resp-l">Standard</p>
+<h3 class="resp-t">MSV Protocol</h3>
+<p class="resp-d">Metabolic State Verification. A formal protocol for verifying the state of living technological systems. The computing-specific verification framework the field needs. Open for public review Q3 2026.</p>
+<a href="index.html#publications" class="resp-a">Publications &#8594;</a>
+</div>
+</div>
+
+</div></section>
+
+<!-- RESEARCH BASIS -->
+<section class="s s--alt" id="basis"><div class="cn">
+<p class="sl">Research Basis</p>
+<h2 class="st">Three independent analyses</h2>
+<p class="si">This thesis rests on three open-source intelligence assessments conducted in March 2026, each applying distinct methodology to a different aspect of the verification problem.</p>
+
+<div class="sb" style="margin-bottom:36px"><strong style="color:var(--cream);font-weight:500">Analysis I &mdash; Capability Assessment.</strong> Comprehensive mapping of Russia&rsquo;s biological computing, organoid intelligence, and neuromorphic hardware capabilities. Identified the Lobachevsky&ndash;Kurchatov&ndash;MIPT institutional triangle, the BioCAM4096 infrastructure, and the complete absence of verification frameworks in the Russian ecosystem. Confirmed that no Russian institution addresses biological computing verification.</div>
+
+<div class="sb" style="margin-bottom:36px"><strong style="color:var(--cream);font-weight:500">Analysis II &mdash; Institutional Audit.</strong> Six-track second-pass investigation stress-testing the first assessment. Identified previously undetected actors (Mukhina, FMBA FCBN, Neiry PJN-1 biodrone), the Gordleeva&ndash;Sarov defence connection, and the Tsinghua&ndash;Lobachevsky co-authorship pathway. Bayesian probability model for undisclosed work. Confirmed that the verification gap extends to classified and dual-use programmes.</div>
+
+<div class="sb" style="margin-bottom:36px"><strong style="color:var(--cream);font-weight:500">Analysis III &mdash; Global Verification Landscape.</strong> Exhaustive investigation of verification, benchmarking, standardisation, and governance across all major jurisdictions. Searched English, Russian, and Chinese source material. Identified the 12-layer verification stack, mapped all active standards bodies, assessed country positioning, and modelled time horizons through 2075. Confirmed the total absence of a formal verification framework for biological computation as computing.</div>
+
+<div class="cite">
+<p><strong style="color:var(--dim)">Source transparency.</strong> All three analyses were conducted using open-source intelligence methods. Primary and near-primary sources were preferred. Confidence labels were applied to all major claims. The analyses accessed no classified material. Full source documentation available on request for institutional partners.</p>
+<p style="margin-top:12px"><strong style="color:var(--dim)">Methodological note.</strong> The three analyses were designed to be independent and mutually stress-testing. Analysis II challenged the conclusions of Analysis I. Analysis III operated without reference to the Russia-specific findings, confirming the verification gap as a global structural condition rather than a regional observation.</p>
+</div>
+</div></section>
+
+<!-- CTA -->
+<section class="s"><div class="cn" style="text-align:center">
+<p class="datestamp">March 2026</p>
+<p style="font-family:var(--fd);font-size:clamp(1.4rem,1rem + 2vw,2.2rem);font-style:italic;font-weight:500;color:var(--cream);max-width:28ch;margin:0 auto 40px;line-height:1.2;text-shadow:0 1px 2px rgba(0,0,0,0.4)">The verification layer for biological computing is unbuilt. KRYONIS Lab is building it.</p>
+<div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap">
+<a href="index.html#enter" class="btn btn-g">Enter the Lab</a>
+<a href="https://bccs.bio" class="btn btn-o">BCCS Protocol</a>
+</div>
+</div></section>
+
+<footer class="ft"><div class="ft-i">
+<div class="ft-b"><p class="ft-bn">KRYONIS Lab</p><p>A programme of KRYONIS Sovereign Systems Limited, Hong Kong.<br>Building the verification layer for technologies that are alive.<br><br>Part of the <a href="https://kryonis.global">KRYONIS Sovereign Bioeconomy Stack</a> &#8594;</p></div>
+<div class="ft-c"><p class="ft-ct">Research</p><ul><li><a href="index.html#research">Research Tracks</a></li><li><a href="index.html#methodology">Methodology</a></li><li><a href="index.html#council">Advisory Council</a></li></ul></div>
+<div class="ft-c"><p class="ft-ct">Engage</p><ul><li><a href="index.html#programs">Programs</a></li><li><a href="index.html#publications">Intelligence Products</a></li><li><a href="index.html#enter">Enter the Lab</a></li></ul></div>
+<div class="ft-c"><p class="ft-ct">Publications</p><ul><li><a href="index.html#publications">Working Papers</a></li><li><a href="index.html#publications">MSV Protocol</a></li><li><a href="product.html">Verification Gap Brief</a></li><li><a href="verification.html">Foundational Thesis</a></li></ul></div>
+</div><div class="ft-btm">&#169; 2026 KRYONIS Sovereign Systems Limited. All rights reserved.</div></footer>
+
+<script>document.querySelectorAll('a[href^="#"]').forEach(function(a){a.addEventListener('click',function(e){var t=document.querySelector(a.getAttribute('href'));if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth'});}});});</script>
+</body>
+</html>
