@@ -116,36 +116,11 @@ a{color:var(--link);text-decoration:none;transition:color .2s}a:hover{color:var(
 .pr{background:var(--bg2)}.pr:hover{background:var(--bg3)}
 .thesis p{color:var(--cream)}
 .anchor{text-shadow:0 0 20px rgba(139,125,94,0.25)}
-
-/* BCCS Protocol section */
-.bccs-status{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(260px,100%),1fr));gap:1px;background:var(--border-lt);border:1px solid var(--border-lt);margin-bottom:48px}
-.bccs-card{padding:36px 28px;background:var(--bg3)}
-.bccs-card-label{font-family:var(--fm);font-size:9px;letter-spacing:.3em;text-transform:uppercase;color:var(--faint);margin-bottom:10px}
-.bccs-card-val{font-family:var(--fd);font-size:18px;font-style:italic;color:var(--cream);margin-bottom:8px;line-height:1.3}
-.bccs-card-sub{font-size:13px;color:var(--dim);line-height:1.6}
-.bccs-card-sub a{color:var(--link-hover);text-decoration:underline;text-decoration-color:var(--gold);text-underline-offset:3px}
-.bccs-card-sub a:hover{color:var(--cream)}
-.bccs-links{display:flex;gap:16px;flex-wrap:wrap;margin-top:40px}
-.bccs-live{display:inline-flex;align-items:center;gap:8px;font-family:var(--fm);font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--gold-lt);margin-bottom:36px}
-.bccs-live::before{content:"";width:7px;height:7px;border-radius:50%;background:#6B8E5E;box-shadow:0 0 8px rgba(107,142,94,.6);animation:pulse-live 2s ease-in-out infinite}
-@keyframes pulse-live{0%,100%{opacity:1}50%{opacity:.4}}
-
-/* Founder section */
-.founder-grid{display:grid;grid-template-columns:1fr 2fr;gap:56px;align-items:start}
-@media(max-width:700px){.founder-grid{grid-template-columns:1fr}}
-.founder-meta{font-family:var(--fm);font-size:10px;color:var(--faint);letter-spacing:.1em;line-height:2;margin-top:24px}
-.founder-meta span{color:var(--dim)}
-.founder-name{font-family:var(--fd);font-size:28px;font-style:italic;font-weight:500;color:var(--cream);margin-bottom:6px;text-shadow:0 1px 2px rgba(0,0,0,0.4)}
-.founder-role{font-family:var(--fm);font-size:10px;letter-spacing:.25em;text-transform:uppercase;color:var(--gold-lt);margin-bottom:24px}
-.founder-bio{font-size:15.5px;color:var(--dim);line-height:1.8;margin-bottom:20px;max-width:58ch}
-.founder-cred{border-top:1px solid var(--border-lt);padding-top:24px;margin-top:32px}
-.founder-cred-item{font-size:14px;color:var(--dim);line-height:1.7;margin-bottom:8px;padding-left:16px;position:relative}
-.founder-cred-item::before{content:"&#8212;";position:absolute;left:0;color:var(--gold)}
 </style>
 </head>
 <body>
-<nav class="nav"><div class="nav-i"><a href="#" class="nav-m">KRYONIS LAB</a><ul class="nav-l"><li><a href="#research">Research</a></li><li><a href="#bccs">BCCS Protocol</a></li><li><a href="#programs">Programs</a></li><li><a href="#publications">Publications</a></li><li><a href="thesis.html">Thesis</a></li><li><a href="doctrine.html">Doctrine</a></li><li><a href="#methodology">Method</a></li><li><a href="#founder">Founder</a></li><li><a href="#council">Council</a></li><li><a href="product.html">Whitepaper</a></li><li><a href="#enter">Enter</a></li></ul><button class="nav-h" onclick="document.getElementById('mm').classList.add('open')" aria-label="Menu"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="3" y1="7" x2="21" y2="7"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="17" x2="21" y2="17"/></svg></button></div></nav>
-<div class="mob-menu" id="mm"><button class="mob-x" onclick="this.parentElement.classList.remove('open')">&times;</button><a href="#research" onclick="this.parentElement.classList.remove('open')">Research</a><a href="#bccs" onclick="this.parentElement.classList.remove('open')">BCCS Protocol</a><a href="#programs" onclick="this.parentElement.classList.remove('open')">Programs</a><a href="#publications" onclick="this.parentElement.classList.remove('open')">Publications</a><a href="thesis.html" onclick="this.parentElement.classList.remove('open')">Thesis</a><a href="doctrine.html" onclick="this.parentElement.classList.remove('open')">Doctrine</a><a href="#methodology" onclick="this.parentElement.classList.remove('open')">Method</a><a href="#founder" onclick="this.parentElement.classList.remove('open')">Founder</a><a href="#council" onclick="this.parentElement.classList.remove('open')">Council</a><a href="product.html" onclick="this.parentElement.classList.remove('open')">Whitepaper</a><a href="#enter" onclick="this.parentElement.classList.remove('open')">Enter</a></div>
+<nav class="nav"><div class="nav-i"><a href="#" class="nav-m">KRYONIS LAB</a><ul class="nav-l"><li><a href="#research">Research</a></li><li><a href="#programs">Programs</a></li><li><a href="#publications">Publications</a></li><li><a href="thesis.html">Thesis</a></li><li><a href="doctrine.html">Doctrine</a></li><li><a href="#methodology">Method</a></li><li><a href="#council">Council</a></li><li><a href="product.html">Whitepaper</a></li><li><a href="#enter">Enter</a></li></ul><button class="nav-h" onclick="document.getElementById('mm').classList.add('open')" aria-label="Menu"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="3" y1="7" x2="21" y2="7"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="17" x2="21" y2="17"/></svg></button></div></nav>
+<div class="mob-menu" id="mm"><button class="mob-x" onclick="this.parentElement.classList.remove('open')">&times;</button><a href="#research" onclick="this.parentElement.classList.remove('open')">Research</a><a href="#programs" onclick="this.parentElement.classList.remove('open')">Programs</a><a href="#publications" onclick="this.parentElement.classList.remove('open')">Publications</a><a href="thesis.html" onclick="this.parentElement.classList.remove('open')">Thesis</a><a href="doctrine.html" onclick="this.parentElement.classList.remove('open')">Doctrine</a><a href="#methodology" onclick="this.parentElement.classList.remove('open')">Method</a><a href="#council" onclick="this.parentElement.classList.remove('open')">Council</a><a href="product.html" onclick="this.parentElement.classList.remove('open')">Whitepaper</a><a href="#enter" onclick="this.parentElement.classList.remove('open')">Enter</a></div>
 
 <section class="hero"><div class="c">
 <p class="hero-m">Metabolic State Verification</p>
@@ -153,7 +128,7 @@ a{color:var(--link);text-decoration:none;transition:color .2s}a:hover{color:var(
 <div class="hero-ln"></div>
 <p class="hero-p">Civilization has spent the last century mastering the governance of machines that can be switched off. KRYONIS Lab is architecting the trust layer for critical infrastructure that can die.</p>
 <p class="hero-case">E.g. <em>Verifying synthetic neural tissue in national compute infrastructure. Auditing permafrost biosequestration at sovereign scale.</em></p>
-<div class="hero-cta"><a href="#enter" class="btn btn-g">Enter the Lab</a><a href="#bccs" class="btn btn-o">BCCS Protocol</a><a href="#research" class="btn btn-o">Research Tracks</a></div>
+<div class="hero-cta"><a href="#enter" class="btn btn-g">Enter the Lab</a><a href="#research" class="btn btn-o">Research Tracks</a></div>
 </div></section>
 
 <section class="s" id="thesis"><div class="cn">
@@ -165,43 +140,7 @@ a{color:var(--link);text-decoration:none;transition:color .2s}a:hover{color:var(
 <p class="anchor">MSV is the civilizational protocol for biological infrastructure.</p>
 </div></section>
 
-<section class="s s--alt" id="bccs"><div class="c">
-<p class="sl">Protocol</p>
-<h2 class="st">Our first protocol is live</h2>
-<p class="si">The Biological Computing Certification Standard (BCCS) is the first on-chain verification protocol for metabolically active technologies. Deployed on Base L2. Token live. Node infrastructure open.</p>
-<p class="bccs-live">Live on Base L2</p>
-<div class="bccs-status">
-<div class="bccs-card">
-<p class="bccs-card-label">Token</p>
-<p class="bccs-card-val">$BCCS</p>
-<p class="bccs-card-sub">ERC-20 on Base L2<br><a href="https://basescan.org/token/0x..." target="_blank" rel="noopener noreferrer">View on BaseScan &#8594;</a></p>
-</div>
-<div class="bccs-card">
-<p class="bccs-card-label">Identity Layer</p>
-<p class="bccs-card-val">BAIN ID</p>
-<p class="bccs-card-sub">21-character immutable biological asset identifier. 8-state lifecycle. The atomic unit of metabolic verification.</p>
-</div>
-<div class="bccs-card">
-<p class="bccs-card-label">Node Infrastructure</p>
-<p class="bccs-card-val">Node License Sale</p>
-<p class="bccs-card-sub">Operate verification infrastructure. Mint BAIN IDs. Earn protocol fees.<br><a href="https://bccs.bio/mint.html" target="_blank" rel="noopener noreferrer">Mint a Node License &#8594;</a></p>
-</div>
-<div class="bccs-card">
-<p class="bccs-card-label">Pilot Program</p>
-<p class="bccs-card-val">Founding Oracle</p>
-<p class="bccs-card-sub">$1.2M sovereign-scale pilot. National bioeconomy verification deployment. First-mover institutional integration.</p>
-</div>
-</div>
-<div class="sb">BCCS translates the theoretical framework of Metabolic State Verification into operational protocol infrastructure. Every biological asset receives a BAIN ID &#8212; a unique, immutable identifier that tracks its metabolic lifecycle from genesis through decommission. Node operators form the decentralized verification layer.</div>
-<div class="bccs-links">
-<a href="https://bccs.bio" class="btn btn-g" target="_blank" rel="noopener noreferrer">bccs.bio</a>
-<a href="https://basescan.org/token/0x..." class="btn btn-o" target="_blank" rel="noopener noreferrer">BaseScan</a>
-<a href="https://bccs.bio/audit.html" class="btn btn-o" target="_blank" rel="noopener noreferrer">Audit Report</a>
-<a href="https://bccs.bio/BCCS-Whitepaper-v1.1.pdf" class="btn btn-o" target="_blank" rel="noopener noreferrer">Whitepaper v1.1</a>
-</div>
-</div></section>
-
-<section class="s" id="research"><div class="c">
+<section class="s s--alt" id="research"><div class="c">
 <p class="sl">Research</p>
 <h2 class="st">Five tracks of investigation</h2>
 <p class="si">Each track addresses a distinct verification, governance, or economic challenge created by the emergence of metabolically active technologies. Together they constitute the operating surface of a new discipline.</p>
@@ -214,7 +153,7 @@ a{color:var(--link);text-decoration:none;transition:color .2s}a:hover{color:var(
 </div>
 </div></section>
 
-<section class="s s--alt" id="programs"><div class="c">
+<section class="s" id="programs"><div class="c">
 <p class="sl">Programs</p>
 <h2 class="st">Engagement pathways</h2>
 <p class="si">The Lab operates through structured engagement for researchers, governments, industry, and the emerging field at large.</p>
@@ -227,7 +166,7 @@ a{color:var(--link);text-decoration:none;transition:color .2s}a:hover{color:var(
 </div>
 </div></section>
 
-<section class="s" id="publications"><div class="c">
+<section class="s s--alt" id="publications"><div class="c">
 <p class="sl">Publications &amp; Intelligence</p>
 <h2 class="st">Building the field in public</h2>
 <p class="si">Open-access publications build the intellectual foundation. Strategic intelligence products translate research into actionable decision frameworks.</p>
@@ -240,21 +179,14 @@ a{color:var(--link);text-decoration:none;transition:color .2s}a:hover{color:var(
 <div class="pubi"><h3 class="pub-t">The KRYONIS MSV Protocol</h3><p class="pub-m">v0.1 &#8212; Q3 2026</p><p class="pub-d">The Lab's core methodological contribution. A formal protocol for verifying the metabolic state of living technological systems. Open for public review.</p></div>
 <div class="pubi"><h3 class="pub-t">Annual State of the Field</h3><p class="pub-m">First edition &#8212; Q4 2026</p><p class="pub-d">Comprehensive survey of biological computing, biohybrid systems, and synthetic organism deployment &#8212; assessed through verification readiness and governance maturity.</p></div>
 </div><div>
-<p class="publ">BCCS Protocol Documents</p>
-<div class="pubi"><h3 class="pub-t">BCCS Whitepaper v1.1</h3><p class="pub-m">March 2026 &#8212; Protocol Specification</p><p class="pub-d">Complete protocol architecture. Token economics, verification mechanics, node operator framework, and the on-chain implementation of Metabolic State Verification on Base L2.</p><p class="pub-p"><a href="https://bccs.bio/BCCS-Whitepaper-v1.1.pdf" target="_blank" rel="noopener noreferrer">Download PDF &#8594;</a></p></div>
-<div class="pubi"><h3 class="pub-t">BCCS Tokenomics</h3><p class="pub-m">March 2026 &#8212; Economic Model</p><p class="pub-d">$BCCS token distribution, vesting schedules, utility mechanics, staking architecture, and protocol fee structure. The economic foundation of decentralized verification infrastructure.</p><p class="pub-p"><a href="https://bccs.bio/BCCS-Tokenomics.pdf" target="_blank" rel="noopener noreferrer">Download PDF &#8594;</a></p></div>
-<div class="pubi"><h3 class="pub-t">BAIN ID Specification</h3><p class="pub-m">March 2026 &#8212; Technical Standard</p><p class="pub-d">21-character immutable biological asset identifier. 8-state lifecycle model. Encoding schema, state transition rules, and integration specifications for verification node operators.</p><p class="pub-p"><a href="https://bccs.bio/BAIN-ID-Spec.pdf" target="_blank" rel="noopener noreferrer">Download PDF &#8594;</a></p></div>
-<div class="pubi"><h3 class="pub-t">BCCS Partnership Framework</h3><p class="pub-m">March 2026 &#8212; Institutional Integration</p><p class="pub-d">Structured engagement model for sovereign entities, research institutions, and industry operators seeking to integrate BCCS verification into existing infrastructure.</p><p class="pub-p"><a href="https://bccs.bio/BCCS-Partnership-Framework.pdf" target="_blank" rel="noopener noreferrer">Download PDF &#8594;</a></p></div>
-<div class="pubi"><h3 class="pub-t">Founding Oracle Pilot</h3><p class="pub-m">March 2026 &#8212; $1.2M Sovereign Deployment</p><p class="pub-d">Operational brief for the first sovereign-scale BCCS deployment. National bioeconomy verification, institutional node architecture, and the pathway from pilot to production infrastructure.</p><p class="pub-p"><a href="https://bccs.bio/BCCS-Founding-Oracle-Pilot.pdf" target="_blank" rel="noopener noreferrer">Download PDF &#8594;</a></p></div>
-<div class="pubi"><h3 class="pub-t">BCCS Executive Brief</h3><p class="pub-m">March 2026 &#8212; Summary Document</p><p class="pub-d">High-level overview for institutional decision-makers. The verification gap, the BCCS solution, token architecture, and the investment thesis in a single document.</p><p class="pub-p"><a href="https://bccs.bio/BCCS-Executive-Brief.pdf" target="_blank" rel="noopener noreferrer">Download PDF &#8594;</a></p></div>
-<p class="publ" style="margin-top:40px">Strategic Intelligence</p>
+<p class="publ">Strategic Intelligence</p>
 <div class="pubi"><h3 class="pub-t">The Biological Computing Verification Gap</h3><p class="pub-m">Q2 2026 &#8212; Flagship Intelligence Brief</p><p class="pub-d">Comprehensive analysis of the structural verification deficit in biological computing. Aligned with concerns raised in recent governance literature, including Sirbu &amp; Floridi (2026, Science and Engineering Ethics, Springer Nature).</p><p class="pub-p"><a href="thesis.html">Read the foundational thesis &#8594;</a></p><p class="pub-p">$2,500 &#8212; <a href="product.html">Request access &#8594;</a></p></div>
 <div class="pubi"><h3 class="pub-t">Quarterly Verification Intelligence</h3><p class="pub-m">Launching Q3 2026</p><p class="pub-d">Quarterly briefings tracking verification developments, regulatory movements, and strategic shifts across the metabolic technology landscape.</p><p class="pub-p">Annual subscription &#8212; pricing on request</p></div>
 <div class="pubi"><h3 class="pub-t">Custom Strategic Assessments</h3><p class="pub-m">Accepting commissions</p><p class="pub-d">Bespoke intelligence for governments, sovereign wealth funds, insurers, and institutional investors.</p><p class="pub-p">Engagement from $15,000</p></div>
 </div></div>
 </div></section>
 
-<section class="s s--alt" id="methodology"><div class="c">
+<section class="s" id="methodology"><div class="c">
 <p class="sl">Methodology</p>
 <h2 class="st">How the Lab works</h2>
 <p class="si">KRYONIS Lab does not operate as a conventional research centre. Its methodology is designed for a field that does not yet have established departments, journals, or disciplinary boundaries.</p>
@@ -264,43 +196,17 @@ a{color:var(--link);text-decoration:none;transition:color .2s}a:hover{color:var(
 </div>
 </div></section>
 
-<section class="s" id="founder"><div class="c">
-<p class="sl">Founder</p>
-<h2 class="st">Who built the Lab</h2>
-<div class="founder-grid">
-<div>
-<h3 class="founder-name">Steven Alber</h3>
-<p class="founder-role">Founder &amp; Director</p>
-<div class="founder-meta">
-<span>Independent Futurist</span><br>
-<span>KRYONIS Sovereign Systems Limited, Hong Kong</span>
-</div>
-</div>
-<div>
-<p class="founder-bio">Independent futurist, entrepreneur, and media operator working at the intersection of biological economics, verification infrastructure, and civilizational-scale systems design. Builder of the KRYONIS Sovereign Bioeconomy Stack &#8212; from doctrine to protocol to institutional intelligence.</p>
-<p class="founder-bio">Architect of the AI-native distributed synthesis methodology that underpins the Lab's research infrastructure. Developer of the temporal taxonomy framework for bioeconomic time-types and the "Arctic-as-capital-of-time" thesis that reframes planetary cryogenic systems as sovereign thermodynamic assets.</p>
-<div class="founder-cred">
-<p class="founder-cred-item">Cited twice in Roscongress official output at the IV Forum of Future Technologies (Moscow, February 2026) &#8212; Key Conclusions and Solutions sections, position: independent futurist</p>
-<p class="founder-cred-item">Invited speaker, II Open Dialogue Forum (Moscow, April 2026) &#8212; expert committee high rating for the essay "The Arctic as a Form of Capital of Time"</p>
-<p class="founder-cred-item">6th place out of 42 at Open Dialogue 2024 with a consciousness economy essay</p>
-<p class="founder-cred-item">Publisher: Faktivalgus (Estonian fact-based journalism) and Planet Pulsar (English geopolitical &amp; futures analysis)</p>
-<p class="founder-cred-item">100&#8211;300 year planning horizon. Operating from a globally distributed, mobile-first base across Asia and Europe</p>
-</div>
-</div>
-</div>
-</div></section>
-
 <section class="s s--alt" id="council"><div class="c">
 <p class="sl">Governance</p>
 <h2 class="st">Founding Advisory Council</h2>
 <p class="si">Internationally recognised figures spanning the disciplines essential to Metabolic State Verification. Three-year terms. Strategic direction, institutional credibility, disciplinary oversight.</p>
 <div class="ag">
-<div class="ac"><h3 class="ac-r">Biosecurity</h3><p class="ac-d">Biodefence policy, dual-use governance, containment architecture</p><p class="ac-s">Formation in progress &#8212; Q3 2026</p></div>
-<div class="ac"><h3 class="ac-r">Compute Engineering</h3><p class="ac-d">Biological logic design, error characterisation, bio-digital interface</p><p class="ac-s">Formation in progress &#8212; Q3 2026</p></div>
-<div class="ac"><h3 class="ac-r">Sovereign Capital</h3><p class="ac-d">Sovereign fund allocation, biocapital integration, state balance sheets</p><p class="ac-s">Formation in progress &#8212; Q3 2026</p></div>
-<div class="ac"><h3 class="ac-r">Bioethics</h3><p class="ac-d">Consciousness boundaries, moral status of biological substrates</p><p class="ac-s">Formation in progress &#8212; Q3 2026</p></div>
-<div class="ac"><h3 class="ac-r">Regulatory Architecture</h3><p class="ac-d">Standards body design, international regulatory harmonisation</p><p class="ac-s">Formation in progress &#8212; Q3 2026</p></div>
-<div class="ac"><h3 class="ac-r">Thermodynamic Economics</h3><p class="ac-d">Asset architecture for metabolic systems, entropy-aware valuation</p><p class="ac-s">Formation in progress &#8212; Q3 2026</p></div>
+<div class="ac"><h3 class="ac-r">Biosecurity</h3><p class="ac-d">Biodefence policy, dual-use governance, containment architecture</p><p class="ac-s">Appointment pending</p></div>
+<div class="ac"><h3 class="ac-r">Compute Engineering</h3><p class="ac-d">Biological logic design, error characterisation, bio-digital interface</p><p class="ac-s">Appointment pending</p></div>
+<div class="ac"><h3 class="ac-r">Sovereign Capital</h3><p class="ac-d">Sovereign fund allocation, biocapital integration, state balance sheets</p><p class="ac-s">Appointment pending</p></div>
+<div class="ac"><h3 class="ac-r">Bioethics</h3><p class="ac-d">Consciousness boundaries, moral status of biological substrates</p><p class="ac-s">Appointment pending</p></div>
+<div class="ac"><h3 class="ac-r">Regulatory Architecture</h3><p class="ac-d">Standards body design, international regulatory harmonisation</p><p class="ac-s">Appointment pending</p></div>
+<div class="ac"><h3 class="ac-r">Thermodynamic Economics</h3><p class="ac-d">Asset architecture for metabolic systems, entropy-aware valuation</p><p class="ac-s">Appointment pending</p></div>
 </div>
 </div></section>
 
@@ -309,7 +215,6 @@ a{color:var(--link);text-decoration:none;transition:color .2s}a:hover{color:var(
 <h2 class="st">Enter the Lab</h2>
 <p class="si">Declare your institutional alignment to proceed.</p>
 <div class="eg">
-<a href="https://bccs.bio/mint.html" class="pw" target="_blank" rel="noopener noreferrer"><p class="pw-q">"I want to operate verification infrastructure."</p><p class="pw-d">Run a BCCS verification node. Mint BAIN IDs. Earn protocol fees. Become part of the decentralized metabolic verification layer on Base L2.</p><p class="pw-a">Mint a Node License &#8594;</p></a>
 <a href="product.html" class="pw"><p class="pw-q">"I am allocating capital or architecting policy and require strategic intelligence."</p><p class="pw-d">Access the Lab's intelligence products &#8212; from the flagship Verification Gap Brief to custom strategic assessments and quarterly subscriptions.</p><p class="pw-a">Procure intelligence &#8594;</p></a>
 <a href="advisory.html" class="pw"><p class="pw-q">"I represent a nation-state, defence institution, or sovereign wealth fund."</p><p class="pw-d">Structured advisory for sovereign actors navigating the biological technology transition. Threat assessments, regulatory architecture, national bioeconomy strategy.</p><p class="pw-a">Initiate advisory engagement &#8594;</p></a>
 <a href="fellowship.html" class="pw"><p class="pw-q">"I am a researcher seeking to work within the KRYONIS framework."</p><p class="pw-d">Apply for a Fellowship across biosecurity, biophysics, computational biology, bioethics, actuarial science, or regulatory architecture.</p><p class="pw-a">Express research interest &#8594;</p></a>
@@ -318,16 +223,15 @@ a{color:var(--link);text-decoration:none;transition:color .2s}a:hover{color:var(
 </div>
 <div class="contact-row">
 <div class="contact-item"><p class="contact-label">General inquiries</p><p class="contact-val">institute [at] kryonis.global</p></div>
-<div class="contact-item"><p class="contact-label">BCCS Protocol</p><p class="contact-val"><a href="https://bccs.bio" target="_blank" rel="noopener noreferrer">bccs.bio</a></p></div>
 <div class="contact-item"><p class="contact-label">Entity</p><p class="contact-val">KRYONIS Sovereign Systems Limited, Hong Kong</p></div>
 </div>
 </div></section>
 
 <footer class="ft"><div class="ft-i">
-<div class="ft-b"><p class="ft-bn">KRYONIS Lab</p><p>A programme of KRYONIS Sovereign Systems Limited, Hong Kong.<br>Building the verification layer for technologies that are alive.<br><br>Part of the <a href="https://kryonis.global" target="_blank" rel="noopener noreferrer">KRYONIS Sovereign Bioeconomy Stack</a> &#8594;</p></div>
-<div class="ft-c"><p class="ft-ct">Research</p><ul><li><a href="#research">Research Tracks</a></li><li><a href="#bccs">BCCS Protocol</a></li><li><a href="#methodology">Methodology</a></li><li><a href="#council">Advisory Council</a></li></ul></div>
-<div class="ft-c"><p class="ft-ct">Engage</p><ul><li><a href="#programs">Programs</a></li><li><a href="#publications">Intelligence Products</a></li><li><a href="https://bccs.bio/mint.html" target="_blank" rel="noopener noreferrer">Node License</a></li><li><a href="#enter">Enter the Lab</a></li></ul></div>
-<div class="ft-c"><p class="ft-ct">Publications</p><ul><li><a href="KRYONIS-Lab-WP-001.pdf">WP-001: Verification Gap</a></li><li><a href="doctrine.html">Cryogenic Doctrine</a></li><li><a href="https://bccs.bio/BCCS-Whitepaper-v1.1.pdf" target="_blank" rel="noopener noreferrer">BCCS Whitepaper</a></li><li><a href="#publications">Working Papers</a></li><li><a href="#publications">MSV Protocol</a></li><li><a href="thesis.html">Foundational Thesis</a></li><li><a href="product.html">Verification Gap Brief</a></li></ul></div>
+<div class="ft-b"><p class="ft-bn">KRYONIS Lab</p><p>A programme of KRYONIS Sovereign Systems Limited, Hong Kong.<br>Building the verification layer for technologies that are alive.<br><br>Part of the <a href="https://kryonis.global">KRYONIS Sovereign Bioeconomy Stack</a> &#8594;</p></div>
+<div class="ft-c"><p class="ft-ct">Research</p><ul><li><a href="#research">Research Tracks</a></li><li><a href="#methodology">Methodology</a></li><li><a href="#council">Advisory Council</a></li></ul></div>
+<div class="ft-c"><p class="ft-ct">Engage</p><ul><li><a href="#programs">Programs</a></li><li><a href="#publications">Intelligence Products</a></li><li><a href="#enter">Enter the Lab</a></li></ul></div>
+<div class="ft-c"><p class="ft-ct">Publications</p><ul><li><a href="KRYONIS-Lab-WP-001.pdf">WP-001: Verification Gap</a></li><li><a href="doctrine.html">Cryogenic Doctrine</a></li><li><a href="#publications">Working Papers</a></li><li><a href="#publications">MSV Protocol</a></li><li><a href="thesis.html">Foundational Thesis</a></li><li><a href="product.html">Verification Gap Brief</a></li></ul></div>
 </div><div class="ft-btm">&#169; 2026 KRYONIS Sovereign Systems Limited. All rights reserved.</div></footer>
 <script>document.querySelectorAll('a[href^="#"]').forEach(function(a){a.addEventListener('click',function(e){var t=document.querySelector(a.getAttribute('href'));if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth'});}});});</script>
 </body>
