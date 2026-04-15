@@ -27,8 +27,6 @@ html{scroll-behavior:smooth;scroll-padding-top:80px;-webkit-font-smoothing:antia
 body{font-family:var(--fd);background:var(--bg);color:var(--txt);font-size:17px;line-height:1.7}
 ::selection{background:rgba(139,125,94,.3)}
 a{color:var(--link);text-decoration:none;transition:color .2s}a:hover{color:var(--link-hover)}
-
-/* NAV */
 .nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:20px 32px;background:rgba(6,6,6,.92);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid var(--border-lt)}
 .nav-i{max-width:var(--w);margin:0 auto;display:flex;align-items:center;justify-content:space-between}
 .nav-m{font-family:var(--fm);font-size:11px;letter-spacing:.35em;color:var(--dim);text-decoration:none;text-transform:uppercase}.nav-m:hover{color:var(--cream)}
@@ -44,8 +42,6 @@ a{color:var(--link);text-decoration:none;transition:color .2s}a:hover{color:var(
 @media(max-width:860px){.nav{padding:14px 20px}.nav-l{display:none}.nav-h{display:block}}
 .c{max-width:var(--w);margin:0 auto;padding:0 36px}.cn{max-width:var(--wn);margin:0 auto;padding:0 36px}
 @media(max-width:600px){.c,.cn{padding:0 20px}}
-
-/* HERO */
 .hero{min-height:70vh;display:flex;flex-direction:column;justify-content:center;padding:180px 0 100px;position:relative;overflow:hidden}
 .hero::before{content:"";position:absolute;top:15%;left:-10%;width:80%;height:70%;background:radial-gradient(ellipse at 25% 50%,rgba(139,125,94,.04),transparent 65%);pointer-events:none;z-index:0}
 .hero::after{content:"";position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);opacity:.18}
@@ -56,52 +52,32 @@ a{color:var(--link);text-decoration:none;transition:color .2s}a:hover{color:var(
 .hero-p{font-size:17px;color:var(--dim);max-width:54ch;line-height:1.8;margin-bottom:32px;opacity:0;animation:fi .9s .8s forwards}
 .hero-meta{font-family:var(--fm);font-size:10px;color:var(--faint);letter-spacing:.1em;opacity:0;animation:fi .9s 1s forwards}
 @keyframes fi{to{opacity:1}}
-
-/* BUTTONS */
 .btn{display:inline-block;padding:13px 30px;font-family:var(--fm);font-size:10px;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;border-radius:2px;transition:all .25s;cursor:pointer}
 .btn-g{background:var(--gold);color:var(--cream);border:1px solid var(--gold)}.btn-g:hover{background:var(--gold-lt);border-color:var(--gold-lt);color:var(--cream)}
 .btn-o{background:transparent;color:var(--link);border:1px solid var(--gold)}.btn-o:hover{border-color:var(--gold-lt);color:var(--link-hover);background:rgba(139,125,94,.08)}
-
-/* SECTIONS */
 .s{padding:clamp(80px,12vw,140px) 0;border-top:1px solid var(--border-lt)}
 .s--alt{background:var(--bg2)}
 .sl{font-family:var(--fm);font-size:9px;letter-spacing:.4em;text-transform:uppercase;color:var(--gold-lt);margin-bottom:20px}
 .st{font-family:var(--fd);font-size:clamp(1.8rem,1rem + 2.5vw,2.8rem);font-weight:500;font-style:italic;line-height:1.12;letter-spacing:-.01em;color:var(--cream);margin-bottom:28px;max-width:22ch;text-shadow:0 1px 2px rgba(0,0,0,0.4)}
 .si{font-size:16.5px;color:var(--dim);max-width:56ch;line-height:1.8;margin-bottom:64px}
-
-/* THESIS BODY — long-form document styles */
 .tb{font-size:17px;color:var(--txt);max-width:60ch;line-height:1.8;margin-bottom:28px}
 .tb em{color:var(--cream);font-style:italic}
 .tb strong{color:var(--cream);font-weight:500}
 .th3{font-family:var(--fd);font-size:21px;font-style:italic;font-weight:500;color:var(--cream);margin-top:56px;margin-bottom:20px;text-shadow:0 1px 2px rgba(0,0,0,0.4)}
 .th4{font-family:var(--fm);font-size:10px;letter-spacing:.25em;text-transform:uppercase;color:var(--gold-lt);margin-top:44px;margin-bottom:16px}
-
-/* Thesis blockquote */
 .thesis{border-left:2px solid var(--gold);padding:28px 0 28px 32px;margin:48px 0;max-width:58ch}
 .thesis p{font-family:var(--fd);font-size:18.5px;font-style:italic;line-height:1.7;color:var(--cream)}
-
-/* Anchor phrase */
 .anchor{font-family:var(--fm);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-top:48px;text-shadow:0 0 20px rgba(139,125,94,0.25)}
-
-/* Data table */
 .dt{width:100%;max-width:60ch;border-collapse:collapse;margin:36px 0 44px}
 .dt th{font-family:var(--fm);font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--gold-lt);text-align:left;padding:12px 16px 12px 0;border-bottom:1px solid var(--border)}
 .dt td{font-size:14.5px;color:var(--dim);padding:12px 16px 12px 0;border-bottom:1px solid var(--border-lt);line-height:1.6;vertical-align:top}
 .dt td:first-child{color:var(--txt);font-weight:400;white-space:nowrap}
 .dt td em{color:var(--cream);font-style:italic}
 @media(max-width:600px){.dt{font-size:13px}.dt td:first-child{white-space:normal}}
-
-/* Evidence inline */
 .ev{font-family:var(--fm);font-size:10px;color:var(--faint);letter-spacing:.03em;margin-top:8px}
 .ev a{color:var(--dim);text-decoration:underline;text-decoration-color:var(--border);text-underline-offset:3px}.ev a:hover{color:var(--link-hover)}
-
-/* Section number */
 .sn{font-family:var(--fm);font-size:9px;color:var(--faint);letter-spacing:.15em;margin-bottom:8px}
-
-/* CTA block at end */
 .cta-block{margin-top:80px;padding-top:56px;border-top:1px solid var(--border-lt);display:flex;gap:16px;flex-wrap:wrap}
-
-/* FOOTER */
 .ft{padding:72px 0 36px;border-top:1px solid var(--border-lt)}
 .ft-i{max-width:var(--w);margin:0 auto;padding:0 36px;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:36px}
 @media(max-width:700px){.ft-i{grid-template-columns:1fr 1fr;padding:0 20px}}@media(max-width:450px){.ft-i{grid-template-columns:1fr}}
@@ -113,8 +89,8 @@ a{color:var(--link);text-decoration:none;transition:color .2s}a:hover{color:var(
 </style>
 </head>
 <body>
-<nav class="nav"><div class="nav-i"><a href="index.html" class="nav-m">KRYONIS LAB</a><ul class="nav-l"><li><a href="index.html#research">Research</a></li><li><a href="index.html#programs">Programs</a></li><li><a href="index.html#publications">Publications</a></li><li><a href="thesis.html" class="active">Thesis</a></li><li><a href="index.html#methodology">Method</a></li><li><a href="index.html#council">Council</a></li><li><a href="product.html">Whitepaper</a></li><li><a href="index.html#enter">Enter</a></li></ul><button class="nav-h" onclick="document.getElementById('mm').classList.add('open')" aria-label="Menu"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="3" y1="7" x2="21" y2="7"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="17" x2="21" y2="17"/></svg></button></div></nav>
-<div class="mob-menu" id="mm"><button class="mob-x" onclick="this.parentElement.classList.remove('open')">&times;</button><a href="index.html#research" onclick="this.parentElement.classList.remove('open')">Research</a><a href="index.html#programs" onclick="this.parentElement.classList.remove('open')">Programs</a><a href="index.html#publications" onclick="this.parentElement.classList.remove('open')">Publications</a><a href="thesis.html" onclick="this.parentElement.classList.remove('open')">Thesis</a><a href="index.html#methodology" onclick="this.parentElement.classList.remove('open')">Method</a><a href="index.html#council" onclick="this.parentElement.classList.remove('open')">Council</a><a href="product.html" onclick="this.parentElement.classList.remove('open')">Whitepaper</a><a href="index.html#enter" onclick="this.parentElement.classList.remove('open')">Enter</a></div>
+<nav class="nav"><div class="nav-i"><a href="index.html" class="nav-m">KRYONIS LAB</a><ul class="nav-l"><li><a href="index.html#research">Research</a></li><li><a href="index.html#publications">Publications</a></li><li><a href="thesis.html" class="active">Thesis</a></li><li><a href="doctrine.html">Doctrine</a></li><li><a href="verification.html">Verification</a></li><li><a href="product.html">Whitepaper</a></li><li><a href="index.html#enter">Enter</a></li></ul><button class="nav-h" onclick="document.getElementById('mm').classList.add('open')" aria-label="Menu"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="3" y1="7" x2="21" y2="7"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="17" x2="21" y2="17"/></svg></button></div></nav>
+<div class="mob-menu" id="mm"><button class="mob-x" onclick="this.parentElement.classList.remove('open')">&times;</button><a href="index.html#research" onclick="this.parentElement.classList.remove('open')">Research</a><a href="index.html#publications" onclick="this.parentElement.classList.remove('open')">Publications</a><a href="thesis.html" onclick="this.parentElement.classList.remove('open')">Thesis</a><a href="doctrine.html" onclick="this.parentElement.classList.remove('open')">Doctrine</a><a href="verification.html" onclick="this.parentElement.classList.remove('open')">Verification</a><a href="product.html" onclick="this.parentElement.classList.remove('open')">Whitepaper</a><a href="index.html#enter" onclick="this.parentElement.classList.remove('open')">Enter</a></div>
 
 <!-- HERO -->
 <section class="hero"><div class="cn">
@@ -130,31 +106,18 @@ a{color:var(--link);text-decoration:none;transition:color .2s}a:hover{color:var(
 <p class="sn">I</p>
 <p class="sl">The Problem</p>
 <h2 class="st">The container does not exist</h2>
-
 <p class="tb">In February 2022, approximately $300 billion in Russian sovereign reserves held at Euroclear were frozen by political decision. The operational conclusion drawn by every non-Western state treasury was immediate and irreversible: dollar-denominated reserve concentration is a strategic vulnerability.</p>
-
 <p class="tb">The response has not been a coordinated exit. It has been dispersal without destination. Central banks purchased 4,093 tonnes of gold between 2022 and 2025 &#8212; roughly $400&#8211;500 billion &#8212; the largest documented flow of institutional capital from dollar-adjacent to non-dollar assets in the modern era. The dollar's share of global reserves fell to 56.8% by end-2025, a 31-year low. Gold's share of central bank reserves surpassed US Treasury holdings for the first time since 1996.</p>
-
 <p class="tb">Yet gold is hoarding behaviour, not settlement behaviour. Gold has no payment rail, no clearing protocol, no yield, and no mechanism for transfer between sovereigns at the speed of trade. It sits in vaults. It waits.</p>
-
 <div class="thesis"><p>An estimated $2.0&#8211;3.5 trillion in capital is actively displaced, diversifying, or structurally motivated to exit dollar containers. The binding constraint is not motivation. It is destination.</p></div>
-
 <p class="tb">The US Treasury market remains the world's deepest sovereign instrument at approximately $29 trillion. The next largest &#8212; German Bunds &#8212; is roughly $2&#8211;3 trillion. The yuan accounts for 2.1% of global reserves, down from 2.8% in 2022, constrained by capital controls and geopolitical risk premium. No single non-dollar instrument offers the depth, liquidity, and legal infrastructure that displaced capital requires.</p>
-
 <p class="tb">Capital has dispersed into gold (passive, illiquid), smaller fiat currencies (insufficient depth), cryptocurrency (insufficient institutional trust), and real assets (insufficient transferability). It has not found architecture.</p>
-
 <h3 class="th3">BRICS has demonstrated why multilateral consensus cannot build it</h3>
-
 <p class="tb">Russia's 2024 BRICS chairmanship placed settlement architecture at the summit's centre. The Kazan Declaration (October 2024) tells the institutional story in three paragraphs: every financial commitment was qualified by <em>"voluntary," "non-binding,"</em> or <em>"study feasibility."</em> The BRICS Bridge proposal &#8212; Russia's flagship &#8212; does not appear in the Declaration by name.</p>
-
 <p class="tb">India vetoed dollar-exit language. China considered Russia's SWIFT-alternative proposals premature. Brazil quietly dropped common currency from the 2025 presidency agenda after Trump threatened 100% tariffs on any BRICS country backing a dollar alternative. The July 2025 Rio summit produced no mention of a common currency in its final declaration.</p>
-
 <p class="tb">This is not a failure of political will. It is the correct outcome given structural conditions: no shared legal system, no neutral clearing institution, no mutually trusted settlement asset, and no member willing to accept the subordinate monetary position that any common currency requires.</p>
-
 <p class="tb">What works is bilateral. The Russia-China corridor (99.1% local currency on $244.8 billion in trade) functions because trade volumes generate natural currency recycling. China-Brazil (40% yuan/real on $181.5 billion) is the second proof case. These arrangements work precisely because they are asymmetric enough to generate recycling without requiring convertibility or institutional consensus.</p>
-
 <p class="tb">What does not work is any architecture requiring states with divergent trust structures to agree on a shared settlement unit, a shared clearing institution, or a shared reserve asset.</p>
-
 <p class="anchor">The world does not need a new currency. It needs a new trust layer.</p>
 </div></section>
 
@@ -163,31 +126,22 @@ a{color:var(--link);text-decoration:none;transition:color .2s}a:hover{color:var(
 <p class="sn">II</p>
 <p class="sl">The Gap</p>
 <h2 class="st">What has not been built</h2>
-
 <p class="tb">The institutional world has made significant progress in embedding natural capital into sovereign finance. What it has not done is connect accounting to settlement.</p>
-
 <p class="th4">What exists</p>
-
 <table class="dt">
 <tr><th>Framework</th><th>Status</th></tr>
 <tr><td>SEEA-EA</td><td>UN ecosystem accounting standard. IMF companion guide published June 2025. Statistical infrastructure for measuring ecosystem extent, condition, and monetary value at sovereign scale.</td></tr>
 <tr><td>AIIB GEP Collateral</td><td>First operational use of Gross Ecosystem Product projections as partial collateral for a state-backed loan &#8212; the Dongtai Wetland precedent (2025).</td></tr>
 <tr><td>Bolivia Article 6.2</td><td>$1.2 billion sovereign carbon securities. Sovereign ecological capacity packaged as tradeable financial instruments under international treaty framework. Satellite-monitored.</td></tr>
-<tr><td>Bahamas Blue Carbon</td><td>World's first blue carbon sovereign securities (April 2025). 150,000 km² of seagrass ecosystem converted into bona fide financial securities.</td></tr>
+<tr><td>Bahamas Blue Carbon</td><td>World's first blue carbon sovereign securities (April 2025). 150,000 km&#178; of seagrass ecosystem converted into bona fide financial securities.</td></tr>
 <tr><td>FTSE Russell / AXA</td><td>Biodiversity-adjusted sovereign bond index (September 2025). Ecological state directly changes sovereign capital cost. Operational across 53+ markets.</td></tr>
 <tr><td>FfB Sovereign Model</td><td>Three-pillar, 42-characteristic framework for integrating nature into sovereign debt pricing (November 2025).</td></tr>
 </table>
-
 <p class="tb">The accounting standard exists. The institutional precedent exists. The first sovereign instruments exist. Ecological state is already priced into sovereign bonds.</p>
-
 <div class="thesis"><p>What does not exist &#8212; confirmed across six research domains and every reviewed paper in the institutional literature &#8212; is a clearing protocol that makes biological productivity measurable, transferable, and acceptable as settlement collateral between sovereigns.</p></div>
-
 <p class="tb">No paper proposes Net Primary Productivity, biomass, or biological productivity as a direct clearing mechanism between sovereigns. The bridge from <em>"natural capital as sovereign credit input"</em> to <em>"natural capital as settlement asset"</em> has not been built.</p>
-
 <p class="tb">The gap is not conceptual. It is architectural. SEEA-EA provides the accounting framework, not the clearing protocol. The AIIB wetland precedent provides the collateral concept, not the transfer mechanism. Bolivia provides the sovereign instrument, not the multilateral settlement layer. The FTSE Russell index prices ecological state into bonds, not into trade clearing.</p>
-
 <p class="tb">Each of these advances stops one step short of the same threshold: a protocol that makes verified biological state portable across sovereign jurisdictions as a settlement-grade instrument.</p>
-
 <p class="anchor">The gap is exactly where KRYONIS Lab sits.</p>
 </div></section>
 
@@ -196,21 +150,13 @@ a{color:var(--link);text-decoration:none;transition:color .2s}a:hover{color:var(
 <p class="sn">III</p>
 <p class="sl">The Architecture</p>
 <h2 class="st">What must be built</h2>
-
 <p class="tb">The ECU (European Currency Unit, 1979&#8211;1999) succeeded where every BRICS proposal has failed for one structural reason: <em>decomposability.</em> Any ECU surplus balance could always be settled in underlying currencies at observable market rates. Counterparties did not need to trust the ECU itself &#8212; only the component currencies. The instrument generated a private market of ECU 193 billion in banking liabilities and became the fifth-largest international bond currency &#8212; without any single sovereign backing it.</p>
-
 <p class="tb">No current post-dollar proposal offers this property. The BRICS UNIT is not redeemable at the holder level. The yuan's capital controls prevent decomposition into global assets. Gold has no payment rail. Every alternative fails the decomposability test.</p>
-
 <p class="tb">The architectural requirement is therefore precise: a settlement instrument that is <strong>decomposable into verified physical reality</strong> rather than into currencies &#8212; because currencies are what the parties do not trust.</p>
-
 <h3 class="th3">The verification layer</h3>
-
 <p class="tb">KRYONIS Lab's contribution is not a currency, not a token, and not a financial instrument. It is the verification layer that makes all of these possible: a <strong>Sovereign Metabolic Measurement Protocol</strong> (SMMP) that standardises how the biological, energetic, and productive state of sovereign territory is measured, verified, and communicated to clearing systems.</p>
-
 <p class="tb">The protocol is built on a single operational principle: <em>trust in physics, not in politics.</em></p>
-
 <p class="th4">Four verification channels</p>
-
 <table class="dt">
 <tr><th>Channel</th><th>What it verifies</th><th>Trust anchor</th></tr>
 <tr><td>Commodity Reserve</td><td>Physical stockpiles at designated delivery points</td><td>Warehouse audits (LBMA/LME precedent)</td></tr>
@@ -218,31 +164,18 @@ a{color:var(--link);text-decoration:none;transition:color .2s}a:hover{color:var(
 <tr><td>Regeneration Flow</td><td>Annual net ecosystem productivity, R&nbsp;>&nbsp;E</td><td>Solar-Induced Fluorescence &#8212; biophysical signal emitted by chlorophyll, cannot be fabricated</td></tr>
 <tr><td>Exergy Capacity</td><td>Territorial free energy production minus consumption</td><td>CERES radiative energy balance (NASA/NOAA, operational since 2000)</td></tr>
 </table>
-
 <p class="tb">Each channel is independently measured, independently verified, and mutually cross-checking. A territory claiming high bio-capital stock but showing declining Solar-Induced Fluorescence triggers automatic anomaly detection. Fabricating all four channels simultaneously is physically infeasible at sovereign scale.</p>
-
 <p class="tb">A counterparty does not need to trust any government's declaration. It verifies through satellite imagery at 10-metre resolution, updated every five days. Trust is in the physics: photosynthesis is a measurable energy process, radiative balance is continuously monitored from space, commodity stockpiles are physically auditable. None of these can be negotiated, bribed, or vetoed.</p>
-
 <h3 class="th3">The Bio-Asset Identification Number</h3>
-
 <p class="tb">The BCCS (Bio-Capital Clearing Standard) protocol introduces BAIN ID &#8212; a universal registry identifier for territorial ecological units. Each BAIN encodes jurisdiction, asset class, verification tier, registration date, and sequence. The verification state machine has eight states:</p>
-
 <p class="tb"><em>Depleted &#8594; Observed &#8594; Registered &#8594; Verified &#8594; Standardised &#8594; Certified &#8594; Secured &#8594; Final</em></p>
-
 <p class="tb">Only assets at verification tier four (Standardised) or above enter the clearing system. Degradation triggers automatic state reversal. A sovereign that clear-cuts 100,000 hectares of verified forest loses the settlement capacity of those hectares within the next satellite verification cycle, regardless of any political agreement.</p>
-
 <p class="tb">BAIN ID is to biological settlement what ISO 20022 is to financial messaging: the standard that enables interoperability between systems that would otherwise be isolated.</p>
-
 <h3 class="th3">Decomposability into reality</h3>
-
 <p class="tb">An instrument verified through SMMP is decomposable into any of its four channels at prevailing rates:</p>
-
 <p class="tb"><strong>Into commodities</strong> &#8212; physical gold, metals, energy at delivery-point prices. <strong>Into bio-capital claims</strong> &#8212; sovereign ecological securities under Article 6.2 (Bolivia/Bahamas precedent). <strong>Into regeneration credits</strong> &#8212; ITMO transfers, carbon removal certificates. <strong>Into exergy certificates</strong> &#8212; renewable energy capacity, convertible to physical infrastructure.</p>
-
 <p class="tb">The ECU decomposed into currencies. This decomposes into physical productive capacity &#8212; the thing that currencies are supposed to represent.</p>
-
 <div class="thesis"><p>The question is not which currency replaces the dollar. The question is what verified reality can credibly anchor the settlement systems that come after it. The answer is the metabolic state of sovereign territory &#8212; measured, verified, and made portable through a protocol that trusts physics over politics.</p></div>
-
 </div></section>
 
 <!-- IV. THE POSITION -->
@@ -250,33 +183,19 @@ a{color:var(--link);text-decoration:none;transition:color .2s}a:hover{color:var(
 <p class="sn">IV</p>
 <p class="sl">The Position</p>
 <h2 class="st">What KRYONIS Lab builds</h2>
-
 <p class="tb">KRYONIS Lab does not build currencies. It does not build tokens. It does not compete with BRICS proposals, mBridge, CIPS, or any existing settlement infrastructure.</p>
-
 <p class="tb">KRYONIS Lab builds the verification layer beneath all of them.</p>
-
 <p class="tb">The <strong>Sovereign Metabolic Measurement Protocol</strong> is the single highest-leverage intervention point in the post-dollar architectural landscape. Without it, every bio-capital settlement proposal must independently solve the measurement problem &#8212; creating fragmented, incompatible verification regimes. With it, any settlement architecture can plug into the same verified data layer and trust it, because the protocol is physics-based, open-source, and independently auditable.</p>
-
 <p class="th4">The intervention</p>
-
 <p class="tb">SMMP standardises five things:</p>
-
 <p class="tb"><strong>Data ingestion</strong> &#8212; which satellite products, at what resolution, with what update frequency, constitute "verified" for settlement purposes. <strong>Ground truth protocol</strong> &#8212; minimum density of flux towers per biome type, eDNA sampling frequency, LiDAR survey cadence. <strong>Bio-Asset Identification</strong> &#8212; the BAIN registry, a universal identifier for territorial ecological units. <strong>State classification</strong> &#8212; the 8-state verification machine, from Depleted to Final. <strong>Cross-channel validation</strong> &#8212; algorithmic detection of inconsistencies between measurement channels.</p>
-
 <p class="tb">Build this layer, and every post-dollar settlement architecture &#8212; from commodity baskets to regeneration credits to thermodynamic exergy units &#8212; becomes simultaneously possible. Without it, they are independently difficult and mutually incompatible.</p>
-
 <p class="th4">The civilisational claim</p>
-
 <p class="tb">This is not an environmental proposal. It is not green finance. It is not carbon trading dressed in new language.</p>
-
 <p class="tb">It is the recognition that the 21st-century settlement problem &#8212; where trillions of dollars go when they cannot stay in dollars &#8212; is fundamentally a verification problem. The world is not short of value. It is short of verifiable value that no single sovereign controls, that physics can audit, and that territory can anchor.</p>
-
 <p class="tb">The dollar rested on military enforcement and institutional inertia. Gold rests on geological scarcity. The next trust layer rests on something that can be continuously measured from space, independently verified across four channels, and decomposed into the physical productive capacity that civilisation actually requires: energy, food, materials, and the biological systems that regenerate them.</p>
-
 <div class="thesis"><p>KRYONIS Lab exists to define, build, and defend the verification layer for a world transitioning from financial abstraction toward physical verification. The gap is documented. The measurement technology is operational. The institutional precedent is established. The capital seeking a container is real. What does not exist is the clearing protocol. That is what we build.</p></div>
-
 <p class="anchor">The verification layer for technologies that are alive.</p>
-
 <div class="cta-block">
 <a href="product.html" class="btn btn-g">Read the Whitepaper</a>
 <a href="index.html#enter" class="btn btn-o">Enter the Lab</a>
@@ -287,7 +206,7 @@ a{color:var(--link);text-decoration:none;transition:color .2s}a:hover{color:var(
 <div class="ft-b"><p class="ft-bn">KRYONIS Lab</p><p>A programme of KRYONIS Sovereign Systems Limited, Hong Kong.<br>Building the verification layer for technologies that are alive.<br><br>Part of the <a href="https://kryonis.global">KRYONIS Sovereign Bioeconomy Stack</a> &#8594;</p></div>
 <div class="ft-c"><p class="ft-ct">Research</p><ul><li><a href="index.html#research">Research Tracks</a></li><li><a href="index.html#methodology">Methodology</a></li><li><a href="index.html#council">Advisory Council</a></li></ul></div>
 <div class="ft-c"><p class="ft-ct">Engage</p><ul><li><a href="index.html#programs">Programs</a></li><li><a href="index.html#publications">Intelligence Products</a></li><li><a href="index.html#enter">Enter the Lab</a></li></ul></div>
-<div class="ft-c"><p class="ft-ct">Publications</p><ul><li><a href="KRYONIS-Lab-WP-001.pdf">WP-001: Verification Gap</a></li><li><a href="thesis.html">Foundational Thesis</a></li><li><a href="product.html">Verification Gap Brief</a></li></ul></div>
+<div class="ft-c"><p class="ft-ct">Publications</p><ul><li><a href="KRYONIS-Lab-WP-001.pdf">WP-001: Verification Gap</a></li><li><a href="thesis.html">Foundational Thesis</a></li><li><a href="doctrine.html">Cryogenic Doctrine</a></li><li><a href="verification.html">Verification Gap</a></li><li><a href="product.html">Intelligence Brief</a></li></ul></div>
 </div><div class="ft-btm">&#169; 2026 KRYONIS Sovereign Systems Limited. All rights reserved.</div></footer>
 <script>document.querySelectorAll('a[href^="#"]').forEach(function(a){a.addEventListener('click',function(e){var t=document.querySelector(a.getAttribute('href'));if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth'});}});});</script>
 </body>
