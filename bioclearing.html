@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BioClearing — The Settlement Layer for Territorial Bio-Capital — KRYONIS Lab</title>
+<meta name="description" content="From verification to settlement. The BCCS Global Registry as the institutional address for territorial bio-capital. A KRYONIS Lab doctrinal deep-dive on the civilisational infrastructure for a trillion dollars in stranded biological assets.">
+<meta property="og:title" content="BioClearing — The Settlement Layer for Territorial Bio-Capital">
+<meta property="og:description" content="KRYONIS Lab on why civilisation needs a clearing layer for bio-assets, and how the BCCS Global Registry becomes that layer.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://kryonislab.org/bioclearing.html">
+<meta property="og:site_name" content="KRYONIS Lab">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="BioClearing — The Settlement Layer for Territorial Bio-Capital">
+<meta name="twitter:description" content="The institutional infrastructure for a trillion dollars in stranded biological assets.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#060606;--bg2:#0B0B0A;--bg3:#0F0E0D;--bg4:#121110;
+  --border:#1A1917;--border-lt:#131210;--border-md:#221F1A;
+  --txt:#CBC7BB;--dim:#7A766C;--faint:#4A4740;
+  --gold:#8B7D5E;--gold-lt:#B0A48A;--gold-dk:#6B5D40;
+  --cream:#F5F2EB;
+  --link:#B0A48A;--link-hover:#D4C9A8;
+  --reversed:#8B4A4A;--reversed-lt:#C89090;
+  --fd:'EB Garamond','Georgia',serif;
+  --fm:'IBM Plex Mono','Courier New',monospace;
+  --w:1140px;--wn:880px;--wp:740px;
+}
+html{scroll-behavior:smooth;scroll-padding-top:80px;-webkit-font-smoothing:antialiased}
+body{font-family:var(--fd);background:var(--bg);color:var(--txt);font-size:17px;line-height:1.75}
+::selection{background:rgba(139,125,94,.3)}
+a{color:var(--link);text-decoration:none;transition:color .2s}
+a:hover{color:var(--link-hover)}
+
+/* NAV */
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:20px 32px;background:rgba(6,6,6,.92);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid var(--border-lt)}
+.nav-i{max-width:var(--w);margin:0 auto;display:flex;align-items:center;justify-content:space-between}
+.nav-m{font-family:var(--fm);font-size:11px;letter-spacing:.35em;color:var(--dim);text-decoration:none;text-transform:uppercase}
+.nav-m:hover{color:var(--cream)}
+.nav-l{display:flex;gap:28px;list-style:none}
+.nav-l a{font-family:var(--fm);font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--dim);text-decoration:none;transition:color .2s;padding-bottom:2px;border-bottom:1px solid transparent}
+.nav-l a:hover{color:var(--link-hover);border-bottom-color:var(--gold)}
+.nav-l a.active{color:var(--gold-lt);border-bottom-color:var(--gold)}
+.nav-h{display:none;background:none;border:none;color:var(--dim);cursor:pointer;padding:8px}
+.nav-h svg{display:block}
+.mob-menu{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(6,6,6,.97);z-index:200;flex-direction:column;align-items:center;justify-content:center;gap:24px}
+.mob-menu.open{display:flex}
+.mob-menu a{font-family:var(--fm);font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--link);text-decoration:none}
+.mob-menu a:hover{color:var(--cream)}
+.mob-x{position:absolute;top:20px;right:24px;background:none;border:none;color:var(--dim);cursor:pointer;font-size:24px;font-family:var(--fm)}
+@media(max-width:900px){.nav{padding:14px 20px}.nav-l{display:none}.nav-h{display:block}}
+
+/* CONTAINERS */
+.c{max-width:var(--w);margin:0 auto;padding:0 36px}
+.cn{max-width:var(--wn);margin:0 auto;padding:0 36px}
+.cp{max-width:var(--wp);margin:0 auto;padding:0 36px}
+@media(max-width:600px){.c,.cn,.cp{padding:0 20px}}
+
+/* HERO */
+.hero{min-height:92vh;display:flex;flex-direction:column;justify-content:center;padding:170px 0 120px;position:relative;overflow:hidden}
+.hero::before{content:"";position:absolute;top:8%;right:-10%;width:70%;height:85%;background:radial-gradient(ellipse at 70% 40%,rgba(139,125,94,.06),transparent 65%);pointer-events:none;z-index:0}
+.hero::after{content:"";position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);opacity:.22}
+.hero>.c{position:relative;z-index:1}
+.hero-crumb{font-family:var(--fm);font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:var(--faint);margin-bottom:40px}
+.hero-crumb a{color:var(--gold-lt)}
+.hero-crumb a:hover{color:var(--cream)}
+.hero-crumb span{color:var(--faint);margin:0 14px}
+.hero-badge{display:inline-block;padding:7px 16px;border:1px solid var(--gold-dk);background:rgba(139,125,94,.05);font-family:var(--fm);font-size:10px;letter-spacing:.25em;color:var(--gold-lt);text-transform:uppercase;margin-bottom:36px}
+.hero-t{font-family:var(--fd);font-size:clamp(2.4rem,1rem + 5vw,5.2rem);font-weight:500;font-style:italic;line-height:1.04;letter-spacing:-.015em;color:var(--cream);max-width:17ch;margin-bottom:40px;background:linear-gradient(135deg,var(--cream) 45%,var(--gold-lt));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;text-shadow:0 1px 2px rgba(0,0,0,.4)}
+.hero-ln{width:56px;height:1.5px;background:var(--gold);margin-bottom:36px}
+.hero-p{font-size:18.5px;color:var(--dim);max-width:58ch;line-height:1.85;margin-bottom:30px}
+.hero-p strong{color:var(--txt);font-weight:500}
+.hero-pull{font-family:var(--fd);font-style:italic;font-size:23px;line-height:1.55;color:var(--gold-lt);max-width:52ch;border-left:2px solid var(--gold);padding:18px 0 18px 30px;margin:44px 0 52px}
+.hero-cta{display:flex;gap:16px;flex-wrap:wrap;margin-top:36px}
+.btn{display:inline-block;padding:14px 34px;font-family:var(--fm);font-size:10px;letter-spacing:.15em;text-transform:uppercase;text-decoration:none;border-radius:2px;transition:all .25s;cursor:pointer}
+.btn-g{background:var(--gold);color:var(--cream);border:1px solid var(--gold)}
+.btn-g:hover{background:var(--gold-lt);border-color:var(--gold-lt);color:var(--cream)}
+.btn-o{background:transparent;color:var(--link);border:1px solid var(--gold)}
+.btn-o:hover{border-color:var(--gold-lt);color:var(--link-hover);background:rgba(139,125,94,.08)}
+
+/* SECTIONS */
+.s{padding:clamp(90px,12vw,140px) 0;border-top:1px solid var(--border-lt)}
+.s--alt{background:var(--bg2)}
+.s--deep{background:var(--bg3)}
+.sl{font-family:var(--fm);font-size:9px;letter-spacing:.4em;text-transform:uppercase;color:var(--gold-lt);margin-bottom:22px}
+.st{font-family:var(--fd);font-size:clamp(1.9rem,1rem + 2.5vw,3rem);font-weight:500;font-style:italic;line-height:1.14;letter-spacing:-.01em;color:var(--cream);margin-bottom:30px;max-width:22ch;text-shadow:0 1px 2px rgba(0,0,0,.4)}
+.st em{color:var(--gold-lt);font-style:italic}
+.si{font-size:17.5px;color:var(--dim);max-width:60ch;line-height:1.85;margin-bottom:56px}
+.si strong{color:var(--txt);font-weight:500}
+.sb{font-size:16.5px;color:var(--dim);max-width:62ch;line-height:1.85;margin-bottom:22px}
+.sb strong{color:var(--txt);font-weight:500}
+.sb em{color:var(--gold-lt);font-style:italic}
+
+/* PROBLEM GRID */
+.pgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border-lt);border:1px solid var(--border-lt);margin:52px 0 32px}
+@media(max-width:860px){.pgrid{grid-template-columns:1fr}}
+.pp{padding:40px 32px;background:var(--bg3);position:relative}
+.pp-n{font-family:var(--fm);font-size:10px;color:var(--gold);letter-spacing:.28em;margin-bottom:16px}
+.pp-t{font-family:var(--fd);font-size:22px;font-style:italic;color:var(--cream);margin-bottom:14px;line-height:1.3}
+.pp-d{font-size:14.5px;color:var(--dim);line-height:1.75}
+.pp-d strong{color:var(--txt)}
+
+/* HISTORICAL PARALLEL */
+.hist{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border-lt);border:1px solid var(--border-lt);margin:48px 0}
+@media(max-width:860px){.hist{grid-template-columns:1fr}}
+.hc{padding:38px 30px;background:var(--bg3)}
+.hc-era{font-family:var(--fm);font-size:9px;letter-spacing:.3em;text-transform:uppercase;color:var(--faint);margin-bottom:10px}
+.hc-name{font-family:var(--fd);font-size:21px;font-style:italic;color:var(--cream);margin-bottom:8px;line-height:1.3}
+.hc-for{font-family:var(--fm);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-lt);margin-bottom:18px}
+.hc-d{font-size:14px;color:var(--dim);line-height:1.7;margin-bottom:16px}
+.hc-took{font-family:var(--fm);font-size:11px;color:var(--gold);letter-spacing:.05em;padding-top:14px;border-top:1px solid var(--border)}
+
+/* TWO COLUMN COMPARISON */
+.cmp{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border-lt);border:1px solid var(--border-lt);margin:48px 0 24px}
+@media(max-width:820px){.cmp{grid-template-columns:1fr}}
+.cmp-col{padding:42px 36px;background:var(--bg3)}
+.cmp-lbl{font-family:var(--fm);font-size:9px;letter-spacing:.3em;text-transform:uppercase;color:var(--faint);margin-bottom:14px}
+.cmp-h{font-family:var(--fd);font-size:23px;font-style:italic;color:var(--cream);margin-bottom:22px;line-height:1.3}
+.cmp-col ul{list-style:none}
+.cmp-col li{font-size:14.5px;color:var(--dim);line-height:1.75;padding:11px 0;padding-left:24px;position:relative;border-bottom:1px solid var(--border-lt)}
+.cmp-col li:last-child{border-bottom:none}
+.cmp-col li::before{content:"\2014";position:absolute;left:0;color:var(--gold)}
+
+/* TBAR ANATOMY */
+.tbar{background:var(--bg4);border:1px solid var(--gold-dk);padding:44px;margin:48px 0;border-radius:2px;position:relative}
+.tbar::before{content:"TBAR";position:absolute;top:-11px;left:32px;background:var(--bg3);padding:0 14px;font-family:var(--fm);font-size:10px;letter-spacing:.35em;color:var(--gold-lt)}
+.tbar-sub{font-family:var(--fm);font-size:10px;letter-spacing:.25em;text-transform:uppercase;color:var(--faint);margin-bottom:26px}
+.tbar-row{display:grid;grid-template-columns:220px 1fr;gap:24px;padding:13px 0;border-bottom:1px solid var(--border-lt);align-items:start}
+.tbar-row:last-child{border-bottom:none}
+.tbar-k{font-family:var(--fm);font-size:12.5px;color:var(--gold-lt);letter-spacing:.03em;padding-top:2px}
+.tbar-v{font-size:14.5px;color:var(--dim);line-height:1.7}
+.tbar-v em{color:var(--gold-lt);font-style:italic}
+@media(max-width:720px){.tbar{padding:30px 22px}.tbar-row{grid-template-columns:1fr;gap:4px}.tbar-v{padding-left:0}}
+
+/* BAIN ID SAMPLES */
+.bsam{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border-lt);border:1px solid var(--border-lt);margin:36px 0}
+@media(max-width:820px){.bsam{grid-template-columns:1fr}}
+.bs{padding:28px;background:var(--bg3);text-align:center}
+.bs-id{font-family:var(--fm);font-size:16px;font-weight:500;color:var(--gold-lt);letter-spacing:.08em;margin-bottom:12px}
+.bs-d{font-size:13px;color:var(--dim);line-height:1.65}
+
+/* STATE LADDER */
+.ladder{margin:56px 0 32px}
+.rung{display:grid;grid-template-columns:80px 200px 1fr;gap:28px;padding:32px 0;border-top:1px solid var(--border-lt);align-items:start}
+.rung:last-of-type{border-bottom:1px solid var(--border-lt)}
+.rung-n{font-family:var(--fm);font-size:34px;color:var(--gold-lt);line-height:1;padding-top:4px;font-weight:400}
+.rung-nm{font-family:var(--fd);font-size:20px;font-style:italic;color:var(--cream);line-height:1.3}
+.rung-nm small{display:block;font-family:var(--fm);font-size:9px;color:var(--faint);letter-spacing:.22em;text-transform:uppercase;font-style:normal;margin-top:8px;font-weight:400}
+.rung-d{font-size:14.5px;color:var(--dim);line-height:1.8}
+.rung-d strong{color:var(--txt)}
+.rung.reversed .rung-n{color:var(--reversed)}
+.rung.reversed .rung-nm{color:var(--reversed-lt)}
+.rung.reversed{background:rgba(139,74,74,.025)}
+@media(max-width:760px){
+  .rung{grid-template-columns:60px 1fr;gap:18px}
+  .rung-nm{grid-column:2}
+  .rung-d{grid-column:1/-1;padding-left:0;margin-top:10px}
+}
+.ratchet-note{font-family:var(--fd);font-style:italic;font-size:19px;line-height:1.6;color:var(--gold-lt);max-width:56ch;border-left:2px solid var(--gold);padding:18px 0 18px 28px;margin:40px 0 20px}
+
+/* MEASUREMENT GRID */
+.meas{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border-lt);border:1px solid var(--border-lt);margin:52px 0}
+@media(max-width:900px){.meas{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:600px){.meas{grid-template-columns:1fr}}
+.ms{padding:34px 28px;background:var(--bg3);position:relative;overflow:hidden}
+.ms-n{position:absolute;top:14px;right:20px;font-family:var(--fm);font-size:46px;font-weight:500;color:rgba(139,125,94,.07);line-height:1}
+.ms-lbl{font-family:var(--fm);font-size:10px;letter-spacing:.25em;text-transform:uppercase;color:var(--gold-lt);margin-bottom:12px;position:relative}
+.ms-h{font-family:var(--fd);font-size:18px;font-style:italic;color:var(--cream);margin-bottom:14px;line-height:1.35;position:relative}
+.ms-d{font-size:13.5px;color:var(--dim);line-height:1.7;position:relative}
+.ms-tags{margin-top:16px;display:flex;flex-wrap:wrap;gap:6px;position:relative}
+.ms-tag{font-family:var(--fm);font-size:9px;padding:3px 8px;background:rgba(139,125,94,.08);border:1px solid var(--border-md);color:var(--gold-lt);letter-spacing:.05em}
+
+/* GOVERNANCE */
+.gov{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border-lt);border:1px solid var(--border-lt);margin:48px 0 32px}
+@media(max-width:820px){.gov{grid-template-columns:1fr}}
+.gv{padding:38px 30px;background:var(--bg3)}
+.gv-lbl{font-family:var(--fm);font-size:10px;letter-spacing:.25em;text-transform:uppercase;color:var(--gold-lt);margin-bottom:14px}
+.gv-h{font-family:var(--fd);font-size:21px;font-style:italic;color:var(--cream);margin-bottom:16px;line-height:1.3}
+.gv-d{font-size:14px;color:var(--dim);line-height:1.75}
+
+/* TERRITORIES STRIP */
+.terr{margin:48px 0 32px;padding:36px;background:var(--bg3);border:1px solid var(--border-md)}
+.terr-h{font-family:var(--fm);font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:var(--gold-lt);margin-bottom:22px}
+.terr-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-bottom:28px}
+@media(max-width:720px){.terr-stats{grid-template-columns:repeat(2,1fr);gap:20px}}
+.ts-n{font-family:var(--fm);font-size:32px;color:var(--gold-lt);line-height:1;margin-bottom:6px;font-weight:500}
+.ts-l{font-size:13px;color:var(--dim);line-height:1.5}
+.terr-regions{display:flex;flex-wrap:wrap;gap:10px;padding-top:24px;border-top:1px solid var(--border-lt)}
+.tr-tag{font-family:var(--fm);font-size:11px;padding:6px 13px;background:rgba(139,125,94,.06);border:1px solid var(--border-md);color:var(--gold-lt);letter-spacing:.05em}
+
+/* THESIS */
+.thesis-block{margin:56px 0;padding:48px;background:var(--bg3);border:1px solid var(--gold-dk);position:relative}
+.thesis-h{font-family:var(--fm);font-size:10px;letter-spacing:.35em;text-transform:uppercase;color:var(--gold-lt);margin-bottom:24px}
+.thesis-t{font-family:var(--fd);font-size:clamp(1.5rem,1rem + 1.5vw,2.1rem);font-weight:500;font-style:italic;line-height:1.35;color:var(--cream);margin-bottom:26px;max-width:32ch}
+.thesis-p{font-size:16.5px;color:var(--dim);line-height:1.85;margin-bottom:22px;max-width:62ch}
+.thesis-p:last-child{margin-bottom:0}
+.thesis-p strong{color:var(--txt);font-weight:500}
+.thesis-p em{color:var(--gold-lt);font-style:italic}
+@media(max-width:600px){.thesis-block{padding:32px 24px}}
+
+/* FINAL CTA */
+.fin{padding:clamp(90px,12vw,140px) 0;background:linear-gradient(170deg,var(--bg) 0%,var(--bg3) 40%,#141310 100%);border-top:1px solid var(--gold-dk)}
+.fin-inner{max-width:760px;margin:0 auto;padding:0 36px;text-align:center}
+.fin-lbl{font-family:var(--fm);font-size:10px;letter-spacing:.35em;text-transform:uppercase;color:var(--gold-lt);margin-bottom:24px}
+.fin-h{font-family:var(--fd);font-size:clamp(2rem,1rem + 2.5vw,3rem);font-weight:500;font-style:italic;line-height:1.2;color:var(--cream);margin-bottom:24px}
+.fin-p{font-size:17.5px;color:var(--dim);line-height:1.8;margin-bottom:40px;max-width:54ch;margin-left:auto;margin-right:auto}
+.fin-cta{display:flex;gap:16px;flex-wrap:wrap;justify-content:center}
+.fin-meta{margin-top:44px;padding-top:28px;border-top:1px solid var(--border-lt);font-family:var(--fm);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--faint)}
+
+/* FOOTER */
+.ft{padding:72px 0 36px;border-top:1px solid var(--border-lt);background:var(--bg)}
+.ft-i{max-width:var(--w);margin:0 auto;padding:0 36px;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:36px}
+@media(max-width:760px){.ft-i{grid-template-columns:1fr 1fr;padding:0 20px}}
+@media(max-width:450px){.ft-i{grid-template-columns:1fr}}
+.ft-b{font-size:12.5px;color:var(--faint);line-height:1.75}
+.ft-bn{font-family:var(--fm);font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--dim);margin-bottom:12px}
+.ft-ct{font-family:var(--fm);font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--faint);margin-bottom:16px}
+.ft-c ul{list-style:none}
+.ft-c li{margin-bottom:10px}
+.ft-c a{font-size:12.5px;color:var(--link);text-decoration:none;transition:color .2s}
+.ft-c a:hover{color:var(--link-hover)}
+.ft-btm{max-width:var(--w);margin:40px auto 0;padding:24px 36px 0;border-top:1px solid var(--border-lt);font-family:var(--fm);font-size:9px;color:var(--faint);letter-spacing:.08em;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-i">
+    <a href="index.html" class="nav-m">KRYONIS LAB</a>
+    <ul class="nav-l">
+      <li><a href="index.html#research">Research</a></li>
+      <li><a href="index.html#bccs">BCCS</a></li>
+      <li><a href="bioclearing.html" class="active">BioClearing</a></li>
+      <li><a href="index.html#publications">Publications</a></li>
+      <li><a href="thesis.html">Thesis</a></li>
+      <li><a href="doctrine.html">Doctrine</a></li>
+      <li><a href="index.html#founder">Founder</a></li>
+      <li><a href="index.html#enter">Enter</a></li>
+    </ul>
+    <button class="nav-h" onclick="document.getElementById('mm').classList.add('open')" aria-label="Menu">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="3" y1="7" x2="21" y2="7"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="17" x2="21" y2="17"/></svg>
+    </button>
+  </div>
+</nav>
+<div class="mob-menu" id="mm">
+  <button class="mob-x" onclick="this.parentElement.classList.remove('open')">&times;</button>
+  <a href="index.html" onclick="this.parentElement.classList.remove('open')">Home</a>
+  <a href="index.html#research" onclick="this.parentElement.classList.remove('open')">Research</a>
+  <a href="index.html#bccs" onclick="this.parentElement.classList.remove('open')">BCCS</a>
+  <a href="bioclearing.html" onclick="this.parentElement.classList.remove('open')">BioClearing</a>
+  <a href="index.html#publications" onclick="this.parentElement.classList.remove('open')">Publications</a>
+  <a href="thesis.html" onclick="this.parentElement.classList.remove('open')">Thesis</a>
+  <a href="doctrine.html" onclick="this.parentElement.classList.remove('open')">Doctrine</a>
+  <a href="index.html#founder" onclick="this.parentElement.classList.remove('open')">Founder</a>
+  <a href="index.html#enter" onclick="this.parentElement.classList.remove('open')">Enter</a>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="c">
+    <div class="hero-crumb">
+      <a href="index.html">KRYONIS Lab</a><span>/</span>Settlement Infrastructure<span>/</span>BioClearing
+    </div>
+    <div class="hero-badge">Settlement Layer &middot; Territorial Bio-Capital</div>
+    <h1 class="hero-t">The settlement layer for territorial bio-capital.</h1>
+    <div class="hero-ln"></div>
+    <p class="hero-p">A trillion dollars in biological assets sit on sovereign territories worldwide &mdash; peatland carbon, boreal biomass, freshwater systems, biodiversity. <strong>Measured but invisible. Verified but unrecorded. Valuable but unbanked.</strong></p>
+    <p class="hero-p">Verification tells you what something <em>is</em>. Clearing tells you that an obligation has been <em>settled</em>. Civilisation has built the first at unprecedented precision. It has not yet built the second.</p>
+    <div class="hero-pull">
+      BioClearing is the institutional address where territorial bio-assets become recordable, queryable, and trustworthy for sovereign-grade capital.
+    </div>
+    <div class="hero-cta">
+      <a href="https://bioclearing.global" class="btn btn-g" target="_blank" rel="noopener noreferrer">Enter the Registry &rarr;</a>
+      <a href="#thesis" class="btn btn-o">Read the Doctrine</a>
+    </div>
+  </div>
+</section>
+
+<!-- 1. THE CIVILISATIONAL PROBLEM -->
+<section class="s s--alt">
+  <div class="cn">
+    <p class="sl">01 &mdash; The Civilisational Problem</p>
+    <h2 class="st">A trillion dollars of <em>stranded capital</em></h2>
+    <p class="sb">Between the Arctic Circle and the Pantanal wetlands, between Kalimantan peat domes and the Serengeti, civilisation holds more biological wealth than is recorded on any balance sheet. This is not an accounting oversight. It is an infrastructure vacuum.</p>
+    <p class="sb">Three distinct failures converge to produce it. Each failure is structural. None is solvable without a new institutional layer.</p>
+
+    <div class="pgrid">
+      <div class="pp">
+        <p class="pp-n">FAILURE 01</p>
+        <h3 class="pp-t">Measured but invisible</h3>
+        <p class="pp-d">Global bio-stocks are measured continuously by satellite, LiDAR, and ground sensors. The data exists. What does not exist is an institutional record system that makes that data <strong>queryable as capital</strong> &mdash; not as climate metadata, not as ESG footnotes.</p>
+      </div>
+      <div class="pp">
+        <p class="pp-n">FAILURE 02</p>
+        <h3 class="pp-t">Verified but unrecorded</h3>
+        <p class="pp-d">Verification happens in fragments. Each project is audited. No neutral infrastructure records <strong>the clearing state</strong> of a territorial bio-asset from initial observation through final capital eligibility. Verification without settlement is verification that does not compound.</p>
+      </div>
+      <div class="pp">
+        <p class="pp-n">FAILURE 03</p>
+        <h3 class="pp-t">Valuable but unbanked</h3>
+        <p class="pp-d">Institutional capital requires <strong>a known address</strong>. When a sovereign wealth fund or a multilateral insurer seeks exposure to territorial bio-capital, there is no registry they can query the way they query DTCC for securities or SWIFT for payment flows. The asset class has no institutional infrastructure.</p>
+      </div>
+    </div>
+
+    <p class="sb">This is the structural gap that BioClearing closes. Not by inventing a new market. Not by tokenising the world. By building the missing record layer &mdash; the one that should have existed before any of this became urgent, and now must be built in arrears.</p>
+  </div>
+</section>
+
+<!-- 2. FROM VERIFICATION TO CLEARING -->
+<section class="s">
+  <div class="cn">
+    <p class="sl">02 &mdash; The Doctrinal Progression</p>
+    <h2 class="st">From verification <em>to clearing</em></h2>
+    <p class="si">KRYONIS Lab&rsquo;s founding thesis holds that the 21st century produces technologies that are metabolically alive &mdash; biological computing substrates, synthetic organisms deployed as infrastructure, territorial biosphere stocks treated as civilisational reserves. <strong>These assets require verification architecture that does not yet exist.</strong></p>
+    <p class="sb">BCCS is the first such verification protocol. It defines what it means for a biological asset to be <em>in a verified state</em> &mdash; through multi-tier oracle consensus, cryptographic anchoring on Base L2, and the 21-character BAIN ID that uniquely identifies every registered asset.</p>
+    <p class="sb">But verification without settlement is a half-built cathedral. An asset that can be verified but not <em>cleared</em> cannot be transacted at institutional scale. Capital flows require more than truth &mdash; they require <strong>recorded truth with finality</strong>.</p>
+
+    <div class="cmp">
+      <div class="cmp-col">
+        <p class="cmp-lbl">Verification Layer &mdash; BCCS Protocol</p>
+        <h3 class="cmp-h">What is this asset?</h3>
+        <ul>
+          <li>Answers the question of <em>state</em> at a point in time</li>
+          <li>Multi-source oracle consensus (satellite, IoT, inspection)</li>
+          <li>Cryptographically anchored on Base L2</li>
+          <li>Queryable via API by AI agents and smart contracts</li>
+          <li>Priced per verification query in $BCCS</li>
+          <li>The truth-machine for biological state</li>
+        </ul>
+      </div>
+      <div class="cmp-col">
+        <p class="cmp-lbl">Clearing Layer &mdash; BCCS Global Registry</p>
+        <h3 class="cmp-h">Has the obligation been settled?</h3>
+        <ul>
+          <li>Answers the question of <em>finality</em> across time</li>
+          <li>Records the clearing-state progression of every TBAR</li>
+          <li>Seven-state irreversible ratchet (1 through 5, plus R)</li>
+          <li>Queryable by sovereign auditors and institutional capital</li>
+          <li>Tri-jurisdiction hosting: Hong Kong, UAE, Singapore</li>
+          <li>The settlement-machine for territorial bio-capital</li>
+        </ul>
+      </div>
+    </div>
+
+    <p class="sb">The two layers are not redundant. They are sequential. <strong>Verification produces the data. Clearing produces the record.</strong> One without the other leaves the asset either unverifiable or unsettled &mdash; in both cases, uninvestable at institutional scale.</p>
+  </div>
+</section>
+
+<!-- 3. SWIFT PARALLEL -->
+<section class="s s--deep">
+  <div class="cn">
+    <p class="sl">03 &mdash; Historical Parallel</p>
+    <h2 class="st">The infrastructure that <em>disappears into the background</em></h2>
+    <p class="si">Every asset class that functions at institutional scale rests on clearing infrastructure most participants never see. The infrastructure does not trade. It does not speculate. It records. And because it records reliably, <strong>trillions of dollars move through it daily</strong>.</p>
+
+    <div class="hist">
+      <div class="hc">
+        <p class="hc-era">1973</p>
+        <h3 class="hc-name">SWIFT</h3>
+        <p class="hc-for">For interbank payment messages</p>
+        <p class="hc-d">Before SWIFT, cross-border payments moved through telex, paper, and bilateral correspondent banking. Fragmented. Slow. Unverifiable. SWIFT did not become a bank. It became the <em>neutral messaging layer</em> between banks. It carries no money. It carries instructions.</p>
+        <p class="hc-took">Now: $150T+ annual flows</p>
+      </div>
+      <div class="hc">
+        <p class="hc-era">1973</p>
+        <h3 class="hc-name">DTCC</h3>
+        <p class="hc-for">For securities settlement</p>
+        <p class="hc-d">Before DTCC, stock certificates moved physically. The 1960s paperwork crisis nearly halted Wall Street. DTCC did not become an exchange. It became the <em>neutral settlement layer</em> &mdash; the entity that records who owns what, when ownership transferred, and whether the obligation is final.</p>
+        <p class="hc-took">Now: $2.5Q+ annual settled</p>
+      </div>
+      <div class="hc">
+        <p class="hc-era">1858</p>
+        <h3 class="hc-name">Torrens System</h3>
+        <p class="hc-for">For land title</p>
+        <p class="hc-d">Before Torrens, land title was contestable across generations of paper deeds. Robert Torrens built a state-guaranteed <em>registry of title</em>. Ownership became a recorded fact, not a disputed history. The system spread across the British Empire and remains the substrate of modern property law.</p>
+        <p class="hc-took">Now: Billions of parcels globally</p>
+      </div>
+    </div>
+
+    <p class="sb">In each case, the pattern is identical. A new asset class emerges. It is valuable. It is measurable. It cannot scale because there is no neutral, jurisdictionally-robust <strong>record of finality</strong>. An institutional entity is built &mdash; not a market participant, but an infrastructure operator. The entity records. The asset class becomes investable. The entity becomes invisible.</p>
+    <p class="sb"><em>BioClearing is this layer for territorial bio-capital.</em> It does not trade carbon. It does not issue tokens. It does not advise sovereigns. It records the clearing state of every registered territorial bio-asset, with finality, across jurisdictions, under neutral operation.</p>
+  </div>
+</section>
+
+<!-- 4. TBAR ANATOMY -->
+<section class="s">
+  <div class="cn">
+    <p class="sl">04 &mdash; Data Architecture</p>
+    <h2 class="st">One object. <em>One standard.</em> Global.</h2>
+    <p class="si">The BCCS Global Registry stores exactly one type of primary object &mdash; the Territorial Bio-Asset Record. Every field in the registry is either a property of, or a relation to, a TBAR. The simplicity is deliberate. <strong>Institutional infrastructure succeeds by storing one thing well.</strong></p>
+
+    <div class="tbar">
+      <p class="tbar-sub">Territorial Bio-Asset Record &mdash; core fields</p>
+      <div class="tbar-row"><span class="tbar-k">bain_id</span><span class="tbar-v">Globally unique 21-character Bio-Asset Identification Number. Encodes country, region, territory, sequence, and check digit. Format: <em>RU-KAR-PEG-001-7</em>.</span></div>
+      <div class="tbar-row"><span class="tbar-k">coordinates</span><span class="tbar-v">GeoJSON polygon boundary at 10-metre precision. The territorial footprint of the asset, unambiguous and machine-readable.</span></div>
+      <div class="tbar-row"><span class="tbar-k">clearing_state</span><span class="tbar-v">Current position on the seven-state ratchet. Values: <em>1 (Observed), 2 (Measured), 3 (Verified), 4 (Registered), 5 (Final), R (Reversed)</em>.</span></div>
+      <div class="tbar-row"><span class="tbar-k">state_history</span><span class="tbar-v">Timestamped, tamper-evident log of every transition. Merkle-tree anchored. Institutional auditors trace the full provenance.</span></div>
+      <div class="tbar-row"><span class="tbar-k">asset_layers</span><span class="tbar-v">Structured data on each bio-stock present: carbon, biomass, freshwater, biodiversity. Each layer is measured, verified, and independently recorded.</span></div>
+      <div class="tbar-row"><span class="tbar-k">verification_records</span><span class="tbar-v">Identifiers of the three-plus independent verifiers, their methodologies, and their convergence score. No single verifier is sufficient.</span></div>
+      <div class="tbar-row"><span class="tbar-k">legal_vehicle</span><span class="tbar-v">The Special Purpose Company or sovereign entity that legally encapsulates the territory for capital purposes. The registry records, does not create.</span></div>
+      <div class="tbar-row"><span class="tbar-k">exclusions</span><span class="tbar-v">Explicitly declared: heritage sites not available for clearing, speculative mineral claims outside scope, political goodwill not tokenisable.</span></div>
+      <div class="tbar-row"><span class="tbar-k">capital_eligibility</span><span class="tbar-v">Boolean flag. True only when State 5 conditions are met. The bit that determines whether institutional capital can interact with this TBAR.</span></div>
+    </div>
+
+    <p class="sb" style="margin-top:32px"><strong>The BAIN ID is the atomic unit.</strong> Before a TBAR exists, the BAIN ID is assigned. It survives all state transitions. It survives reversals. It survives territorial decommissioning. Once issued, it is immutable. An institutional address must be permanent &mdash; that is what makes it addressable.</p>
+
+    <div class="bsam">
+      <div class="bs">
+        <p class="bs-id">RU-KAR-PEG-001-7</p>
+        <p class="bs-d">Russia &middot; Karelia &middot; Pegozer boreal territory, sequence 001</p>
+      </div>
+      <div class="bs">
+        <p class="bs-id">ID-KAL-PTL-012-5</p>
+        <p class="bs-d">Indonesia &middot; Kalimantan &middot; Peatland territory, sequence 012</p>
+      </div>
+      <div class="bs">
+        <p class="bs-id">KZ-AKM-STP-003-2</p>
+        <p class="bs-d">Kazakhstan &middot; Akmola &middot; Steppe territory, sequence 003</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 5. SEVEN STATES -->
+<section class="s s--alt">
+  <div class="cn">
+    <p class="sl">05 &mdash; Clearing-State Pathway</p>
+    <h2 class="st">Seven states. <em>Irreversible ratchet.</em> No shortcuts.</h2>
+    <p class="si">Every TBAR advances through a fixed sequence of clearing states. Each transition is atomic: the conditions are met, or the TBAR stays. Partial transitions do not exist. <strong>The ratchet enforces discipline that human willpower cannot.</strong></p>
+
+    <div class="ladder">
+      <div class="rung">
+        <div class="rung-n">1</div>
+        <div class="rung-nm">Observed<small>Territory identified</small></div>
+        <div class="rung-d">The territorial footprint is declared. Coordinates are submitted. A BAIN ID is assigned. No measurement claims yet, no verification, no legal vehicle. <strong>An observed TBAR is a placeholder</strong> &mdash; an address reserved for work to come.</div>
+      </div>
+      <div class="rung">
+        <div class="rung-n">2</div>
+        <div class="rung-nm">Measured<small>Physical measurement complete</small></div>
+        <div class="rung-d">All declared asset layers have been measured with protocol-compliant instruments. Satellite multi-spectral imagery, LiDAR terrain and canopy, IoT ground sensors, AI-driven fusion. The measurement dataset is submitted to the registry. <strong>The TBAR now has physical substance on record.</strong></div>
+      </div>
+      <div class="rung">
+        <div class="rung-n">3</div>
+        <div class="rung-nm">Verified<small>Three independent verifiers converge</small></div>
+        <div class="rung-d">Three or more accredited verifiers independently review the measurement dataset using published BCCS methodologies. Their outputs must converge within protocol tolerance. <strong>A single verifier is never sufficient.</strong> Convergence, not consensus, is the threshold &mdash; because three honest verifiers cannot collude in their errors.</div>
+      </div>
+      <div class="rung">
+        <div class="rung-n">4</div>
+        <div class="rung-nm">Registered<small>Legal vehicle operational, TBAR complete</small></div>
+        <div class="rung-d">The Special Purpose Company or sovereign entity that encapsulates the territory is operational under its jurisdiction&rsquo;s law. Exclusions are declared. All TBAR fields are populated. <strong>The registry record is now complete.</strong> Institutional auditors can query the full provenance without gaps.</div>
+      </div>
+      <div class="rung">
+        <div class="rung-n">5</div>
+        <div class="rung-nm">Final<small>Capital entry conditions met</small></div>
+        <div class="rung-d">All preceding states hold and remain uncontested. The continuous monitoring layer shows no degradation. The capital_eligibility flag is set to true. <strong>Institutional capital can now interact with this TBAR</strong> &mdash; through investment vehicles, insurance contracts, or sovereign balance-sheet integration &mdash; and its clearing status is a settled fact.</div>
+      </div>
+      <div class="rung reversed">
+        <div class="rung-n">R</div>
+        <div class="rung-nm">Reversed<small>Integrity failure or force majeure</small></div>
+        <div class="rung-d">A TBAR cannot return from State 5 to State 4 without passing through State R. Reversal is triggered by measurement failure, verifier disagreement, legal vehicle collapse, or physical degradation detected by continuous monitoring. <strong>Reversal is transparent and permanent in the state history.</strong> A reversed TBAR can be re-entered only by starting over &mdash; same BAIN ID, fresh progression.</div>
+      </div>
+    </div>
+
+    <p class="ratchet-note">State transitions are irreversible forward. A TBAR at State 3 cannot return to State 2 without first being reversed to R. This is the architectural enforcement of the anti-impatience principle &mdash; the principle that institutional capital trusts finality, not promises.</p>
+  </div>
+</section>
+
+<!-- 6. MEASUREMENT INFRASTRUCTURE -->
+<section class="s">
+  <div class="cn">
+    <p class="sl">06 &mdash; Measurement Infrastructure</p>
+    <h2 class="st">Satellite-grade precision. <em>Sovereign-grade trust.</em></h2>
+    <p class="si">Every TBAR is grounded in physical measurement. The BCCS protocol integrates six measurement layers &mdash; each independent, each mandatory, each updated at intervals matching <strong>ecological cycles, not financial quarters</strong>. The measurement infrastructure is the bedrock on which everything else rests.</p>
+
+    <div class="meas">
+      <div class="ms">
+        <span class="ms-n">01</span>
+        <p class="ms-lbl">Layer I</p>
+        <h3 class="ms-h">Satellite Remote Sensing</h3>
+        <p class="ms-d">Multi-spectral and radar imagery at 10-metre resolution. Continuous territorial monitoring. Biomass estimation, canopy density, water body mapping, land-use change detection. Sentinel-1, Sentinel-2, Landsat-9, and SAR radar sources fused into a single measurement stream.</p>
+        <div class="ms-tags"><span class="ms-tag">Sentinel-1/2</span><span class="ms-tag">Landsat-9</span><span class="ms-tag">SAR</span><span class="ms-tag">10m</span></div>
+      </div>
+      <div class="ms">
+        <span class="ms-n">02</span>
+        <p class="ms-lbl">Layer II</p>
+        <h3 class="ms-h">LiDAR &amp; Aerial Survey</h3>
+        <p class="ms-d">High-resolution 3D terrain and canopy modelling. Sub-metre accuracy for boundary delineation and forest structure analysis. The calibration layer between satellite data and ground truth. Aerial LiDAR is how abstract pixels become volumetric reality.</p>
+        <div class="ms-tags"><span class="ms-tag">3D Point Cloud</span><span class="ms-tag">Sub-metre</span><span class="ms-tag">Canopy Height</span></div>
+      </div>
+      <div class="ms">
+        <span class="ms-n">03</span>
+        <p class="ms-lbl">Layer III</p>
+        <h3 class="ms-h">IoT Sensor Networks</h3>
+        <p class="ms-d">Ground-level environmental telemetry: soil carbon flux, permafrost temperature gradients, hydrological flow rates, microclimate variables. Real-time feeds integrated into TBAR asset layer calculations. The protocol is hardware-agnostic &mdash; sovereigns deploy the sensors they trust.</p>
+        <div class="ms-tags"><span class="ms-tag">Soil Carbon</span><span class="ms-tag">Permafrost</span><span class="ms-tag">Real-time</span></div>
+      </div>
+      <div class="ms">
+        <span class="ms-n">04</span>
+        <p class="ms-lbl">Layer IV</p>
+        <h3 class="ms-h">AI-Driven Analytics</h3>
+        <p class="ms-d">Machine learning models trained on multi-source data fusion. Satellite imagery, LiDAR, ground sensors, historical records. Anomaly detection for early warning. Predictive modelling for regeneration trajectories and biodiversity indices. AI here is not autonomy &mdash; it is <em>perception extended to planetary scale</em>.</p>
+        <div class="ms-tags"><span class="ms-tag">Data Fusion</span><span class="ms-tag">Anomaly</span><span class="ms-tag">Predictive</span></div>
+      </div>
+      <div class="ms">
+        <span class="ms-n">05</span>
+        <p class="ms-lbl">Layer V</p>
+        <h3 class="ms-h">Ground-Truth Verification</h3>
+        <p class="ms-d">No satellite replaces a verifier on the ground. Certified BCCS verifiers conduct field campaigns: species inventories, soil core sampling, water quality analysis. Three or more independent verifiers must converge. <strong>Ground truth calibrates remote data</strong> &mdash; not the other way around.</p>
+        <div class="ms-tags"><span class="ms-tag">Field Campaigns</span><span class="ms-tag">Soil Cores</span><span class="ms-tag">MPIV</span></div>
+      </div>
+      <div class="ms">
+        <span class="ms-n">06</span>
+        <p class="ms-lbl">Layer VI</p>
+        <h3 class="ms-h">Continuous Monitoring</h3>
+        <p class="ms-d">Post-registration surveillance. A TBAR at State 5 is not a static record &mdash; it is a living dataset. Degradation triggers automatic review. Integrity failure initiates State R. <strong>The registry watches what it records</strong>, because bio-capital that stops being bio-capital stops being capital.</p>
+        <div class="ms-tags"><span class="ms-tag">Post-Registration</span><span class="ms-tag">Degradation</span><span class="ms-tag">State R</span></div>
+      </div>
+    </div>
+
+    <p class="sb"><strong>The measurement infrastructure does not belong to KRYONIS.</strong> It belongs to the sovereign operator. KRYONIS defines the standard &mdash; what must be measured, to what precision, by whom. The state deploys the sensors on its own territory, under its own jurisdiction. <em>Sovereignty extends to the measurement layer.</em> This is the architectural guarantee that the registry is jurisdictionally neutral without being extraterritorial.</p>
+  </div>
+</section>
+
+<!-- 7. GOVERNANCE -->
+<section class="s s--deep">
+  <div class="cn">
+    <p class="sl">07 &mdash; Governance Architecture</p>
+    <h2 class="st">Independent. Neutral. <em>Not multilateral.</em></h2>
+    <p class="si">Multilateral organisations are captured by their largest contributors. Private platforms are captured by their equity holders. A clearing registry for sovereign bio-capital cannot be either. <strong>The SWIFT precedent is the governance template</strong>: a private-sector infrastructure entity that governments interact with but do not control.</p>
+
+    <div class="gov">
+      <div class="gv">
+        <p class="gv-lbl">Registry Operator</p>
+        <h3 class="gv-h">KRYONIS Registry Services</h3>
+        <p class="gv-d">The operating entity accepts registrations, records transitions, and initiates reversals under published protocol rules. It is <strong>structurally separated from KRYONIS advisory and research operations</strong>. It does not measure. It does not verify. It does not invest. It does not advise. It records. This is the whole job.</p>
+      </div>
+      <div class="gv">
+        <p class="gv-lbl">Hosting Architecture</p>
+        <h3 class="gv-h">Tri-Jurisdiction &middot; HK &middot; UAE &middot; SG</h3>
+        <p class="gv-d">Primary node in Hong Kong. Synchronous mirrors in the United Arab Emirates and Singapore. No single government can compel unilateral data modification. Each jurisdiction is accessible to <strong>both BRICS+ capital and Western capital</strong>. The tri-jurisdiction architecture is the physical form of neutrality.</p>
+      </div>
+      <div class="gv">
+        <p class="gv-lbl">Advisory Council</p>
+        <h3 class="gv-h">Input without capture</h3>
+        <p class="gv-d">An Advisory Council of verifiers, sovereign entities, scientists, and institutional investors provides input on protocol evolution, disputed state transitions, and methodology development. <strong>The Council advises. It does not govern.</strong> It holds no veto power over operational decisions. Input without capture is the governance discipline.</p>
+      </div>
+    </div>
+
+    <div class="terr">
+      <p class="terr-h">Global Reach</p>
+      <div class="terr-stats">
+        <div><div class="ts-n">175</div><p class="ts-l">Sovereign territories addressable</p></div>
+        <div><div class="ts-n">8</div><p class="ts-l">Continental regions</p></div>
+        <div><div class="ts-n">1</div><p class="ts-l">Universal BAIN ID standard</p></div>
+        <div><div class="ts-n">3</div><p class="ts-l">Hosting jurisdictions</p></div>
+      </div>
+      <div class="terr-regions">
+        <span class="tr-tag">BRICS+</span>
+        <span class="tr-tag">EAEU</span>
+        <span class="tr-tag">Europe</span>
+        <span class="tr-tag">Asia &amp; Middle East</span>
+        <span class="tr-tag">Africa</span>
+        <span class="tr-tag">Americas</span>
+        <span class="tr-tag">Oceania</span>
+      </div>
+    </div>
+
+    <p class="sb">Every sovereign operates its own node. No state depends on another state&rsquo;s infrastructure. The protocol connects them &mdash; the way SWIFT connects banks without owning them, the way the Internet Protocol connects networks without dictating what runs on them.</p>
+  </div>
+</section>
+
+<!-- 8. CIVILISATIONAL THESIS -->
+<section class="s" id="thesis">
+  <div class="cn">
+    <p class="sl">08 &mdash; The Civilisational Thesis</p>
+    <h2 class="st">What this becomes, <em>over a hundred years</em></h2>
+
+    <div class="thesis-block">
+      <p class="thesis-h">KRYONIS Lab Doctrinal Position</p>
+      <h3 class="thesis-t">Every great asset class began as a clearing problem.</h3>
+      <p class="thesis-p">Sovereign debt became an asset class when clearing infrastructure made bond obligations recordable across borders. Equities became an asset class when DTCC made ownership transfers final within a trading day. Real estate became institutional when Torrens-style registries made title a matter of record rather than lineage. <strong>In every case, the clearing layer preceded the capital flow &mdash; not the other way around.</strong></p>
+      <p class="thesis-p">Territorial bio-capital is at the pre-clearing stage. Measurement exists. Verification exists. Legal vehicles exist in fragments. What does not yet exist is <em>the institutional address</em> &mdash; the neutral, jurisdictionally-robust registry that makes a territorial bio-asset queryable the way a CUSIP makes an equity queryable.</p>
+      <p class="thesis-p">BioClearing is that address. It is built now, at the beginning, by a small team in Hong Kong, under protocol discipline, with a hundred-year horizon. It will not trend on social media. It will not issue tokens. It will quietly accumulate TBARs &mdash; one territory, then three, then dozens, then the majority of the world&rsquo;s sovereign bio-stocks &mdash; until the phrase &ldquo;clearing state 5&rdquo; enters the working vocabulary of every sovereign wealth fund, multilateral insurer, and institutional allocator.</p>
+      <p class="thesis-p">At that point, <strong>biological capital will have become a global asset class</strong>. Not because anyone legislated it into existence. Because the infrastructure finally existed to record it.</p>
+    </div>
+
+    <p class="sb">This is a 100&ndash;300 year project. Its success is not measured in quarterly adoption curves. It is measured in whether, a century from now, the institutional memory of civilisation holds a continuous, trustworthy record of the biological wealth that currently sits stranded on sovereign territories. <em>That record is what BioClearing is being built to be.</em></p>
+    <p class="sb">KRYONIS Lab builds the doctrine. BCCS builds the verification. BioClearing builds the clearing layer. Together they form <strong>the sovereign bioeconomy stack</strong> &mdash; verifiable, recordable, settleable biological capital for the long arc of civilisational time.</p>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="fin">
+  <div class="fin-inner">
+    <p class="fin-lbl">Enter the Registry</p>
+    <h2 class="fin-h">A trillion dollars in stranded bio-assets needs an institutional address.</h2>
+    <p class="fin-p">This is that address. Explore the global registry explorer, view the BAIN ID for your territory, and inquire about sovereign deployment.</p>
+    <div class="fin-cta">
+      <a href="https://bioclearing.global" class="btn btn-g" target="_blank" rel="noopener noreferrer">bioclearing.global &rarr;</a>
+      <a href="https://bccs.bio" class="btn btn-o" target="_blank" rel="noopener noreferrer">BCCS Protocol</a>
+      <a href="index.html" class="btn btn-o">KRYONIS Lab</a>
+    </div>
+    <p class="fin-meta">Operated by KRYONIS Sovereign Systems Limited &middot; Hong Kong SAR</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="ft">
+  <div class="ft-i">
+    <div class="ft-b">
+      <p class="ft-bn">KRYONIS Lab</p>
+      <p>A programme of KRYONIS Sovereign Systems Limited, Hong Kong. Building the verification layer for technologies that are alive. Part of the <a href="https://kryonis.global" target="_blank" rel="noopener noreferrer">KRYONIS Sovereign Bioeconomy Stack</a> &rarr;</p>
+    </div>
+    <div class="ft-c">
+      <p class="ft-ct">Stack</p>
+      <ul>
+        <li><a href="index.html#research">Research Tracks</a></li>
+        <li><a href="index.html#bccs">BCCS Protocol</a></li>
+        <li><a href="bioclearing.html">BioClearing</a></li>
+        <li><a href="https://bioclearing.global" target="_blank" rel="noopener noreferrer">Global Registry &rarr;</a></li>
+      </ul>
+    </div>
+    <div class="ft-c">
+      <p class="ft-ct">Engage</p>
+      <ul>
+        <li><a href="index.html#programs">Programs</a></li>
+        <li><a href="index.html#publications">Publications</a></li>
+        <li><a href="https://bccs.bio/mint.html" target="_blank" rel="noopener noreferrer">Node License</a></li>
+        <li><a href="index.html#enter">Enter the Lab</a></li>
+      </ul>
+    </div>
+    <div class="ft-c">
+      <p class="ft-ct">Documents</p>
+      <ul>
+        <li><a href="KRYONIS-Lab-WP-001.pdf">WP-001: Verification Gap</a></li>
+        <li><a href="doctrine.html">Cryogenic Doctrine</a></li>
+        <li><a href="thesis.html">Foundational Thesis</a></li>
+        <li><a href="https://bccs.bio/BCCS_Whitepaper_v1.0.pdf" target="_blank" rel="noopener noreferrer">BCCS Whitepaper</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="ft-btm">
+    <span>&copy; 2026 KRYONIS Sovereign Systems Limited. All rights reserved.</span>
+    <span>BCCS Global Registry &middot; Operated by KRYONIS</span>
+  </div>
+</footer>
+
+</body>
+</html>

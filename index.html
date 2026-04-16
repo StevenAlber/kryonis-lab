@@ -105,11 +105,18 @@ a{color:var(--link);text-decoration:none;transition:color .2s}a:hover{color:var(
 .founder-bio{font-size:15.5px;color:var(--dim);line-height:1.8;margin-bottom:20px;max-width:58ch}
 .founder-cred{border-top:1px solid var(--border-lt);padding-top:24px;margin-top:32px}
 .founder-cred-item{font-size:14px;color:var(--dim);line-height:1.7;margin-bottom:8px;padding-left:16px;position:relative}.founder-cred-item::before{content:"\2014";position:absolute;left:0;color:var(--gold)}
+/* BioClearing section */
+.bioclearing-preview{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;background:var(--border-lt);border:1px solid var(--border-lt);margin-bottom:48px}
+.bioclearing-preview-card{padding:32px 24px;background:var(--bg3)}
+.bioclearing-preview-card h4{font-family:var(--fd);font-size:17px;font-style:italic;color:var(--cream);margin-bottom:8px}
+.bioclearing-preview-card p{font-size:13.5px;color:var(--dim);line-height:1.65}
+.bioclearing-preview-card .bc-metric{font-family:var(--fm);font-size:22px;color:var(--gold-lt);margin-bottom:6px}
+@media(max-width:700px){.bioclearing-preview{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
-<nav class="nav"><div class="nav-i"><a href="#" class="nav-m">KRYONIS LAB</a><ul class="nav-l"><li><a href="#research">Research</a></li><li><a href="#bccs">BCCS Protocol</a></li><li><a href="#programs">Programs</a></li><li><a href="#publications">Publications</a></li><li><a href="thesis.html">Thesis</a></li><li><a href="doctrine.html">Doctrine</a></li><li><a href="#methodology">Method</a></li><li><a href="#founder">Founder</a></li><li><a href="#council">Council</a></li><li><a href="product.html">Whitepaper</a></li><li><a href="#enter">Enter</a></li></ul><button class="nav-h" onclick="document.getElementById('mm').classList.add('open')" aria-label="Menu"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="3" y1="7" x2="21" y2="7"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="17" x2="21" y2="17"/></svg></button></div></nav>
-<div class="mob-menu" id="mm"><button class="mob-x" onclick="this.parentElement.classList.remove('open')">&times;</button><a href="#research" onclick="this.parentElement.classList.remove('open')">Research</a><a href="#bccs" onclick="this.parentElement.classList.remove('open')">BCCS Protocol</a><a href="#programs" onclick="this.parentElement.classList.remove('open')">Programs</a><a href="#publications" onclick="this.parentElement.classList.remove('open')">Publications</a><a href="thesis.html" onclick="this.parentElement.classList.remove('open')">Thesis</a><a href="doctrine.html" onclick="this.parentElement.classList.remove('open')">Doctrine</a><a href="#methodology" onclick="this.parentElement.classList.remove('open')">Method</a><a href="#founder" onclick="this.parentElement.classList.remove('open')">Founder</a><a href="#council" onclick="this.parentElement.classList.remove('open')">Council</a><a href="product.html" onclick="this.parentElement.classList.remove('open')">Whitepaper</a><a href="#enter" onclick="this.parentElement.classList.remove('open')">Enter</a></div>
+<nav class="nav"><div class="nav-i"><a href="#" class="nav-m">KRYONIS LAB</a><ul class="nav-l"><li><a href="#research">Research</a></li><li><a href="#bccs">BCCS Protocol</a></li><li><a href="#programs">Programs</a></li><li><a href="#publications">Publications</a></li><li><a href="thesis.html">Thesis</a></li><li><a href="doctrine.html">Doctrine</a></li><li><a href="#methodology">Method</a></li><li><a href="#founder">Founder</a></li><li><a href="#council">Council</a></li><li><a href="product.html">Whitepaper</a></li><li><a href="bioclearing.html">BioClearing</a></li><li><a href="#enter">Enter</a></li></ul><button class="nav-h" onclick="document.getElementById('mm').classList.add('open')" aria-label="Menu"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="3" y1="7" x2="21" y2="7"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="17" x2="21" y2="17"/></svg></button></div></nav>
+<div class="mob-menu" id="mm"><button class="mob-x" onclick="this.parentElement.classList.remove('open')">&times;</button><a href="#research" onclick="this.parentElement.classList.remove('open')">Research</a><a href="#bccs" onclick="this.parentElement.classList.remove('open')">BCCS Protocol</a><a href="#programs" onclick="this.parentElement.classList.remove('open')">Programs</a><a href="#publications" onclick="this.parentElement.classList.remove('open')">Publications</a><a href="thesis.html" onclick="this.parentElement.classList.remove('open')">Thesis</a><a href="doctrine.html" onclick="this.parentElement.classList.remove('open')">Doctrine</a><a href="#methodology" onclick="this.parentElement.classList.remove('open')">Method</a><a href="#founder" onclick="this.parentElement.classList.remove('open')">Founder</a><a href="#council" onclick="this.parentElement.classList.remove('open')">Council</a><a href="product.html" onclick="this.parentElement.classList.remove('open')">Whitepaper</a><a href="bioclearing.html" onclick="this.parentElement.classList.remove('open')">BioClearing</a><a href="#enter" onclick="this.parentElement.classList.remove('open')">Enter</a></div>
 
 <section class="hero"><div class="c">
 <p class="hero-m">Metabolic State Verification</p>
@@ -250,12 +257,30 @@ a{color:var(--link);text-decoration:none;transition:color .2s}a:hover{color:var(
 </div>
 </div></section>
 
-<section class="s" id="enter"><div class="c">
+<!-- BioClearing Teaser — links to dedicated deep-dive page -->
+<section class="s" id="bioclearing"><div class="c">
+<p class="sl">Settlement Infrastructure</p>
+<h2 class="st">BioClearing &mdash; <em>the clearing layer</em> for territorial bio-capital</h2>
+<p class="si">Verification tells you what something is. Clearing tells you that an obligation has been settled. The BCCS Global Registry is the institutional address where territorial bio-assets become recordable, queryable, and trustworthy for sovereign-grade capital.</p>
+<div class="bioclearing-preview">
+<div class="bioclearing-preview-card"><p class="bc-metric">175</p><h4>Sovereign territories</h4><p>Every latitude, every jurisdiction, every biome. One BAIN ID standard. Each sovereign operates its own node &mdash; no state depends on another state&rsquo;s infrastructure.</p></div>
+<div class="bioclearing-preview-card"><p class="bc-metric">7-State</p><h4>Irreversible ratchet</h4><p>Observed &rarr; Measured &rarr; Verified &rarr; Registered &rarr; Final. Plus R (Reversed). Atomic transitions. Architectural enforcement of the anti-impatience principle.</p></div>
+<div class="bioclearing-preview-card"><p class="bc-metric">HK&middot;UAE&middot;SG</p><h4>Tri-jurisdiction hosting</h4><p>Primary in Hong Kong. Mirrors in the UAE and Singapore. No single government can compel data modification. Accessible to BRICS+ and Western capital alike.</p></div>
+</div>
+<div class="sb">BioClearing is the <strong>SWIFT-equivalent</strong> for territorial bio-capital. It does not trade. It does not issue tokens. It records the clearing-state progression of every registered territorial bio-asset, with finality, under neutral operation. A trillion dollars in stranded biological wealth needs an institutional address. This is that address.</div>
+<div class="bccs-links">
+<a href="bioclearing.html" class="btn btn-g">Read the Full Doctrine &rarr;</a>
+<a href="https://bioclearing.global" class="btn btn-o" target="_blank" rel="noopener noreferrer">Enter the Registry</a>
+</div>
+</div></section>
+
+<section class="s s--alt" id="enter"><div class="c">
 <p class="sl">Engage</p>
 <h2 class="st">Enter the Lab</h2>
 <p class="si">Declare your institutional alignment to proceed.</p>
 <div class="eg">
 <a href="https://bccs.bio/mint.html" class="pw" target="_blank" rel="noopener noreferrer"><p class="pw-q">&#8220;I want to operate verification infrastructure.&#8221;</p><p class="pw-d">Run a BCCS verification node. Mint BAIN IDs. Earn protocol fees. Become part of the decentralized metabolic verification layer on Base L2.</p><p class="pw-a">Acquire Node License &#8594;</p></a>
+<a href="bioclearing.html" class="pw"><p class="pw-q">&#8220;I need to understand the clearing layer for territorial bio-capital.&#8221;</p><p class="pw-d">Read the KRYONIS Lab doctrinal deep-dive on BioClearing &mdash; the settlement infrastructure for territorial bio-assets, from verification to clearing to a hundred-year asset class.</p><p class="pw-a">Read the BioClearing Doctrine &#8594;</p></a>
 <a href="product.html" class="pw"><p class="pw-q">&#8220;I am allocating capital or architecting policy and require strategic intelligence.&#8221;</p><p class="pw-d">Access the Lab&#8217;s intelligence products &#8212; from the flagship Verification Gap Brief to custom strategic assessments.</p><p class="pw-a">Procure intelligence &#8594;</p></a>
 <a href="advisory.html" class="pw"><p class="pw-q">&#8220;I represent a nation-state, defence institution, or sovereign wealth fund.&#8221;</p><p class="pw-d">Structured advisory for sovereign actors navigating the biological technology transition.</p><p class="pw-a">Initiate advisory engagement &#8594;</p></a>
 <a href="fellowship.html" class="pw"><p class="pw-q">&#8220;I am a researcher seeking to work within the KRYONIS framework.&#8221;</p><p class="pw-d">Apply for a Fellowship across biosecurity, biophysics, computational biology, bioethics, actuarial science, or regulatory architecture.</p><p class="pw-a">Express research interest &#8594;</p></a>
@@ -265,6 +290,7 @@ a{color:var(--link);text-decoration:none;transition:color .2s}a:hover{color:var(
 <div class="contact-row">
 <div class="contact-item"><p class="contact-label">General inquiries</p><p class="contact-val">institute [at] kryonis.global</p></div>
 <div class="contact-item"><p class="contact-label">BCCS Protocol</p><p class="contact-val"><a href="https://bccs.bio" target="_blank" rel="noopener noreferrer">bccs.bio</a></p></div>
+<div class="contact-item"><p class="contact-label">BioClearing Lab</p><p class="contact-val"><a href="https://bioclearing.global" target="_blank" rel="noopener noreferrer">bioclearing.global</a></p></div>
 <div class="contact-item"><p class="contact-label">Entity</p><p class="contact-val">KRYONIS Sovereign Systems Limited, Hong Kong</p></div>
 </div>
 </div></section>
@@ -272,7 +298,7 @@ a{color:var(--link);text-decoration:none;transition:color .2s}a:hover{color:var(
 <footer class="ft"><div class="ft-i">
 <div class="ft-b"><p class="ft-bn">KRYONIS Lab</p><p>A programme of KRYONIS Sovereign Systems Limited, Hong Kong.<br>Building the verification layer for technologies that are alive.<br><br>Part of the <a href="https://kryonis.global" target="_blank" rel="noopener noreferrer">KRYONIS Sovereign Bioeconomy Stack</a> &#8594;</p></div>
 <div class="ft-c"><p class="ft-ct">Research</p><ul><li><a href="#research">Research Tracks</a></li><li><a href="#bccs">BCCS Protocol</a></li><li><a href="#methodology">Methodology</a></li><li><a href="#council">Advisory Council</a></li></ul></div>
-<div class="ft-c"><p class="ft-ct">Engage</p><ul><li><a href="#programs">Programs</a></li><li><a href="#publications">Intelligence Products</a></li><li><a href="https://bccs.bio/mint.html" target="_blank" rel="noopener noreferrer">Node License</a></li><li><a href="#enter">Enter the Lab</a></li></ul></div>
+<div class="ft-c"><p class="ft-ct">Engage</p><ul><li><a href="#programs">Programs</a></li><li><a href="#publications">Intelligence Products</a></li><li><a href="https://bccs.bio/mint.html" target="_blank" rel="noopener noreferrer">Node License</a></li><li><a href="https://bioclearing.global" target="_blank" rel="noopener noreferrer">BioClearing Lab</a></li><li><a href="#enter">Enter the Lab</a></li></ul></div>
 <div class="ft-c"><p class="ft-ct">Publications</p><ul><li><a href="KRYONIS-Lab-WP-001.pdf">WP-001: Verification Gap</a></li><li><a href="doctrine.html">Cryogenic Doctrine</a></li><li><a href="https://bccs.bio/BCCS_Whitepaper_v1.0.pdf" target="_blank" rel="noopener noreferrer">BCCS Whitepaper</a></li><li><a href="#publications">Working Papers</a></li><li><a href="thesis.html">Foundational Thesis</a></li><li><a href="product.html">Verification Gap Brief</a></li></ul></div>
 </div><div class="ft-btm">&#169; 2026 KRYONIS Sovereign Systems Limited. All rights reserved.</div></footer>
 <script>document.querySelectorAll('a[href^="#"]').forEach(function(a){a.addEventListener('click',function(e){var t=document.querySelector(a.getAttribute('href'));if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth'});}});});</script>
