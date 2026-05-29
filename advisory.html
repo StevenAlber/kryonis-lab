@@ -121,18 +121,14 @@ a{color:var(--link);text-decoration:none;transition:color .2s}a:hover{color:var(
 <div class="cta-box">
 <h3>Begin confidential dialogue</h3>
 <p>Engagements are scoped individually. Pricing reflects mandate complexity, institutional scale, and timeline. Minimum engagement from $15,000.</p>
-<form class="frm" action="https://formsubmit.co/steven@kryonislab.org" method="POST">
-<input type="hidden" name="_subject" value="Sovereign Advisory — Confidential Inquiry">
-<input type="hidden" name="_captcha" value="false">
-<input type="hidden" name="_template" value="table">
-<input type="hidden" name="_next" value="https://kryonislab.org/advisory.html?sent=1">
-<input type="text" name="_honey" style="display:none">
+<form class="frm" id="adv-form" novalidate>
+<input type="text" name="_honey" tabindex="-1" autocomplete="off" style="display:none" aria-hidden="true">
 <div><label for="adv-name">Name</label><input id="adv-name" type="text" name="Name" required></div>
 <div><label for="adv-inst">Institution</label><input id="adv-inst" type="text" name="Institution" required></div>
 <div><label for="adv-role">Role / Title</label><input id="adv-role" type="text" name="Role / Title"></div>
 <div><label for="adv-email">Email</label><input id="adv-email" type="email" name="email" required></div>
 <div><label for="adv-req">Strategic requirement</label><textarea id="adv-req" name="Strategic requirement" required></textarea></div>
-<button type="submit">Submit confidential inquiry →</button>
+<button type="submit" id="adv-submit">Submit confidential inquiry →</button>
 <p class="frm-note">Handled directly by KRYONIS Lab's strategic director. No intermediaries.</p>
 </form>
 <div class="cta-btns" style="margin-top:28px"><a href="assessment.html" class="btn btn-o">Sovereign BioCapital Assessment</a><a href="index.html#enter" class="btn btn-o">Other pathways</a></div>
@@ -142,13 +138,37 @@ a{color:var(--link);text-decoration:none;transition:color .2s}a:hover{color:var(
 <footer class="ft"><p><a href="index.html">KRYONIS Lab</a> · <a href="https://kryonis.global">KRYONIS Sovereign Systems Limited</a> · Hong Kong · 2026</p></footer>
 
 <script>
-if(new URLSearchParams(location.search).get('sent')==='1'){
-  var b=document.createElement('div');
-  b.style.cssText='position:fixed;top:0;left:0;right:0;z-index:999;background:#8b7d5e;color:#f5f0e6;font-family:monospace;font-size:13px;letter-spacing:.08em;text-align:center;padding:16px;text-transform:uppercase';
-  b.textContent='Inquiry received. KRYONIS Lab will respond directly.';
-  document.body.appendChild(b);
-  setTimeout(function(){b.style.transition='opacity .6s';b.style.opacity='0';setTimeout(function(){b.remove()},600)},6000);
-}
+(function(){
+  var WORKER_URL="https://kryonis-inquiry.khorasystems.workers.dev";
+  var form=document.getElementById('adv-form');
+  var btn=document.getElementById('adv-submit');
+  var original=btn.textContent;
+  function banner(msg){
+    var b=document.createElement('div');
+    b.style.cssText='position:fixed;top:0;left:0;right:0;z-index:999;background:#8b7d5e;color:#f5f0e6;font-family:monospace;font-size:13px;letter-spacing:.08em;text-align:center;padding:16px;text-transform:uppercase';
+    b.textContent=msg;
+    document.body.appendChild(b);
+    setTimeout(function(){b.style.transition='opacity .6s';b.style.opacity='0';setTimeout(function(){b.remove();},600);},6000);
+  }
+  form.addEventListener('submit',async function(e){
+    e.preventDefault();
+    if(form._honey.value){return;}
+    var payload={
+      name:form.querySelector('#adv-name').value.trim(),
+      institution:form.querySelector('#adv-inst').value.trim(),
+      role:form.querySelector('#adv-role').value.trim(),
+      email:form.querySelector('#adv-email').value.trim(),
+      requirement:form.querySelector('#adv-req').value.trim()
+    };
+    if(!payload.name||!payload.email||!payload.requirement){banner('Please complete name, email and requirement.');return;}
+    btn.disabled=true;btn.textContent='Sending…';
+    try{
+      var res=await fetch(WORKER_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
+      if(res.ok){form.reset();btn.textContent='Received ✓';banner('Inquiry received. KRYONIS Lab will respond directly.');}
+      else{throw new Error('server');}
+    }catch(err){btn.disabled=false;btn.textContent=original;banner('Something went wrong. Email steven@kryonislab.org directly.');}
+  });
+})();
 </script>
 </body>
 </html>
