@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KRYONIS Lab — Sovereign BioCapital Assessment</title>
+<meta name="description" content="A structured engagement that positions a territory's biological capital for institutional visibility, verification, and capital entry — before any measurement is commissioned.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#060606;--bg2:#0B0B0A;--bg3:#0F0E0D;--border:#1A1917;--border-lt:#131210;--txt:#CBC7BB;--dim:#7A766C;--faint:#4A4740;--gold:#8B7D5E;--gold-lt:#B0A48A;--cream:#F5F2EB;--link:#B0A48A;--link-hover:#D4C9A8;--fd:'EB Garamond','Georgia',serif;--fm:'IBM Plex Mono','Courier New',monospace}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased}
+body{font-family:var(--fd);background:var(--bg);color:var(--txt);font-size:17px;line-height:1.7}
+::selection{background:rgba(139,125,94,.3)}
+a{color:var(--link);text-decoration:none;transition:color .2s}a:hover{color:var(--link-hover)}
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:20px 32px;background:rgba(6,6,6,.92);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid var(--border-lt)}
+.nav-i{max-width:1140px;margin:0 auto;display:flex;align-items:center;justify-content:space-between}
+.nav-m{font-family:var(--fm);font-size:11px;letter-spacing:.35em;color:var(--dim);text-decoration:none;text-transform:uppercase}.nav-m:hover{color:var(--cream)}
+.nav-r{font-family:var(--fm);font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--faint);text-decoration:none;padding-bottom:2px;border-bottom:1px solid transparent}.nav-r:hover{color:var(--link-hover);border-bottom-color:var(--gold)}
+.wrap{max-width:820px;margin:0 auto;padding:0 36px}
+@media(max-width:600px){.wrap{padding:0 20px}}
+.hero{padding:180px 0 100px;position:relative}
+.hero::after{content:"";position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);opacity:.18}
+.meta{font-family:var(--fm);font-size:10px;letter-spacing:.45em;text-transform:uppercase;color:var(--faint);margin-bottom:48px;opacity:0;animation:fi .9s .3s forwards}
+.hero h1{font-family:var(--fd);font-size:clamp(2rem,1rem+3.5vw,3.2rem);font-weight:400;font-style:italic;line-height:1.1;color:var(--cream);max-width:20ch;margin-bottom:32px;opacity:0;animation:fi .9s .5s forwards}
+.hero-ln{width:48px;height:1.5px;background:var(--gold);margin-bottom:32px;opacity:0;animation:fi .9s .6s forwards}
+.hero-p{font-size:17px;color:var(--dim);max-width:58ch;line-height:1.85;opacity:0;animation:fi .9s .7s forwards}
+@keyframes fi{to{opacity:1}}
+.s{padding:clamp(64px,10vw,120px) 0;border-top:1px solid var(--border-lt)}
+.s--alt{background:var(--bg2)}
+.sl{font-family:var(--fm);font-size:9px;letter-spacing:.4em;text-transform:uppercase;color:var(--gold);margin-bottom:20px}
+.st{font-family:var(--fd);font-size:clamp(1.6rem,1rem+2vw,2.4rem);font-weight:400;font-style:italic;line-height:1.15;color:var(--cream);margin-bottom:28px;max-width:24ch}
+.sp{font-size:16.5px;color:var(--dim);max-width:58ch;line-height:1.85;margin-bottom:24px}
+.sp strong{color:var(--txt);font-weight:600}
+.sp em{color:var(--gold-lt);font-style:italic}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border-lt);border:1px solid var(--border-lt);margin-top:48px}
+@media(max-width:640px){.grid{grid-template-columns:1fr}}
+.cell{padding:40px 32px;background:var(--bg)}
+.cell-n{font-family:var(--fm);font-size:9px;color:var(--gold-lt);letter-spacing:.2em;text-transform:uppercase;margin-bottom:12px}
+.cell-t{font-family:var(--fd);font-size:19px;font-style:italic;color:var(--cream);margin-bottom:10px;line-height:1.25}
+.cell-d{font-size:14.5px;color:var(--dim);line-height:1.7}
+.process{margin-top:48px;display:flex;flex-direction:column;gap:0;border:1px solid var(--border-lt)}
+.step{display:flex;gap:28px;padding:32px;border-bottom:1px solid var(--border-lt);align-items:baseline}
+.step:last-child{border-bottom:none}
+.step-n{font-family:var(--fm);font-size:10px;color:var(--gold-lt);letter-spacing:.15em;min-width:64px;flex-shrink:0}
+.step-t{font-family:var(--fd);font-size:17px;font-style:italic;color:var(--cream);margin-bottom:6px}
+.step-d{font-size:14.5px;color:var(--dim);line-height:1.7}
+@media(max-width:500px){.step{flex-direction:column;gap:8px}}
+/* tier cards */
+.tiers{margin-top:48px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;background:var(--border-lt);border:1px solid var(--border-lt)}
+@media(max-width:760px){.tiers{grid-template-columns:1fr}}
+.tier{padding:36px 28px;background:var(--bg);display:flex;flex-direction:column}
+.tier--mid{background:var(--bg3)}
+.tier-n{font-family:var(--fm);font-size:9px;color:var(--gold-lt);letter-spacing:.25em;text-transform:uppercase;margin-bottom:18px}
+.tier-fee{font-family:var(--fd);font-size:30px;font-style:italic;color:var(--cream);margin-bottom:4px;line-height:1}
+.tier-dur{font-family:var(--fm);font-size:10px;color:var(--faint);letter-spacing:.1em;text-transform:uppercase;margin-bottom:22px}
+.tier-d{font-size:14px;color:var(--dim);line-height:1.7}
+.tier-ln{width:32px;height:1px;background:var(--gold);opacity:.4;margin:0 0 22px}
+.note{margin-top:40px;font-size:15.5px;color:var(--dim);line-height:1.85;max-width:60ch;border-left:1px solid var(--gold);padding-left:24px}
+.note strong{color:var(--cream);font-style:italic;font-weight:400}
+.cta-box{margin-top:48px;border:1px solid var(--border-lt);padding:48px;background:var(--bg2);position:relative}
+.cta-box::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(to right,var(--gold),var(--gold-lt),var(--gold))}
+.cta-box h3{font-family:var(--fd);font-size:22px;font-style:italic;color:var(--cream);margin-bottom:12px}
+.cta-box p{font-size:15px;color:var(--dim);line-height:1.75;margin-bottom:28px;max-width:52ch}
+.btn{display:inline-block;padding:13px 30px;font-family:var(--fm);font-size:10px;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;border-radius:2px;transition:all .25s;cursor:pointer}
+.cta-btns{display:flex;flex-wrap:wrap;gap:12px}
+.btn-g{background:var(--gold);color:var(--cream);border:1px solid var(--gold)}.btn-g:hover{background:var(--gold-lt);border-color:var(--gold-lt);color:var(--cream)}
+.btn-o{background:transparent;color:var(--link);border:1px solid var(--gold)}.btn-o:hover{border-color:var(--gold-lt);color:var(--link-hover);background:rgba(139,125,94,.08)}
+.ft{padding:48px 0;border-top:1px solid var(--border-lt);text-align:center}
+.ft p{font-family:var(--fm);font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--faint)}
+.ft a{color:var(--faint)}.ft a:hover{color:var(--link)}
+.excl{margin-top:40px;display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border-lt);border:1px solid var(--border-lt)}
+@media(max-width:640px){.excl{grid-template-columns:1fr}}
+.excl-c{padding:28px 26px;background:var(--bg)}
+.excl-t{font-family:var(--fd);font-size:16px;font-style:italic;color:var(--cream);margin-bottom:8px}
+.excl-d{font-size:13.5px;color:var(--dim);line-height:1.65}
+</style>
+</head>
+<body>
+
+<nav class="nav"><div class="nav-i"><a href="index.html" class="nav-m">KRYONIS LAB</a><a href="index.html" class="nav-r">← Back to Lab</a></div></nav>
+
+<section class="hero"><div class="wrap">
+<p class="meta">Institutional Engagement · SVC-01</p>
+<h1>Sovereign BioCapital Assessment.</h1>
+<div class="hero-ln"></div>
+<p class="hero-p">A structured engagement that positions a territory's biological capital for institutional visibility, verification, and capital entry — before any measurement is commissioned. It does not measure the territory. It establishes where the territory stands, what is missing, and the defensible pathway to capital entry.</p>
+</div></section>
+
+<section class="s"><div class="wrap">
+<p class="sl">The Problem</p>
+<h2 class="st">Measured but invisible. Verified but unrecorded. Valuable but unbanked.</h2>
+<p class="sp">A sovereign or institutional holder of territory sits on biological capital it cannot yet see on its own balance sheet: peatland carbon, boreal biomass, freshwater systems, biodiversity, permafrost. The barrier is not the absence of biology. It is the absence of a defensible <strong>structure</strong> through which that biology becomes legible to institutional capital.</p>
+<p class="sp">No existing instrument answers, in one defensible document, the four questions an institutional counterparty asks before it commits capital:</p>
+<div class="grid">
+<div class="cell"><p class="cell-n">Identity</p><h3 class="cell-t">Is the asset real and identifiable?</h3><p class="cell-d">Does it carry a unique, jurisdictionally-anchored identity (BAIN ID) and a defined boundary?</p></div>
+<div class="cell"><p class="cell-n">State</p><h3 class="cell-t">What clearing-state is it in?</h3><p class="cell-d">Observed, measured, verified, registered, or capital-ready — BCCS clearing-states 1 through 5.</p></div>
+<div class="cell"><p class="cell-n">Gap</p><h3 class="cell-t">What is missing to advance it?</h3><p class="cell-d">The precise evidentiary and structural gap between its current state and capital entry.</p></div>
+<div class="cell"><p class="cell-n">Pathway</p><h3 class="cell-t">What is the defensible pathway?</h3><p class="cell-d">The sequence — not a promise — of what must be measured, verified, and legally encapsulated, and in what order.</p></div>
+</div>
+</div></section>
+
+<section class="s s--alt"><div class="wrap">
+<p class="sl">Deliverables</p>
+<h2 class="st">What the client receives</h2>
+<p class="sp">Every engagement delivers a written institutional record, not a slide deck.</p>
+<div class="process">
+<div class="step"><div class="step-n">01</div><div class="step-content"><p class="step-t">Territorial Position Brief</p><p class="step-d">The territory placed in the BCCS clearing-state framework, with provisional BAIN identifier and boundary definition.</p></div></div>
+<div class="step"><div class="step-n">02</div><div class="step-content"><p class="step-t">Evidentiary Gap Map</p><p class="step-d">A structured account of what stands between the territory's current state and capital eligibility, by asset layer.</p></div></div>
+<div class="step"><div class="step-n">03</div><div class="step-content"><p class="step-t">Clearing Pathway</p><p class="step-d">The defensible sequence to advance clearing-state — including what measurement and verification each step requires, and who must perform it.</p></div></div>
+<div class="step"><div class="step-n">04</div><div class="step-content"><p class="step-t">Capital-Readiness Statement</p><p class="step-d">A sober assessment of what an institutional counterparty would require before capital entry, and the legal-vehicle considerations involved.</p></div></div>
+<div class="step"><div class="step-n">05</div><div class="step-content"><p class="step-t">Doctrine Annex</p><p class="step-d">The KRYONIS verification-first framework (R-series standard) against which the position is constructed — so the document is self-justifying to an expert reader.</p></div></div>
+</div>
+</div></section>
+
+<section class="s"><div class="wrap">
+<p class="sl">Engagement Tiers</p>
+<h2 class="st">Three tiers, by territory complexity and institutional weight.</h2>
+<p class="sp">All are fixed-fee, written-deliverable engagements. None includes physical measurement; each defines the measurement that a later stage would require.</p>
+<div class="tiers">
+<div class="tier"><p class="tier-n">Foundational</p><div class="tier-fee">$25,000</div><p class="tier-dur">30 days</p><div class="tier-ln"></div><p class="tier-d">Single territory, single dominant asset layer. Position Brief, Gap Map, provisional BAIN, Clearing Pathway outline, Doctrine Annex.</p></div>
+<div class="tier tier--mid"><p class="tier-n">Strategic</p><div class="tier-fee">$60,000</div><p class="tier-dur">45 days</p><div class="tier-ln"></div><p class="tier-d">Multi-layer territory or portfolio of related sites. Full deliverable set, Capital-Readiness Statement, legal-vehicle considerations, counterparty-requirements map.</p></div>
+<div class="tier"><p class="tier-n">Sovereign</p><div class="tier-fee">$150,000</div><p class="tier-dur">45–60 days</p><div class="tier-ln"></div><p class="tier-d">National or sub-national programme scope. All of the above across multiple territories, plus a programme-level clearing architecture and a phased capital-entry roadmap.</p></div>
+</div>
+<p class="note"><strong>Why it is not "one PDF."</strong> The fee buys a defensible institutional position, not a report. It is the difference between a holder asserting value and a holder able to demonstrate — against a stated standard, in a recognised framework — exactly where the asset stands and what advancing it requires. That position is what a counterparty, an auditor, or a sovereign fund actually transacts against.</p>
+</div></section>
+
+<section class="s s--alt"><div class="wrap">
+<p class="sl">Boundaries</p>
+<h2 class="st">What this engagement is not</h2>
+<div class="excl">
+<div class="excl-c"><p class="excl-t">Not measurement</p><p class="excl-d">No satellite or ground survey is performed. The Assessment defines what must be measured; instrument-led measurement is a distinct subsequent stage, performed by qualified parties within the structure this engagement establishes.</p></div>
+<div class="excl-c"><p class="excl-t">Not a carbon-credit service</p><p class="excl-d">Carbon is one asset layer among several. The Assessment positions territorial bio-capital as a whole; it does not issue, broker, or value credits.</p></div>
+<div class="excl-c"><p class="excl-t">Not tokenisation</p><p class="excl-d">No token is issued or implied. Tokenisation, if it ever occurs, is downstream of clearing-state 5 and outside this engagement.</p></div>
+<div class="excl-c"><p class="excl-t">Not advisory-by-the-hour</p><p class="excl-d">A fixed-scope, fixed-fee institutional deliverable with a defined beginning and end.</p></div>
+</div>
+</div></section>
+
+<section class="s"><div class="wrap">
+<p class="sl">Process</p>
+<h2 class="st">From written intake to institutional record.</h2>
+<div class="process">
+<div class="step"><div class="step-n">Intake</div><div class="step-content"><p class="step-t">Written</p><p class="step-d">Territory definition, jurisdiction, existing data, holder's objective. The first exchange is always written.</p></div></div>
+<div class="step"><div class="step-n">Wk 1–2</div><div class="step-content"><p class="step-t">Positioning</p><p class="step-d">Provisional BAIN, boundary, clearing-state placement, asset-layer inventory from existing records.</p></div></div>
+<div class="step"><div class="step-n">Wk 2–4</div><div class="step-content"><p class="step-t">Gap &amp; Pathway</p><p class="step-d">Evidentiary gap map; defensible clearing pathway; measurement and verification requirements per step.</p></div></div>
+<div class="step"><div class="step-n">Wk 4–6</div><div class="step-content"><p class="step-t">Capital-Readiness</p><p class="step-d">Counterparty-requirements map, legal-vehicle considerations, capital-entry roadmap (tier-dependent).</p></div></div>
+<div class="step"><div class="step-n">Close</div><div class="step-content"><p class="step-t">Delivery</p><p class="step-d">Written institutional record delivered under correspondence. One structured review exchange included.</p></div></div>
+</div>
+</div></section>
+
+<section class="s s--alt"><div class="wrap">
+<div class="cta-box">
+<h3>Open correspondence on this engagement.</h3>
+<p>The Sovereign BioCapital Assessment is the entry engagement of the KRYONIS Lab Research track. The first exchange is always written. Sovereign holders, ministries, foundations, and institutional landholders are welcome to open correspondence.</p>
+<div class="cta-btns">
+<a href="mailto:steven@kryonislab.org?subject=Sovereign%20BioCapital%20Assessment%20%E2%80%94%20Inquiry" class="btn btn-g">Open correspondence</a>
+<a href="https://kryonis.global" class="btn btn-o">The wider architecture</a>
+</div>
+</div>
+</div></section>
+
+<footer class="ft"><p><a href="index.html">KRYONIS Lab</a> · <a href="https://kryonis.global">KRYONIS Sovereign Systems Limited</a> · Hong Kong · 2026</p></footer>
+
+</body>
+</html>
