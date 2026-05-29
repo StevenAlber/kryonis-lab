@@ -62,6 +62,15 @@ a{color:var(--link);text-decoration:none;transition:color .2s}a:hover{color:var(
 .cta-btns{display:flex;flex-wrap:wrap;gap:12px}
 .btn-g{background:var(--gold);color:var(--cream);border:1px solid var(--gold)}.btn-g:hover{background:var(--gold-lt);border-color:var(--gold-lt);color:var(--cream)}
 .btn-o{background:transparent;color:var(--link);border:1px solid var(--gold)}.btn-o:hover{border-color:var(--gold-lt);color:var(--link-hover);background:rgba(139,125,94,.08)}
+.frm{display:flex;flex-direction:column;gap:18px;margin-top:8px}
+.frm label{font-family:var(--fm);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--dim);display:block;margin-bottom:7px}
+.frm input,.frm textarea,.frm select{width:100%;background:rgba(0,0,0,.25);border:1px solid var(--border-lt);color:var(--cream);font-family:var(--fb,inherit);font-size:15px;padding:13px 15px;border-radius:2px;transition:border-color .2s;box-sizing:border-box}
+.frm input:focus,.frm textarea:focus,.frm select:focus{outline:none;border-color:var(--gold)}
+.frm textarea{resize:vertical;min-height:120px;line-height:1.6}
+.frm select{appearance:none;-webkit-appearance:none;cursor:pointer}
+.frm button{margin-top:6px;align-self:flex-start;padding:14px 38px;font-family:var(--fm);font-size:10px;letter-spacing:.12em;text-transform:uppercase;border-radius:2px;cursor:pointer;background:var(--gold);color:var(--cream);border:1px solid var(--gold);transition:all .25s}
+.frm button:hover{background:var(--gold-lt);border-color:var(--gold-lt)}
+.frm-note{font-size:12px;color:var(--faint);margin-top:4px;margin-bottom:0}
 
 .ft{padding:48px 0;border-top:1px solid var(--border-lt);text-align:center}
 .ft p{font-family:var(--fm);font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--faint)}
@@ -110,11 +119,34 @@ a{color:var(--link);text-decoration:none;transition:color .2s}a:hover{color:var(
 <div class="cta-box">
 <h3>Begin confidential dialogue</h3>
 <p>Engagements are scoped individually. Pricing reflects mandate complexity, institutional scale, and timeline. Minimum engagement from $15,000.</p>
-<div class="cta-btns"><a href="mailto:institute@kryonis.global?subject=Sovereign%20Advisory%20—%20Confidential%20Inquiry&body=Institution%3A%20%0ARole%2FTitle%3A%20%0AStrategic%20requirement%3A%20%0A" class="btn btn-g">Contact the Director →</a><a href="assessment.html" class="btn btn-o">Sovereign BioCapital Assessment</a><a href="index.html#enter" class="btn btn-o">Other pathways</a></div>
+<form class="frm" action="https://formsubmit.co/steven@kryonislab.org" method="POST">
+<input type="hidden" name="_subject" value="Sovereign Advisory — Confidential Inquiry">
+<input type="hidden" name="_captcha" value="false">
+<input type="hidden" name="_template" value="table">
+<input type="hidden" name="_next" value="https://kryonislab.org/advisory.html?sent=1">
+<input type="text" name="_honey" style="display:none">
+<div><label for="adv-name">Name</label><input id="adv-name" type="text" name="Name" required></div>
+<div><label for="adv-inst">Institution</label><input id="adv-inst" type="text" name="Institution" required></div>
+<div><label for="adv-role">Role / Title</label><input id="adv-role" type="text" name="Role / Title"></div>
+<div><label for="adv-email">Email</label><input id="adv-email" type="email" name="email" required></div>
+<div><label for="adv-req">Strategic requirement</label><textarea id="adv-req" name="Strategic requirement" required></textarea></div>
+<button type="submit">Submit confidential inquiry →</button>
+<p class="frm-note">Handled directly by KRYONIS Lab's strategic director. No intermediaries.</p>
+</form>
+<div class="cta-btns" style="margin-top:28px"><a href="assessment.html" class="btn btn-o">Sovereign BioCapital Assessment</a><a href="index.html#enter" class="btn btn-o">Other pathways</a></div>
 </div>
 </div></section>
 
 <footer class="ft"><p><a href="index.html">KRYONIS Lab</a> · <a href="https://kryonis.global">KRYONIS Sovereign Systems Limited</a> · Hong Kong · 2026</p></footer>
 
+<script>
+if(new URLSearchParams(location.search).get('sent')==='1'){
+  var b=document.createElement('div');
+  b.style.cssText='position:fixed;top:0;left:0;right:0;z-index:999;background:#8b7d5e;color:#f5f0e6;font-family:monospace;font-size:13px;letter-spacing:.08em;text-align:center;padding:16px;text-transform:uppercase';
+  b.textContent='Inquiry received. KRYONIS Lab will respond directly.';
+  document.body.appendChild(b);
+  setTimeout(function(){b.style.transition='opacity .6s';b.style.opacity='0';setTimeout(function(){b.remove()},600)},6000);
+}
+</script>
 </body>
 </html>

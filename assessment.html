@@ -67,6 +67,16 @@ a{color:var(--link);text-decoration:none;transition:color .2s}a:hover{color:var(
 .cta-btns{display:flex;flex-wrap:wrap;gap:12px}
 .btn-g{background:var(--gold);color:var(--cream);border:1px solid var(--gold)}.btn-g:hover{background:var(--gold-lt);border-color:var(--gold-lt);color:var(--cream)}
 .btn-o{background:transparent;color:var(--link);border:1px solid var(--gold)}.btn-o:hover{border-color:var(--gold-lt);color:var(--link-hover);background:rgba(139,125,94,.08)}
+.frm{display:flex;flex-direction:column;gap:18px;margin-top:8px}
+.frm label{font-family:var(--fm);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--dim);display:block;margin-bottom:7px}
+.frm input,.frm textarea,.frm select{width:100%;background:rgba(0,0,0,.25);border:1px solid var(--border-lt);color:var(--cream);font-size:15px;padding:13px 15px;border-radius:2px;transition:border-color .2s;box-sizing:border-box}
+.frm input:focus,.frm textarea:focus,.frm select:focus{outline:none;border-color:var(--gold)}
+.frm textarea{resize:vertical;min-height:120px;line-height:1.6}
+.frm select{appearance:none;-webkit-appearance:none;cursor:pointer}
+.frm button{margin-top:6px;align-self:flex-start;padding:14px 38px;font-family:var(--fm);font-size:10px;letter-spacing:.12em;text-transform:uppercase;border-radius:2px;cursor:pointer;background:var(--gold);color:var(--cream);border:1px solid var(--gold);transition:all .25s}
+.frm button:hover{background:var(--gold-lt);border-color:var(--gold-lt)}
+.frm-note{font-size:12px;color:var(--faint);margin-top:4px;margin-bottom:0}
+.btn-o{background:transparent;color:var(--link);border:1px solid var(--gold)}.btn-o:hover{border-color:var(--gold-lt);color:var(--link-hover);background:rgba(139,125,94,.08)}
 .ft{padding:48px 0;border-top:1px solid var(--border-lt);text-align:center}
 .ft p{font-family:var(--fm);font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:var(--faint)}
 .ft a{color:var(--faint)}.ft a:hover{color:var(--link)}
@@ -153,8 +163,22 @@ a{color:var(--link);text-decoration:none;transition:color .2s}a:hover{color:var(
 <div class="cta-box">
 <h3>Open correspondence on this engagement.</h3>
 <p>The Sovereign BioCapital Assessment is the entry engagement of the KRYONIS Lab Research track. The first exchange is always written. Sovereign holders, ministries, foundations, and institutional landholders are welcome to open correspondence.</p>
-<div class="cta-btns">
-<a href="mailto:steven@kryonislab.org?subject=Sovereign%20BioCapital%20Assessment%20%E2%80%94%20Inquiry" class="btn btn-g">Open correspondence</a>
+<form class="frm" action="https://formsubmit.co/steven@kryonislab.org" method="POST">
+<input type="hidden" name="_subject" value="Sovereign BioCapital Assessment — Inquiry">
+<input type="hidden" name="_captcha" value="false">
+<input type="hidden" name="_template" value="table">
+<input type="hidden" name="_next" value="https://kryonislab.org/assessment.html?sent=1">
+<input type="text" name="_honey" style="display:none">
+<div><label for="as-name">Name</label><input id="as-name" type="text" name="Name" required></div>
+<div><label for="as-inst">Institution</label><input id="as-inst" type="text" name="Institution" required></div>
+<div><label for="as-role">Role / Title</label><input id="as-role" type="text" name="Role / Title"></div>
+<div><label for="as-email">Email</label><input id="as-email" type="email" name="email" required></div>
+<div><label for="as-tier">Engagement tier of interest</label><select id="as-tier" name="Tier of interest"><option value="Undecided">Undecided — advise me</option><option value="Foundational — $25,000">Foundational — $25,000</option><option value="Strategic — $60,000">Strategic — $60,000</option><option value="Sovereign — $150,000">Sovereign — $150,000</option></select></div>
+<div><label for="as-ctx">Territory / asset context</label><textarea id="as-ctx" name="Territory / asset context" required></textarea></div>
+<button type="submit">Open correspondence →</button>
+<p class="frm-note">The first exchange is always written. KRYONIS Lab responds directly.</p>
+</form>
+<div class="cta-btns" style="margin-top:28px">
 <a href="https://kryonis.global" class="btn btn-o">The wider architecture</a>
 </div>
 </div>
@@ -162,5 +186,14 @@ a{color:var(--link);text-decoration:none;transition:color .2s}a:hover{color:var(
 
 <footer class="ft"><p><a href="index.html">KRYONIS Lab</a> · <a href="https://kryonis.global">KRYONIS Sovereign Systems Limited</a> · Hong Kong · 2026</p></footer>
 
+<script>
+if(new URLSearchParams(location.search).get('sent')==='1'){
+  var b=document.createElement('div');
+  b.style.cssText='position:fixed;top:0;left:0;right:0;z-index:999;background:#8b7d5e;color:#f5f0e6;font-family:monospace;font-size:13px;letter-spacing:.08em;text-align:center;padding:16px;text-transform:uppercase';
+  b.textContent='Correspondence received. KRYONIS Lab will respond directly.';
+  document.body.appendChild(b);
+  setTimeout(function(){b.style.transition='opacity .6s';b.style.opacity='0';setTimeout(function(){b.remove()},600)},6000);
+}
+</script>
 </body>
 </html>
